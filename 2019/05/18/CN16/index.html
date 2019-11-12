@@ -6,15 +6,15 @@
   <meta name="keywords" content=" WP复现 ">
   <meta name="description" content="CISCN_final_CN16 | Whali3n51&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="难度刚刚好，我能做出来，但是又不是那么容易做出来。最后可惜，没能进线下，ak了pwn也无济于事。 0x01 Hacknote静态编译的一个题，没开pie，没开nx,可以getshell，漏洞就是off-by-one,比赛的时候巨鸡儿坑，坑死我了，第一次的附件chunk是存在bss段的,然后我就想了个简单的办法，直接用unlink的方式做，但是尼玛服务器上面的程序chunk指针不是在bss段上，而是">
+<meta name="description" content="这个比赛我没怎么玩，主要是比赛当天有事，据说是新手向的题目，是河北师范大学举办的比赛，我只做了里面几道题。 0x01 hard_pwn就存在一个off-by-one，可以直接解造成堆块重叠，进而使用house of orange来getshell 1234567891011121314151617181920212223242526272829303132333435363738394041424">
 <meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="湖湘杯线上赛pwn_wp">
-<meta property="og:url" content="http:&#x2F;&#x2F;whali3n51.github.io&#x2F;2019&#x2F;11&#x2F;11&#x2F;%E6%B9%96%E6%B9%98%E6%9D%AF%E7%BA%BF%E4%B8%8A%E8%B5%9Bpwn_wp&#x2F;index.html">
+<meta property="og:title" content="HECTF_Pwn_wp">
+<meta property="og:url" content="http:&#x2F;&#x2F;whali3n51.github.io&#x2F;2019&#x2F;11&#x2F;11&#x2F;HECTF&#x2F;index.html">
 <meta property="og:site_name" content="Whali3n51&#39;s blog">
-<meta property="og:description" content="难度刚刚好，我能做出来，但是又不是那么容易做出来。最后可惜，没能进线下，ak了pwn也无济于事。 0x01 Hacknote静态编译的一个题，没开pie，没开nx,可以getshell，漏洞就是off-by-one,比赛的时候巨鸡儿坑，坑死我了，第一次的附件chunk是存在bss段的,然后我就想了个简单的办法，直接用unlink的方式做，但是尼玛服务器上面的程序chunk指针不是在bss段上，而是">
+<meta property="og:description" content="这个比赛我没怎么玩，主要是比赛当天有事，据说是新手向的题目，是河北师范大学举办的比赛，我只做了里面几道题。 0x01 hard_pwn就存在一个off-by-one，可以直接解造成堆块重叠，进而使用house of orange来getshell 1234567891011121314151617181920212223242526272829303132333435363738394041424">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-12T09:19:21.920Z">
+<meta property="og:updated_time" content="2019-11-12T09:17:37.579Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -110,6 +110,14 @@
     
         
             
+            <li><div data-rel="密码学">密码学<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
             <li><div data-rel="其他">其他<small>(2)</small></div>
                 
             </li>
@@ -119,14 +127,6 @@
         
             
             <li><div data-rel="RE">RE<small>(2)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="密码学">密码学<small>(1)</small></div>
                 
             </li>
             
@@ -222,20 +222,20 @@
             <span class="post-date" title="2019-11-11 13:51:00">2019/11/11</span>
         </a>
         
-        <a  class="Writeup "
-           href="/2019/11/11/%E4%B8%8A%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8PWN_wp/"
-           data-tag="pwn"
+        <a  class="密码学 "
+           href="/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"
+           data-tag=""
            data-author="" >
-            <span class="post-title" title="上海大学生网络安全PWN_wp">上海大学生网络安全PWN_wp</span>
-            <span class="post-date" title="2019-11-11 13:37:00">2019/11/11</span>
+            <span class="post-title" title="RC4加密算法的原理讲解">RC4加密算法的原理讲解</span>
+            <span class="post-date" title="2019-05-28 16:46:00">2019/05/28</span>
         </a>
         
         <a  class="pwn学习 "
-           href="/2019/06/04/%E5%A0%86%E6%BA%A2%E5%87%BA%E7%9A%84unlink%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"
+           href="/2019/06/02/Unsorted%20bin%20attack/"
            data-tag="pwn"
            data-author="" >
-            <span class="post-title" title="堆溢出的unlink漏洞利用">堆溢出的unlink漏洞利用</span>
-            <span class="post-date" title="2019-06-04 14:41:00">2019/06/04</span>
+            <span class="post-title" title="Unsorted bin attack">Unsorted bin attack</span>
+            <span class="post-date" title="2019-06-02 17:54:00">2019/06/02</span>
         </a>
         
         <a  class="其他 "
@@ -254,20 +254,20 @@
             <span class="post-date" title="2019-05-31 13:07:00">2019/05/31</span>
         </a>
         
-        <a  class="pwn学习 "
-           href="/2019/06/02/Unsorted%20bin%20attack/"
+        <a  class="Writeup "
+           href="/2019/11/11/%E4%B8%8A%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8PWN_wp/"
            data-tag="pwn"
            data-author="" >
-            <span class="post-title" title="Unsorted bin attack">Unsorted bin attack</span>
-            <span class="post-date" title="2019-06-02 17:54:00">2019/06/02</span>
+            <span class="post-title" title="上海大学生网络安全PWN_wp">上海大学生网络安全PWN_wp</span>
+            <span class="post-date" title="2019-11-11 13:37:00">2019/11/11</span>
         </a>
         
-        <a  class="Writeup "
-           href="/2019/11/11/%E6%B9%96%E6%B9%98%E6%9D%AF%E7%BA%BF%E4%B8%8A%E8%B5%9Bpwn_wp/"
-           data-tag="pwn"
+        <a  class=""
+           href="/2019/05/28/%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3%E9%80%9A%E8%BF%87extend_overlopping%E6%9D%A5%E5%88%A9%E7%94%A8fast%20bin%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%BB%E5%86%99/"
+           data-tag=""
            data-author="" >
-            <span class="post-title" title="湖湘杯线上赛pwn_wp">湖湘杯线上赛pwn_wp</span>
-            <span class="post-date" title="2019-11-11 14:14:00">2019/11/11</span>
+            <span class="post-title" title="简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写">简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写</span>
+            <span class="post-date" title="2019-05-28 12:25:00">2019/05/28</span>
         </a>
         
         <a  class="RE "
@@ -286,6 +286,14 @@
             <span class="post-date" title="2019-09-01 12:41:00">2019/09/01</span>
         </a>
         
+        <a  class="Writeup "
+           href="/2019/11/11/%E6%B9%96%E6%B9%98%E6%9D%AF%E7%BA%BF%E4%B8%8A%E8%B5%9Bpwn_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="湖湘杯线上赛pwn_wp">湖湘杯线上赛pwn_wp</span>
+            <span class="post-date" title="2019-11-11 14:14:00">2019/11/11</span>
+        </a>
+        
         <a  class="RE "
            href="/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"
            data-tag="re复现"
@@ -294,20 +302,12 @@
             <span class="post-date" title="2019-05-28 22:15:00">2019/05/28</span>
         </a>
         
-        <a  class=""
-           href="/2019/05/28/%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3%E9%80%9A%E8%BF%87extend_overlopping%E6%9D%A5%E5%88%A9%E7%94%A8fast%20bin%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%BB%E5%86%99/"
-           data-tag=""
+        <a  class="pwn学习 "
+           href="/2019/06/04/%E5%A0%86%E6%BA%A2%E5%87%BA%E7%9A%84unlink%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
            data-author="" >
-            <span class="post-title" title="简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写">简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写</span>
-            <span class="post-date" title="2019-05-28 12:25:00">2019/05/28</span>
-        </a>
-        
-        <a  class="密码学 "
-           href="/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="RC4加密算法的原理讲解">RC4加密算法的原理讲解</span>
-            <span class="post-date" title="2019-05-28 16:46:00">2019/05/28</span>
+            <span class="post-title" title="堆溢出的unlink漏洞利用">堆溢出的unlink漏洞利用</span>
+            <span class="post-date" title="2019-06-04 14:41:00">2019/06/04</span>
         </a>
         
         <a  class="Writeup "
@@ -326,20 +326,20 @@
             <span class="post-date" title="2019-09-01 11:09:00">2019/09/01</span>
         </a>
         
-        <a  class="pwn学习 "
-           href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/"
-           data-tag="pwn"
-           data-author="" >
-            <span class="post-title" title="现代unlink漏洞讲解与利用">现代unlink漏洞讲解与利用</span>
-            <span class="post-date" title="2019-05-28 12:56:00">2019/05/28</span>
-        </a>
-        
         <a  class="Writeup "
            href="/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/"
            data-tag="pwn"
            data-author="" >
             <span class="post-title" title="five空间大赛">five空间大赛</span>
             <span class="post-date" title="2019-09-01 11:22:00">2019/09/01</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="现代unlink漏洞讲解与利用">现代unlink漏洞讲解与利用</span>
+            <span class="post-date" title="2019-05-28 12:56:00">2019/05/28</span>
         </a>
         
     </nav>
@@ -395,6 +395,17 @@
             </span>
         </span>
         
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
         
     </div>
     
@@ -463,6 +474,27 @@
     </p>
 </div>
 
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: 'Whali3n51.github.io',
+            owner: 'Whali3n51',
+            admin: ['Whali3n51'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
 
 
 
