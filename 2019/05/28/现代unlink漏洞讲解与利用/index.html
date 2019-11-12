@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>现代unlink漏洞讲解与利用 | Whali3n51&#39;s blog</title>
+  <meta name="keywords" content=" pwn ">
+  <meta name="description" content="现代unlink漏洞讲解与利用 | Whali3n51&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="立雪1234567891011121314151617181920212223242526272829303132333435from pwn import *context.log_level=&amp;apos;debug&amp;apos;#p=process(&amp;apos;.&#x2F;pwn15&amp;apos;)p=remote(&amp;apos;111.33.164.6&amp;apos;, 50015)def create(size,content):	p.sendlineafter(&amp;apos;">
+<meta name="keywords" content="pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="five空间大赛">
+<meta property="og:url" content="http:&#x2F;&#x2F;whali3n51.github.io&#x2F;2019&#x2F;09&#x2F;01&#x2F;five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B&#x2F;index.html">
+<meta property="og:site_name" content="Whali3n51&#39;s blog">
+<meta property="og:description" content="立雪1234567891011121314151617181920212223242526272829303132333435from pwn import *context.log_level=&amp;apos;debug&amp;apos;#p=process(&amp;apos;.&#x2F;pwn15&amp;apos;)p=remote(&amp;apos;111.33.164.6&amp;apos;, 50015)def create(size,content):	p.sendlineafter(&amp;apos;">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-12T08:48:01.105Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>Whali3n51</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:Whali3n51@gmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1453872020&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+<a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(17)</small></div></li>
+    
+        
+            
+            <li><div data-rel="pwn学习">pwn学习<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="RE">RE<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="密码学">密码学<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Writeup">Writeup<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="其他">其他<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="17">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.kkzevip.com/">MoR03r</a></li>
+            
+            <li><a target="_blank" href="https://pdsdt.ginkgoteam.com/">Pdsdt</a></li>
+            
+            <li><a target="_blank" href="http://www.dongzt.cn/">Alkaid</a></li>
+            
+            <li><a target="_blank" href="https://www.virzz.com/">Virink’s Blog</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">pwn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">re_wp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">re复现</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="pwn学习 "
+           href="/2019/05/18/CN16/"
+           data-tag="WP复现"
+           data-author="" >
+            <span class="post-title" title="CISCN_final_CN16">CISCN_final_CN16</span>
+            <span class="post-date" title="2019-05-18 07:04:35">2019/05/18</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/08/30/%E5%85%B3%E4%BA%8EWin10%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B01903%E4%B9%8B%E5%90%8E%E5%8F%AA%E8%83%BD%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Win10自动更新1903之后只能新建文件夹">关于Win10自动更新1903之后只能新建文件夹</span>
+            <span class="post-date" title="2019-08-30 10:08:00">2019/08/30</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%AB%98%E6%89%8B%E8%BF%9B%E9%98%B6PWN(2)/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="攻防世界高手进阶PWN（２）">攻防世界高手进阶PWN（２）</span>
+            <span class="post-date" title="2019-09-01 11:09:00">2019/09/01</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="five空间大赛">five空间大赛</span>
+            <span class="post-date" title="2019-09-01 11:22:00">2019/09/01</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/05/28/%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3%E9%80%9A%E8%BF%87extend_overlopping%E6%9D%A5%E5%88%A9%E7%94%A8fast%20bin%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%BB%E5%86%99/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写">简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写</span>
+            <span class="post-date" title="2019-05-28 12:25:00">2019/05/28</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="现代unlink漏洞讲解与利用">现代unlink漏洞讲解与利用</span>
+            <span class="post-date" title="2019-05-28 12:56:00">2019/05/28</span>
+        </a>
+        
+        <a  class="密码学 "
+           href="/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RC4加密算法的原理讲解">RC4加密算法的原理讲解</span>
+            <span class="post-date" title="2019-05-28 16:46:00">2019/05/28</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"
+           data-tag="re复现"
+           data-author="" >
+            <span class="post-title" title="西湖论剑testre">西湖论剑testre</span>
+            <span class="post-date" title="2019-05-28 22:15:00">2019/05/28</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/29/%E6%A1%82%E7%94%B5RE%E5%85%A8%E8%A7%A3WriteUp/"
+           data-tag="re_wp"
+           data-author="" >
+            <span class="post-title" title="桂电RE全解WriteUp">桂电RE全解WriteUp</span>
+            <span class="post-date" title="2019-05-29 13:23:00">2019/05/29</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/31/%E5%BC%BA%E7%BD%91%E6%9D%AF%EF%BC%9A%E5%BC%BA%E7%BD%91%E5%85%88%E9%94%8B_AP_Pwn%20%20writeup/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="强网杯：强网先锋_AP_Pwn  writeup">强网杯：强网先锋_AP_Pwn  writeup</span>
+            <span class="post-date" title="2019-05-31 13:07:00">2019/05/31</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/02/Unsorted%20bin%20attack/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="Unsorted bin attack">Unsorted bin attack</span>
+            <span class="post-date" title="2019-06-02 17:54:00">2019/06/02</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/09/01/%E7%BB%99%E6%96%B0%E7%94%9F%E2%80%94%E5%85%B3%E4%BA%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%80%8E%E4%B9%88%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="给新生—关于二进制怎么学习">给新生—关于二进制怎么学习</span>
+            <span class="post-date" title="2019-09-01 12:41:00">2019/09/01</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/04/%E5%A0%86%E6%BA%A2%E5%87%BA%E7%9A%84unlink%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="堆溢出的unlink漏洞利用">堆溢出的unlink漏洞利用</span>
+            <span class="post-date" title="2019-06-04 14:41:00">2019/06/04</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/06/13/CISCN%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BApwn%E8%84%9A%E6%9C%AC%E5%8F%8A%E6%80%BB%E7%BB%93/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="CISCN华北赛区pwn脚本及总结">CISCN华北赛区pwn脚本及总结</span>
+            <span class="post-date" title="2019-06-13 20:01:00">2019/06/13</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E4%B8%8A%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8PWN_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="上海大学生网络安全PWN_wp">上海大学生网络安全PWN_wp</span>
+            <span class="post-date" title="2019-11-11 13:37:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/HECTF/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="HECTF_Pwn_wp">HECTF_Pwn_wp</span>
+            <span class="post-date" title="2019-11-11 13:51:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E6%B9%96%E6%B9%98%E6%9D%AF%E7%BA%BF%E4%B8%8A%E8%B5%9Bpwn_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="湖湘杯线上赛pwn_wp">湖湘杯线上赛pwn_wp</span>
+            <span class="post-date" title="2019-11-11 14:14:00">2019/11/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-现代unlink漏洞讲解与利用" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">现代unlink漏洞讲解与利用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="pwn学习 noopener">pwn学习</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color4">pwn</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-12 16:42:22'>2019-05-28 12:56</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#现代unlink漏洞讲解与利用"><span class="toc-text">现代unlink漏洞讲解与利用</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="现代unlink漏洞讲解与利用"><a href="#现代unlink漏洞讲解与利用" class="headerlink" title="现代unlink漏洞讲解与利用"></a>现代unlink漏洞讲解与利用</h4><p>理解这个漏洞，我花了几天的时间。从学习堆的基础知识到学习unlink.头发掉了不少。嘿嘿嘿。<br>鸡汤一下：不积跬步无以至千里，不积小流无以成江海。<br>学习堆的知识也是这样。<br>现在就说说我学习的总结。<br>关于glibc的堆的管理基础知识，我就不说了，如果不知道，就查看下面两个链接，我觉得写的不错，我也是照着这个学的。涉及到的unlink的堆的管理细节，我下面还是会拿出来说一说的。<br><a href="https://www.cnblogs.com/alisecurity/p/5486458.html" target="_blank" rel="noopener">https://www.cnblogs.com/alisecurity/p/5486458.html</a><br><a href="https://www.cnblogs.com/alisecurity/p/5520847.html" target="_blank" rel="noopener">https://www.cnblogs.com/alisecurity/p/5520847.html</a></p>
+<p>现在就来说说什么unlink漏洞吧。<br>我在网上看来很多很多篇的博客，看到有的地方总是解释不清楚或者都是一带而过。所以下面写的这个东西有些是我自己总结的但是大部分都是我再网上学习的。</p>
+<p>首先明白unlink会再什么地方使用？<br>    unlink在分配内存和释放之后合并内存的时候使用，但是在分配内存的时候我们不能利用，因为这个时候归glibc管理里面的值。我们在利用的时候是让他合并内存的时候，具体怎么利用我们下面细讲。</p>
+<p>unlink是什么？<br>因为unlink经常使用，所以在glibc中将这个函数变成了一个宏定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Take a chunk off a bin list */</span></span><br><span class="line"><span class="comment">// unlink p</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> unlink(AV, P, BK, FD) &#123;                                            \</span></span><br><span class="line">    <span class="comment">// 由于 P 已经在双向链表中，所以有两个地方记录其大小，所以检查一下其大小是否一致。</span></span><br><span class="line">    <span class="keyword">if</span> (__builtin_expect (chunksize(P) != prev_size (next_chunk(P)), <span class="number">0</span>))      \</span><br><span class="line">      malloc_printerr (<span class="string">"corrupted size vs. prev_size"</span>);               \</span><br><span class="line">    FD = P-&gt;fd;                                                                      \</span><br><span class="line">    BK = P-&gt;bk;                                                                      \</span><br><span class="line">    <span class="comment">// 防止攻击者简单篡改空闲的 chunk 的 fd 与 bk 来实现任意写的效果。</span></span><br><span class="line">    <span class="keyword">if</span> (__builtin_expect (FD-&gt;bk != P || BK-&gt;fd != P, <span class="number">0</span>))                      \</span><br><span class="line">      malloc_printerr (check_action, <span class="string">"corrupted double-linked list"</span>, P, AV);  \</span><br><span class="line">    <span class="keyword">else</span> &#123;                                                                      \</span><br><span class="line">        FD-&gt;bk = BK;                                                              \</span><br><span class="line">        BK-&gt;fd = FD;                                                              \</span><br><span class="line">        <span class="comment">// 下面主要考虑 P 对应的 nextsize 双向链表的修改</span></span><br><span class="line">        <span class="keyword">if</span> (!in_smallbin_range (chunksize_nomask (P))                              \</span><br><span class="line">            <span class="comment">// 如果P-&gt;fd_nextsize为 NULL，表明 P 未插入到 nextsize 链表中。</span></span><br><span class="line">            <span class="comment">// 那么其实也就没有必要对 nextsize 字段进行修改了。</span></span><br><span class="line">            <span class="comment">// 这里没有去判断 bk_nextsize 字段，可能会出问题。</span></span><br><span class="line">            &amp;&amp; __builtin_expect (P-&gt;fd_nextsize != <span class="literal">NULL</span>, <span class="number">0</span>)) &#123;                      \</span><br><span class="line">            <span class="comment">// 类似于小的 chunk 的检查思路</span></span><br><span class="line">            <span class="keyword">if</span> (__builtin_expect (P-&gt;fd_nextsize-&gt;bk_nextsize != P, <span class="number">0</span>)              \</span><br><span class="line">                || __builtin_expect (P-&gt;bk_nextsize-&gt;fd_nextsize != P, <span class="number">0</span>))    \</span><br><span class="line">              malloc_printerr (check_action,                                      \</span><br><span class="line">                               <span class="string">"corrupted double-linked list (not small)"</span>,    \</span><br><span class="line">                               P, AV);                                              \</span><br><span class="line">            <span class="comment">// 这里说明 P 已经在 nextsize 链表中了。</span></span><br><span class="line">            <span class="comment">// 如果 FD 没有在 nextsize 链表中</span></span><br><span class="line">            <span class="keyword">if</span> (FD-&gt;fd_nextsize == <span class="literal">NULL</span>) &#123;                                      \</span><br><span class="line">                <span class="comment">// 如果 nextsize 串起来的双链表只有 P 本身，那就直接拿走 P</span></span><br><span class="line">                <span class="comment">// 令 FD 为 nextsize 串起来的</span></span><br><span class="line">                <span class="keyword">if</span> (P-&gt;fd_nextsize == P)                                      \</span><br><span class="line">                  FD-&gt;fd_nextsize = FD-&gt;bk_nextsize = FD;                      \</span><br><span class="line">                <span class="keyword">else</span> &#123;                                                              \</span><br><span class="line">                <span class="comment">// 否则我们需要将 FD 插入到 nextsize 形成的双链表中</span></span><br><span class="line">                    FD-&gt;fd_nextsize = P-&gt;fd_nextsize;                              \</span><br><span class="line">                    FD-&gt;bk_nextsize = P-&gt;bk_nextsize;                              \</span><br><span class="line">                    P-&gt;fd_nextsize-&gt;bk_nextsize = FD;                              \</span><br><span class="line">                    P-&gt;bk_nextsize-&gt;fd_nextsize = FD;                              \</span><br><span class="line">                  &#125;                                                              \</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;                                                              \</span><br><span class="line">                <span class="comment">// 如果在的话，直接拿走即可</span></span><br><span class="line">                P-&gt;fd_nextsize-&gt;bk_nextsize = P-&gt;bk_nextsize;                      \</span><br><span class="line">                P-&gt;bk_nextsize-&gt;fd_nextsize = P-&gt;fd_nextsize;                      \</span><br><span class="line">              &#125;                                                                      \</span><br><span class="line">          &#125;                                                                      \</span><br><span class="line">      &#125;                                                                              \</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体的功能用一张图解释吧：<br><a href="https://i.loli.net/2019/05/28/5cecf5a26701d62212.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5cecf5a26701d62212.png" alt=""></a><br>上面的代码和图片总结的来说就是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">unlink(p,FD,BK)</span><br><span class="line">&#123;</span><br><span class="line">FD=p-&gt;fd;</span><br><span class="line">BK=p-&gt;bk;</span><br><span class="line">FD-&gt;bk=BK</span><br><span class="line">BK-&gt;fd=FD</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>已经说完了什么是unlink了。<br>接下来讲讲当我们释放内存的时候，怎么使用unlink进行内存的回收。<br>通过学习glibc的内存管理，我们知道当释放一个内存的时候，会查看相邻的地址是不是空闲的，如果是的话，就进行合并。<br>接下来就是内存的合并：<br>合并有两种合并的方式，一个是向前合并，一个是向后合并。<br>规定向前指的是物理相邻高地址<br>向后指的是物理相邻的低地址<br>向前（高地址）合并：判断下一个（高地址）块是不是空闲的。去查看下下个块的p位是不是为0和有没有presize。去访问下一个块，就是将当前块指针加当前块的大小在加上下一个块的大小即可查看到。如果是空闲的，则使用unlink操作去合并它，加入到unsort bin 中。关于unlink,下一步再说。<br>向后（低地址）合并：直接判断当前的p值是不是为0和有没有presize，如果是0，直接合并。后面就和上面一样。</p>
+<p>现在可能看到这里会有些纳闷了，为什么unlink会回收内存，起初我也很纳闷。<br>注意这个时候FD、P、BK是相邻的。unlink之后，FD和BK的大小直接互指了，中间的P直接融合进FD了。这个时候的FD-&gt;size+=P-&gt;size。unlink之后会把FD这个大size的chunk放入unsort bin中，不过这个就不是我们操心的事了，关于怎么放和怎么将大内存取下来也和我们这里的unlink漏洞没关系了。</p>
+<p>好的  这里就解释的差不多了。我们就直接上一个例子来说吧。结合例子将漏洞会更加的生动。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> malloc_size = <span class="number">0x80</span>;</span><br><span class="line">	<span class="keyword">uint64_t</span>* ptr0 = (<span class="keyword">uint64_t</span>*)<span class="built_in">malloc</span>(malloc_size);</span><br><span class="line">	<span class="keyword">uint64_t</span>* ptr1 = (<span class="keyword">uint64_t</span>*)<span class="built_in">malloc</span>(malloc_size);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ptr0:%p\n"</span>,ptr0);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ptr1:%p\n"</span>,ptr1);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"&amp;ptr0:%p\n"</span>,&amp;ptr0);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"&amp;ptr1:%p\n"</span>,&amp;ptr1);</span><br><span class="line">	ptr0[<span class="number">2</span>] = (<span class="keyword">uint64_t</span>)&amp;ptr0 - <span class="number">3</span>*<span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line">	ptr0[<span class="number">3</span>] = (<span class="keyword">uint64_t</span>)&amp;ptr0 - <span class="number">2</span>*<span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ptr0[2]:%p\n"</span>,ptr0[<span class="number">2</span>]);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"ptr0[3]:%p\n"</span>,ptr0[<span class="number">3</span>]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"&amp;ptr0[2]:%p\n"</span>,&amp;ptr0[<span class="number">2</span>]);</span><br><span class="line"> 	<span class="built_in">printf</span>(<span class="string">"&amp;ptr0[3]:%p\n"</span>,&amp;ptr0[<span class="number">3</span>]);</span><br><span class="line">	<span class="keyword">uint64_t</span>* ptr1_head = (<span class="keyword">uint64_t</span>)ptr1 - <span class="number">2</span>*<span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line">	ptr1_head[<span class="number">0</span>] = malloc_size;</span><br><span class="line">	ptr1_head[<span class="number">1</span>] &amp;= ~<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">free</span>(ptr1);</span><br><span class="line">	<span class="keyword">char</span> victim[<span class="number">10</span>] = <span class="string">"hello"</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"victim:%p\n"</span>,victim);</span><br><span class="line">	ptr0[<span class="number">3</span>]=(<span class="keyword">uint64_t</span>)victim;</span><br><span class="line">	ptr0[<span class="number">0</span>] = <span class="number">0x4141414141</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ptr0[0]:%p\n"</span>,ptr0);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,victim);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个编译在linux64位下的一个程序。我也是从别人博客上copy过来的，不过别人的程序并没有打印出这么多个地址，这些只是我验证我的理解的时候加上去的。不过原博客并没有讲清楚这个程序，让我来图文并茂的来讲解这个程序。说实话我挺佩服这个人的，这个例子完美的呈现了unlink的漏洞，简单又直接。不多BB。直接看结果，为什么说是有漏洞。</p>
+<p>看到最后两行打印输出的代码了没。<br>前面定义了一个victim的字符串<br>后面也没有更改victim的值。<br>按照道理来说打印victim应该是hello<br>但是结果：<br><a href="https://i.loli.net/2019/05/28/5ced39e2f2c7555475.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5ced39e2f2c7555475.png" alt=""></a><br>最后输出的是AAAAA,就是我们ptr0[0] 所赋的值。我们又没有直接操作victim，让victim赋值为AAAAA，所以这里就是我们的漏洞，可以间接实现任意位置的写。</p>
+<p>所以我们接下来分析它的代码<br>首先它定义了两个指针ptr0,ptr1，现在这两个指针当作变量现存放在栈上，现在这个变量上的值是乱码，没问题吧。<br>然后它又开辟了两块空间，这两块空间的地址给了ptr0,和给了ptr1。所以说现在栈上ptr0的位置上存放这第一块内存的地址，ptr1的位置上存放着第二块内存的地址。这么说有点抽象。画个图。<br><a href="https://i.loli.net/2019/05/28/5ced3d950e49447063.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5ced3d950e49447063.png" alt=""></a><br>关于为什么堆上开辟的两块内存为什么连在一块，在回去看一看内存管理的基础知识，我就不再说了。注意我这个大小是0x80,不是从fast bin中分配出来的，是从small bin中分配出来的，所以我之后的内存释放才会调用unlink。<br>关于为什么他们的大小是0x90，这个也还是基础知识，堆块的基础知识。我这里再讲的话就篇幅大了，所以这里看不懂了就赶快回去补补，基础是硬伤，我就是吃了基础的亏，爬了无数博客写的坑，有些东西也不讲清楚，一直爬一直爬一直爬，一个unlink漏洞我看了几天，tcl。好了扯得有点远了，bb多了，继续回到代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ptr0[<span class="number">2</span>]= ptr0[<span class="number">2</span>] = (<span class="keyword">uint64_t</span>)&amp;ptr0 - <span class="number">3</span>*<span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line">ptr0[<span class="number">3</span>] = (<span class="keyword">uint64_t</span>)&amp;ptr0 - <span class="number">2</span>*<span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br></pre></td></tr></table></figure>
+<p>这里要理解数组的作用，ptr0[2],实际上就是ptr0所指向的地址上面，也就是指向的块向下偏移2<em>8个字节的地址上面存放这个(uint64_t)&amp;ptr0 - 3</em>sizeof(uint64_t)值。如果这里不能理解，我只想说回去再看看C语言吧。结构体什么的多看看。同理ptr0[3]也是类似的。<br>为什么要这样做呢<br>我们是要伪造一个free chunk，然后可以unlink这个free unlink<br>我们再来复习一下free chunk的结构<br><a href="https://i.loli.net/2019/05/28/5ced3da3db24b17591.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5ced3da3db24b17591.png" alt=""></a><br>看见没，是不是又熟悉感。仿佛又回到了学基础知识的苦海中了。</p>
+<p>我们刚才说将(uint64_t)&amp;ptr0-3<strong><strong><em>sizeof(uint64_t)写到ptr0偏移16个字节处，也就是这里的fd。然后(uint64_t)&amp;ptr0 - 2</em></strong></strong>sizeof(uint64_t)写到ptr0偏移24个字节处。好，到了这一步我们就看看(uint64_t)&amp;ptr0 - 3<strong><strong><em>sizeof(uint64_t)到底是什么。&amp;ptr0是不是栈上的地址，然后&amp;ptr0-3</em></strong></strong>8，是不是就是ptr0存放的地址向上抬3个单位的地址。如果不清楚这里的uint64_t=8的话，那还是再回去学学C语言。好了，这么说肯定是不行的，不然你们都觉得我说的很抽象，那我就再画画。<br><a href="https://i.loli.net/2019/05/28/5ced40dddd95c98122.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5ced40dddd95c98122.png" alt=""></a><br>就是这么个样子。<br>然后就是再分析代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uint64_t</span>* ptr1_head = (<span class="keyword">uint64_t</span>)ptr1 - <span class="number">2</span>*<span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line">ptr1_head[<span class="number">0</span>] = malloc_size;</span><br><span class="line">ptr1_head[<span class="number">1</span>] &amp;= ~<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>为什么这里要让ptr1_head指向ptr1之前的两个字节呢。这里也是再伪造。伪造ptr0所指向的地方是free chunk。unlink在合并内存前会判断相邻的chunk是不是free chunk ,有两个判断点，一个当前chunk的size的第一位是不是0，然后还有一个是看当前chunk有没有pre size。所以上面的三句都是为了让unlink误认为我们ptr0指向的地方是free chunk。第二句就是产生pre size ,第三句就是让当前chunk的size的                                                           第一位为零。如果我现在说的这些不能懂，马上回去在看看基础知识。但是你们有没有思考一个问题，就是为什么我们的pre size要写0x80,因为这个写的大小就是我们伪装的free chunk的大小。<br>好了说了这么多，接着画图<br><a href="https://i.loli.net/2019/05/28/5ced40542125980570.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5ced40542125980570.png" alt=""></a><br>行了，该安排的都已经安排的明明白白了，到了关键的时候了。<br>free(ptr1)<br>这里就涉及到了很多东西了，我们慢慢说。<br>当free(ptr1)的时候，就会判断当前的块前面是不是free chunk.因为我们前面已经伪装好了，所以现在之间使用unlink向后合并。关于向后合并这里我踩了很多坑，开始一直没弄清楚传进去的P指针。这个时候传进去的P指针，是当前P=ptr1-pre size的值。<br>然后代码就是这样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">unlink(P,FD,BK)</span><br><span class="line">&#123;</span><br><span class="line">FD=P-&gt;fd</span><br><span class="line">BK=P-&gt;bk</span><br><span class="line">FD-&gt;bk=BK</span><br><span class="line">BK-&gt;fd=FD</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好了，关键时候来了，我们认真的分析一下这个代码。此时我们</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P-&gt;fd=&amp;ptr0<span class="number">-3</span>*<span class="number">8</span></span><br><span class="line">P-&gt;bk=&amp;ptr0<span class="number">-2</span>*<span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>执行前两句</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FD=&amp;ptr0<span class="number">-3</span>*<span class="number">8</span></span><br><span class="line">BK=&amp;ptr0<span class="number">-2</span>*<span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>这个时候</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FD-&gt;bk=&amp;ptr0</span><br><span class="line">BK-&gt;fd=&amp;ptr0</span><br></pre></td></tr></table></figure>
+<p>然后在执行后面两句<br>也就是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&amp;ptr0=&amp;ptr0<span class="number">-2</span>*<span class="number">8</span></span><br><span class="line">&amp;ptr0=&amp;ptr0<span class="number">-3</span>*<span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>执行完了之后，也就是&amp;ptr0上面存放着&amp;ptr0-3*8的地址。画图就是这样：<br><a href="https://i.loli.net/2019/05/28/5ced4038d95b970212.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5ced4038d95b970212.png" alt=""></a><br>因为ptr1被释放掉了，，所以栈上没有ptr1消失了。然后我们现在</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> victim[<span class="number">10</span>] = <span class="string">"hello"</span>;</span><br></pre></td></tr></table></figure>
+<p>这一句就是在栈上在申请一个空间存放字符串”hello”<br>具体是这样的<br><a href="https://i.loli.net/2019/05/28/5ced3ee373a2d27058.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/28/5ced3ee373a2d27058.png" alt=""></a><br>好了，现在我们能操作的的是ptr0。<br>接着看代码<br>ptr0[3]=(uint64_t)victim;<br>这个时候ptr0[3]=ptr0;<br>也就是ptr0=victim<br>然后下一句<br>ptr0[0] = 0x4141414141;<br>也就是ptr0[0]=victim[0]= 0x4141414141<br>这里就间接实现了任意位置的写。<br>也就是为什么最后输出“AAAAA”</p>
+<p>总结：<br>其实现代unlink漏洞的格式是固定的。<br>在使用这个之前，我们需要确定存放堆指针的地方前3<em>8个地方要是可写的。<br>在这题里也就是栈上的前3</em>8个字节。<br>还需要的就是栈上掌握的指针需要直接操作堆，不能有结构体的偏移，就如这题一样可以直接操作堆指针，这个时候就可以使用unlink漏洞，然后可以直接利用。<br>然后就是free chunk 的构造格式是一模一样的。<br>可变的就是ptr0[3]这个地方赋值赋的是要改变的地址addr<br>然后再给ptr0[0]赋值，赋你想要addr上面写的值。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至Whali3n51@gmail.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>现代unlink漏洞讲解与利用</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="Whali3n51">Whali3n51</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-05-28, 12:56:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-12, 16:42:22</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/" title="现代unlink漏洞讲解与利用">http://whali3n51.github.io/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 Whali3n51</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#WP复现','#pwn','#re_wp','#re复现',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://s9.rr.itc.cn/r/wapChange/20166_15_14/a1h0j307059539839596.JPEG");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+</div>
+
+
+</html>
