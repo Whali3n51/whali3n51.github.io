@@ -93,7 +93,15 @@
     
         
             
-            <li><div data-rel="pwn学习">pwn学习<small>(6)</small></div>
+            <li><div data-rel="pwn学习"><i class="fold iconfont icon-right"></i>pwn学习<small>(6)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Writeup">Writeup<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
                 
             </li>
             
@@ -117,7 +125,7 @@
     
         
             
-            <li><div data-rel="RE">RE<small>(2)</small></div>
+            <li><div data-rel="其他">其他<small>(2)</small></div>
                 
             </li>
             
@@ -125,9 +133,13 @@
     
         
             
-            <li><div data-rel="其他">其他<small>(2)</small></div>
+            <li><div data-rel="RE">RE<small>(2)</small></div>
                 
             </li>
+            
+        
+    
+        
             
         
     
@@ -199,19 +211,15 @@
         <a href="javascript:" target="_blank" rel="noopener" class="color5">re复现</a>
     </li>
     
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">Writeup</a>
-    </li>
-    
     <div class="clearfix"></div>
 </div>
 
     
     <nav id="title-list-nav">
         
-        <a  class="pwn学习 "
+        <a  class="pwn学习 Writeup "
            href="/2019/11/28/RedHat/"
-           data-tag="WP复现,Writeup"
+           data-tag="WP复现"
            data-author="" >
             <span class="post-title" title="ReaHat_final_pwn">ReaHat_final_pwn</span>
             <span class="post-date" title="2019-11-28 23:30:00">2019/11/28</span>
@@ -517,7 +525,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#WP复现','#pwn','#re_wp','#re复现','#Writeup',],
+            'data': ['#WP复现','#pwn','#re_wp','#re复现',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
