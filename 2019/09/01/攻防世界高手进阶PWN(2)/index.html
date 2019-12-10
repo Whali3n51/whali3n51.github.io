@@ -93,22 +93,6 @@
     
         
             
-            <li><div data-rel="密码学">密码学<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="Writeup">Writeup<small>(7)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
             <li><div data-rel="pwn学习"><i class="fold iconfont icon-right"></i>pwn学习<small>(6)</small></div>
                 
                     <ul class="sub hide">
@@ -118,6 +102,14 @@
                         </li>
                             
                     </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Writeup">Writeup<small>(7)</small></div>
                 
             </li>
             
@@ -138,6 +130,14 @@
         
             
             <li><div data-rel="RE">RE<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="密码学">密码学<small>(1)</small></div>
                 
             </li>
             
@@ -200,11 +200,15 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color4">pwn</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">盲打pwn</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -213,10 +217,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" target="_blank" rel="noopener" class="color5">re复现</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color1">盲打pwn</a>
     </li>
     
     <div class="clearfix"></div>
@@ -564,7 +564,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#pwn','#WP复现','#re_wp','#re复现','#盲打pwn',],
+            'data': ['#WP复现','#pwn','#盲打pwn','#re_wp','#re复现',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
