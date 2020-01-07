@@ -17,25 +17,16 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 // 02110-1301 USA
 // 
-var searchAll;
+
 var searchFunc = function (path, search_id, content_id) {
   'use strict';
+  var BTN = "<button type='button' class='local-search-close' id='local-search-close'></button>";
   $.ajax({
     url: path,
-    dataType: 'xml',
-    complete: function (xmlResponse) {
+    dataType: "xml",
+    success: function (xmlResponse) {
       // get the contents from search data
-        /* 由于 xml 不支持特殊字符，所有手动转 */
-        function createXml(str){
-            if(document.all){
-                var xmlDom=new ActiveXObject("Microsoft.XMLDOM");
-                xmlDom.loadXML(str);
-                return xmlDom;
-            }
-            else
-                return new DOMParser().parseFromString(str, "text/xml");
-        }
-      var datas = $("entry", createXml(xmlResponse.responseText)).map(function () {
+      var datas = $("entry", xmlResponse).map(function () {
         return {
           title: $("title", this).text(),
           content: $("content", this).text(),
@@ -46,17 +37,17 @@ var searchFunc = function (path, search_id, content_id) {
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
 
-      searchAll = function (val) {
-        var str = '<ul class=\"search-result-list\">';
-        var keywords = val.trim().toLowerCase().trim().split(/[\s\-]+/);
+      $input.addEventListener('input', function () {
+        var str = '<ul class="search-result-list">';
+        var keywords = this.value.trim().toLowerCase().split(/[\s]+/);
         $resultContent.innerHTML = "";
-        if (val.trim().length <= 0) {
+        if (this.value.trim().length <= 0) {
           return;
         }
         // perform local searching
         datas.forEach(function (data) {
           var isMatch = true;
-          var content_index = [];
+          // var content_index = [];
           if (!data.title || data.title.trim() === '') {
             data.title = "Untitled";
           }
@@ -89,9 +80,7 @@ var searchFunc = function (path, search_id, content_id) {
           }
           // show search results
           if (isMatch) {
-            var urls = data_url.split("/");
-            var post_date = urls[1]+"/"+urls[2]+"/"+urls[3];
-            str += "<li><a href='" + data_url + "'><span class='post-title' title='"+data_title+"'>" + data_title + "</span><span class='post-date' title='"+post_date+"'>"+post_date+"</span></a>";
+            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
             var content = data.content.trim().replace(/<[^>]+>/g, "");
             if (first_occur >= 0) {
               // cut out 100 characters
@@ -125,23 +114,14 @@ var searchFunc = function (path, search_id, content_id) {
         });
         str += "</ul>";
         if (str.indexOf('<li>') === -1) {
-          return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，更换下搜索词试试吧~<span></ul>";
+          return $resultContent.innerHTML = BTN + "<div class=\"search-result-empty\"><p><i class=\"fe fe-tired\"></i> 没有找到内容，更换下搜索词试试吧~<p></div>";
         }
-        $resultContent.innerHTML = str;
-
-          $(document).pjax('#local-search-result a', '.pjax', {fragment: '.pjax', timeout: 8000});
-          /*鼠标移出文章列表后，去掉文章标题hover样式*/
-          $("#local-search-result a").mouseenter(function (e) {
-              $("#local-search-result a.hover").removeClass("hover");
-              $(this).addClass("hover");
-          });
-          $("#local-search-result a").mouseleave(function (e) {
-              $(this).removeClass("hover");
-          });
-      }
-    },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-          console.log('文章中出现特殊字符，导致解析xml出现问题，系统自动采用第二方案：进行主动解析！！！ 请检查全文搜索是否有问题，如出现问题，请及时在 https://github.com/yelog/hexo-theme-3-hexo/issues 中提出来，作者会尽快处理！')
-      }
+        $resultContent.innerHTML = BTN + str;
+      });
+    }
   });
-}
+  $(document).on('click', '#local-search-close', function () {
+    $('#local-search-input').val('');
+    $('#local-search-result').html('');
+  });
+};
