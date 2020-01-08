@@ -1,86 +1,131 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    
-    <title>CISCN_final_CN16 | Whali3n51&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <link rel="icon" href="/favicon.png">
-    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/css/style.css">
+  
 
-    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+  
 
-  <link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
+  
+    <meta name="author" content="Whali3n51">
+  
+
+  
+
+  
+
+  <title>CISCN_final_CN16 | Whali3n51&#39;s blog</title>
+
+  
+
+  
+    <link rel="icon" href="/logo.jpg">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
 </head>
-
-  <body>
-
-<header>
-	<a id="logo" href="/" title="Whali3n51&#39;s blog">
-	<img src="/favicon.png" alt="Whali3n51&#39;s blog"></a>
-	
-	
-		<!--搜索栏-->
-		<i class="js-toggle-search iconfont icon-search"></i>
-
-
-<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
-	<div class="search-form__inner">
-		<div>
-			<i class="iconfont icon-search"></i>
-			<input class="text-input" placeholder="Enter Key..." type="search">
-		</div>
-	</div>
-</form>
-	
-
-	
-		<!--侧边导航栏-->
-		<a id="nav-toggle" href="#"><span></span></a>
-
-<nav>
-	<div class="menu-top-container">
-		<ul id="menu-top" class="menu">
-			
-				
-				<li class="current-menu-item">
-					<a href="http://weibo.com/" target="_blank">Weibo</a>
-				</li>
-			
-		</ul>
-	</div>
-</nav>
-	
-
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-navbar">
+    <div class="header-navbar-left">
+      <h1 class="header-navbar-logo">
+        <a href="/">
+          
+            <img src="/css/images/logo.png" alt="Whali3n51&#39;s blog" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="header-navbar-right">
+      <div class="header-navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="header-navbar-list">
+        
+          <li class="header-navbar-item"><a href="/">Home</a></li>
+        
+          <li class="header-navbar-item"><a href="/about">About</a></li>
+        
+          <li class="header-navbar-item"><a href="/links">Link</a></li>
+        
+          <li class="header-navbar-item"><a href="/tags">Tags</a></li>
+        
+          <li class="header-navbar-item"><a href="/categories">Categories</a></li>
+        
+      </ul>
+    </div>
+  </div>
 </header>
-<div class="m-header ">
-	<section id="hero1" class="hero">
-		<div class="inner">
-		</div>
-	</section>
-	
-		<figure class="top-image" data-enable=true></figure>
-	
+
+    <section id="main"><!-- 文章详情页 -->
+
+
+<!-- banner container -->
+<div class="banner-container">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+      <div class="banner-content post-content no-post-image">
+        <div class="post-text">
+          <div class="type-wrap">
+            <a class="article-category-link" href="/categories/pwn%E5%AD%A6%E4%B9%A0/">pwn学习</a>
+          </div>
+          <h1 class="title-wrap">CISCN_final_CN16</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Whali3n51</strong>
+            <span>发布于</span>
+            
+  <a href="javascript:;" target="_blank" rel="noopener" class="article-date">
+    <time datetime="2019-08-05T23:04:35.000Z" itemprop="datePublished">2019-08-06</time>
+  </a>
+
+          </h2>
+        </div>
+      </div>
+    
+  
+
+  
+  
+
 </div>
 
-<!--文章列表-->
-<div class="wrapper">
-  
-    <!--文章-->
-<article>
-	
-  
-    <h1 class="post-title" itemprop="name">
-      CISCN_final_CN16
-    </h1>
-  
+<!-- 文章内容 -->
 
-	<div class='post-body mb'>
-		<p>好久都没有更新了，因为准备考试和比赛，博客更新就有些迟缓了。现在我来说一说总决赛的pwn题。个人实力很菜，比赛当天我一题也做不出来，也不会fix，fix之后服务器就异常了.怎么说呢，就很惨，被打到自闭，新赛制，黑盒修补漏洞，谜之异常，谜之exp通过。所以这里就来复现一下总决赛的题目，因为没有出题人的check脚本，这里主要讲讲break的思路，fix的思路简单说一说，但是不保证正确。希望自己就不要再这么菜下去了。接下来的几篇博客更新，就从我的角度来讲，由易到难的更新，可能更新到后面就没有后文了，那是可能就是因为大佬们的脚本我已经看不懂了。</p>
+<div class="body-container">
+  <article id="article-container" class="main-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <p>好久都没有更新了，因为准备考试和比赛，博客更新就有些迟缓了。现在我来说一说总决赛的pwn题。个人实力很菜，比赛当天我一题也做不出来，也不会fix，fix之后服务器就异常了.怎么说呢，就很惨，被打到自闭，新赛制，黑盒修补漏洞，谜之异常，谜之exp通过。所以这里就来复现一下总决赛的题目，因为没有出题人的check脚本，这里主要讲讲break的思路，fix的思路简单说一说，但是不保证正确。希望自己就不要再这么菜下去了。接下来的几篇博客更新，就从我的角度来讲，由易到难的更新，可能更新到后面就没有后文了，那是可能就是因为大佬们的脚本我已经看不懂了。</p>
 <p>先看一下第二天的CN16，这一题我当天没有做出来，我很自闭，因为一个简单的offbyone的漏洞，按照我的脚本一直做不出，赛后lancet战队大佬分享这一道题目的时候，说是CTF-wiki的原题，听到这一句话的时候我彻底自闭了，我哭了，这一题就是tcache第一道的原题，不过这里也不得不吐槽一下主办方了，作为总决赛还能出现原题，这也是专家评审的不严格，原题build分还能给这么高，还能入选，不得不说这次总决赛槽点很多。<br>首先拿到题目看到文件给了两个文件<br><a href="https://i.loli.net/2019/08/06/fQdBRTbUomFJvOj.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/08/06/fQdBRTbUomFJvOj.png" alt=""></a><br>看到给了libc文件，其实这样libc文件是libc-2.27的文件。我很菜，对于tcache没什么敏感度，主要是之前对这一块的题目没有做的太多吧，我比赛当天把他默认为libc-2.23版本在做。<br>再看题吧<br>将源文件拖入IDA<br>malloc函数<br><a href="https://i.loli.net/2019/08/06/7sgGpya1ZlU2HFJ.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/08/06/7sgGpya1ZlU2HFJ.png" alt=""></a><br>程序创建堆块默认创建0xf8大小，这里就立马想到可能存在off-by-one漏洞<br><a href="https://i.loli.net/2019/08/06/EbTgF5px2vYBNUI.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/08/06/EbTgF5px2vYBNUI.png" alt=""></a><br>发现这里存在off-by-onenull的漏洞，可以修改下一个堆块的pre_chunk位，可以造成overlap或者是unlink<br>运行文件<br><a href="https://i.loli.net/2019/08/06/Vu3XaWpjSrUCdmb.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/08/06/Vu3XaWpjSrUCdmb.png" alt=""></a><br>发现程序只有三个功能<br>malloc<br>free<br>puts<br>好了程序的逻辑就在这里了<br>查看保护机制<br><a href="https://i.loli.net/2019/08/06/XmxReN1i7fErIWP.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/08/06/XmxReN1i7fErIWP.png" alt=""></a><br>不出意外全绿。<br>拿到off-by-onenull漏洞，因为这里开启pie,而且存放堆块的数组是再堆里面，我们不能进行unlink漏洞的利用。我们第一思考的就是overlap,但是这里的输入当我们输入0的时候，输入就会阶段，这里就要说一种新的构造方式<br>通过系统的写入自动把pre_size自己写上<br>我们先再分配三个chunk<br>A<br>B<br>C<br>当我们free掉A的时候，B块的pre_size为0x100<br>然后我们再free掉B块，C块的pre_size就为0x200了<br>而且再次malloc的时候是不会修改pre_size位的，也就是说，这么处理之后，只要我们不覆盖这两个地方的数字，这两个数字就是一直存放在pre_size位的。<br>然后通过off-by-onenull就很容易实现overlap。<br>在这一题里就很容易实现。</p>
 <p>首先通过</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">    malloc(<span class="number">0x2</span>, <span class="string">"a"</span>)</span><br><span class="line">fill_tcache(<span class="number">3</span>, <span class="number">10</span>)<span class="comment">#填充tcache</span></span><br><span class="line"><span class="comment">#保证我们的堆块在unsorted bin里面只有在这里面才能造成overlap</span></span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line">free(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
@@ -108,122 +153,184 @@
 
 <p>这一题的break思路就是这样。但是我就有一点不明白，按照这个正常的思路，我fix的时候，将safe_read那个函数的off_by_one漏洞补上了，可是还是利用成功了，这个我就不太明白了，可能是出题人用了其他思路吧，我太菜看不出来吧。比赛的时候很迷，现在也没搞懂出题人是怎么将exp利用成功的。</p>
 
-	</div>
-	<div class="meta split">
-		
-			<span>本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
-		
-		<time class="post-date" datetime="2019-08-05T23:04:35.000Z" itemprop="datePublished">2019-08-06</time>
-	</div>
-</article>
+      </div>
 
-<!--评论-->
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/off-by-null/" rel="tag">#off-by-null</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcache/" rel="tag">#tcache</a></li></ul>
+      </div>
 
-	
-<div class="ds-thread" data-thread-key="CN16" data-title="CISCN_final_CN16" data-url="http://Whali3n51.github.io/2019/08/06/CN16/"></div>
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/08/30/%E5%85%B3%E4%BA%8EWin10%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B01903%E4%B9%8B%E5%90%8E%E5%8F%AA%E8%83%BD%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              关于Win10自动更新1903之后只能新建文件夹
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/06/13/CISCN%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BApwn%E8%84%9A%E6%9C%AC%E5%8F%8A%E6%80%BB%E7%BB%93/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              CISCN华北赛区pwn脚本及总结
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+
+
+    </div>
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">Whali3n51</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=f&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="/lib/APlayer.min.css">
+  <script src="/lib/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
 <script type="text/javascript">
 
-var duoshuoQuery = {short_name:"yumemor"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
 </script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
 
 
   
-</div>
 
-
-  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
-    <path d="M0 0 L50 100 L100 0 Z"></path>
-  </svg>
 
   
 
 
-  <div class="wrapper"></div>
+  
 
 
 
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
 
-
-<div class="fat-footer">
-	<div class="wrapper">
-		<div class="layout layout--center">
-			<div class="layout__item palm-mb">
-				<div class="media">
-					<img class="headimg" src='https://imgchr.github.la/steve.jpeg' alt='Whali3n51'>
-					<div class="media__body">
-						<h4>justpsvm</h4>
-						<p class='site-description'>Stay Hungry,Stay Foolish.</p>
-					</div>
-				</div>
-				<div class="author-contact">
-					<ul>
-						
-							
-							<li>
-				        		<a href="http://weibo.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-weibo"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://github.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-github"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://www.zhihu.com/" target="_blank">
-				        			
-										<i class="iconfont icon-zhihu"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<footer class="footer" role="contentinfo">
-	<div class="wrapper wrapper--wide split split--responsive">
-		
-			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
-		
-		<span>Theme by <a href="http://github.com/justpsvm" target="_blank" rel="noopener">justpsvm</a>. Powered by <a href="http://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
-	</div>
-</footer>
-
-	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
-	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
-	<script src="/js/lib.js"></script>
-	<script src="/js/google-code-prettify/prettify.js"></script>
-	<script src="/js/module.js"></script>
-	<script src="/js/script.js"></script>
-	
-		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-	<script type='text/javascript'>
-		//代码高亮
-		$(document).ready(function(){
-	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-   			prettyPrint();
-		});
-	</script>
-	</body>
+</body>
 </html>

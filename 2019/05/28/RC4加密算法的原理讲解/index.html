@@ -1,86 +1,131 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    
-    <title>RC4加密算法的原理讲解 | Whali3n51&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <link rel="icon" href="/favicon.png">
-    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/css/style.css">
+  
 
-    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+  
 
-  <link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
+  
+    <meta name="author" content="Whali3n51">
+  
+
+  
+
+  
+
+  <title>RC4加密算法的原理讲解 | Whali3n51&#39;s blog</title>
+
+  
+
+  
+    <link rel="icon" href="/logo.jpg">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
 </head>
-
-  <body>
-
-<header>
-	<a id="logo" href="/" title="Whali3n51&#39;s blog">
-	<img src="/favicon.png" alt="Whali3n51&#39;s blog"></a>
-	
-	
-		<!--搜索栏-->
-		<i class="js-toggle-search iconfont icon-search"></i>
-
-
-<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
-	<div class="search-form__inner">
-		<div>
-			<i class="iconfont icon-search"></i>
-			<input class="text-input" placeholder="Enter Key..." type="search">
-		</div>
-	</div>
-</form>
-	
-
-	
-		<!--侧边导航栏-->
-		<a id="nav-toggle" href="#"><span></span></a>
-
-<nav>
-	<div class="menu-top-container">
-		<ul id="menu-top" class="menu">
-			
-				
-				<li class="current-menu-item">
-					<a href="http://weibo.com/" target="_blank">Weibo</a>
-				</li>
-			
-		</ul>
-	</div>
-</nav>
-	
-
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-navbar">
+    <div class="header-navbar-left">
+      <h1 class="header-navbar-logo">
+        <a href="/">
+          
+            <img src="/css/images/logo.png" alt="Whali3n51&#39;s blog" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="header-navbar-right">
+      <div class="header-navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="header-navbar-list">
+        
+          <li class="header-navbar-item"><a href="/">Home</a></li>
+        
+          <li class="header-navbar-item"><a href="/about">About</a></li>
+        
+          <li class="header-navbar-item"><a href="/links">Link</a></li>
+        
+          <li class="header-navbar-item"><a href="/tags">Tags</a></li>
+        
+          <li class="header-navbar-item"><a href="/categories">Categories</a></li>
+        
+      </ul>
+    </div>
+  </div>
 </header>
-<div class="m-header ">
-	<section id="hero1" class="hero">
-		<div class="inner">
-		</div>
-	</section>
-	
-		<figure class="top-image" data-enable=true></figure>
-	
+
+    <section id="main"><!-- 文章详情页 -->
+
+
+<!-- banner container -->
+<div class="banner-container">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+      <div class="banner-content post-content no-post-image">
+        <div class="post-text">
+          <div class="type-wrap">
+            <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a>
+          </div>
+          <h1 class="title-wrap">RC4加密算法的原理讲解</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Whali3n51</strong>
+            <span>发布于</span>
+            
+  <a href="javascript:;" target="_blank" rel="noopener" class="article-date">
+    <time datetime="2019-05-28T08:46:00.000Z" itemprop="datePublished">2019-05-28</time>
+  </a>
+
+          </h2>
+        </div>
+      </div>
+    
+  
+
+  
+  
+
 </div>
 
-<!--文章列表-->
-<div class="wrapper">
-  
-    <!--文章-->
-<article>
-	
-  
-    <h1 class="post-title" itemprop="name">
-      RC4加密算法的原理讲解
-    </h1>
-  
+<!-- 文章内容 -->
 
-	<div class='post-body mb'>
-		<p>最近受西湖论剑的影响，又学了一个加解密算法RC4。这一题主要还是来自于一题MFC名叫junk的逆向题。这一题逆向到最后需要发现关键的加密算法是RC4，所以我就研究了一下。<br>这个算法还是比较简单的。主要的难度是在于产生密钥流。这个算法的原理就是让密钥流和明文进行异或然后放入密文中。这就是RC4的主要加密算法了。<br>那就重点来说说密钥流是怎么产生的吧.<br>首先获得RC4明文的长度，然后密钥流的长度是和明文的长度一致的。</p>
+<div class="body-container">
+  <article id="article-container" class="main-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <p>最近受西湖论剑的影响，又学了一个加解密算法RC4。这一题主要还是来自于一题MFC名叫junk的逆向题。这一题逆向到最后需要发现关键的加密算法是RC4，所以我就研究了一下。<br>这个算法还是比较简单的。主要的难度是在于产生密钥流。这个算法的原理就是让密钥流和明文进行异或然后放入密文中。这就是RC4的主要加密算法了。<br>那就重点来说说密钥流是怎么产生的吧.<br>首先获得RC4明文的长度，然后密钥流的长度是和明文的长度一致的。</p>
 <ol>
 <li>首先初始化生成一个大小为255的s[i]的数组,里面存放的值为0到255。<br>.    初始化密钥，根据输入的密钥的长度，通过伪随机数生成相应得密钥。<br>.    生成一个大小为256的临时数组t[i]里面循环存放初始化之后的密钥。<br>.    根据密钥打乱初始化的S[]；<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> j =<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">256</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">		j=(j+s[i]+t[i])%<span class="number">256</span>;</span><br><span class="line">		s[i]=s[j]^s[i]</span><br><span class="line">		s[j]=s[j]^s[i]</span><br><span class="line">		s[i]=s[j]^s[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>生成密钥流的关键。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,t=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; k;</span><br><span class="line"><span class="keyword">while</span>(len--)</span><br><span class="line">&#123;</span><br><span class="line">	i=(i+<span class="number">1</span>)%<span class="number">256</span>;<span class="comment">//保证s的数组不越界</span></span><br><span class="line">	j=(j+s[i])%<span class="number">256</span>;<span class="comment">//根据打乱之后的s[],来确定下一次j的值</span></span><br><span class="line"></span><br><span class="line">	s[i]=s[j]^s[i]<span class="comment">//交换i和j的数组值，再一次打乱数组</span></span><br><span class="line">	s[j]=s[j]^s[i]</span><br><span class="line">	s[i]=s[j]^s[i]</span><br><span class="line"></span><br><span class="line">	t=(s[i]+s[j])%<span class="number">256</span>;<span class="comment">//根据i和j对应数组的值来确定最终的索引值</span></span><br><span class="line">	k.push_back(s[t]);<span class="comment">//确定密钥流</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
@@ -89,122 +134,184 @@
 <p>写完这RC4做个总结吧。<br>通过写完RC4，发现RC4就是一个对称加密算法，但是它不像base家族一样，将明文分组之后，然后再进行加密，这里的明文有多长，密钥流就有多长，可以一次加密完成。所以RC4属于对称加密算法中的序列密码。这样也使得RC4是<br>(1)、算法简洁易于软件实现，加密速度快，安全性比较高；<br>(2)、密钥长度可变，一般用256个字节。<br>最后的密钥流里面的值的范围为0-255。因为这个算法初始化之后，改变也只是根据索引值在相互交换，数组里面的值还是没有改变。这个算法变种的话可以从这里下手。<br>比如我初始化的时候，我不存放0-255的数。我可以逆序存放或者是直接存放随机值等等。思路很多，理解算法之后，想干啥就干啥。</p>
 <p>最后贴上加密解密的源码：<br>不想研究怎么解密，我只想逆向的时候看得懂别人是什么加密算法就行。</p>
 
-	</div>
-	<div class="meta split">
-		
-			<span>本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
-		
-		<time class="post-date" datetime="2019-05-28T08:46:00.000Z" itemprop="datePublished">2019-05-28</time>
-	</div>
-</article>
+      </div>
 
-<!--评论-->
+      <div class="article-footer">
+        
+      </div>
 
-	
-<div class="ds-thread" data-thread-key="RC4加密算法的原理讲解" data-title="RC4加密算法的原理讲解" data-url="http://Whali3n51.github.io/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"></div>
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              西湖论剑testre
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/05/28/%E7%8E%B0%E4%BB%A3unlink%E6%BC%8F%E6%B4%9E%E8%AE%B2%E8%A7%A3%E4%B8%8E%E5%88%A9%E7%94%A8/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              现代unlink漏洞讲解与利用
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+
+
+    </div>
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">Whali3n51</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=f&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="/lib/APlayer.min.css">
+  <script src="/lib/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
 <script type="text/javascript">
 
-var duoshuoQuery = {short_name:"yumemor"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
 </script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
 
 
   
-</div>
 
-
-  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
-    <path d="M0 0 L50 100 L100 0 Z"></path>
-  </svg>
 
   
 
 
-  <div class="wrapper"></div>
+  
 
 
 
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
 
-
-<div class="fat-footer">
-	<div class="wrapper">
-		<div class="layout layout--center">
-			<div class="layout__item palm-mb">
-				<div class="media">
-					<img class="headimg" src='https://imgchr.github.la/steve.jpeg' alt='Whali3n51'>
-					<div class="media__body">
-						<h4>justpsvm</h4>
-						<p class='site-description'>Stay Hungry,Stay Foolish.</p>
-					</div>
-				</div>
-				<div class="author-contact">
-					<ul>
-						
-							
-							<li>
-				        		<a href="http://weibo.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-weibo"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://github.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-github"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://www.zhihu.com/" target="_blank">
-				        			
-										<i class="iconfont icon-zhihu"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<footer class="footer" role="contentinfo">
-	<div class="wrapper wrapper--wide split split--responsive">
-		
-			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
-		
-		<span>Theme by <a href="http://github.com/justpsvm" target="_blank" rel="noopener">justpsvm</a>. Powered by <a href="http://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
-	</div>
-</footer>
-
-	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
-	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
-	<script src="/js/lib.js"></script>
-	<script src="/js/google-code-prettify/prettify.js"></script>
-	<script src="/js/module.js"></script>
-	<script src="/js/script.js"></script>
-	
-		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-	<script type='text/javascript'>
-		//代码高亮
-		$(document).ready(function(){
-	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-   			prettyPrint();
-		});
-	</script>
-	</body>
+</body>
 </html>

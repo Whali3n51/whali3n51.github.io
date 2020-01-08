@@ -1,207 +1,314 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    
-    <title>西湖论剑testre | Whali3n51&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <link rel="icon" href="/favicon.png">
-    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/css/style.css">
+  
 
-    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+  
 
-  <link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
+  
+    <meta name="author" content="Whali3n51">
+  
+
+  
+
+  
+
+  <title>西湖论剑testre | Whali3n51&#39;s blog</title>
+
+  
+
+  
+    <link rel="icon" href="/logo.jpg">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
 </head>
-
-  <body>
-
-<header>
-	<a id="logo" href="/" title="Whali3n51&#39;s blog">
-	<img src="/favicon.png" alt="Whali3n51&#39;s blog"></a>
-	
-	
-		<!--搜索栏-->
-		<i class="js-toggle-search iconfont icon-search"></i>
-
-
-<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
-	<div class="search-form__inner">
-		<div>
-			<i class="iconfont icon-search"></i>
-			<input class="text-input" placeholder="Enter Key..." type="search">
-		</div>
-	</div>
-</form>
-	
-
-	
-		<!--侧边导航栏-->
-		<a id="nav-toggle" href="#"><span></span></a>
-
-<nav>
-	<div class="menu-top-container">
-		<ul id="menu-top" class="menu">
-			
-				
-				<li class="current-menu-item">
-					<a href="http://weibo.com/" target="_blank">Weibo</a>
-				</li>
-			
-		</ul>
-	</div>
-</nav>
-	
-
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-navbar">
+    <div class="header-navbar-left">
+      <h1 class="header-navbar-logo">
+        <a href="/">
+          
+            <img src="/css/images/logo.png" alt="Whali3n51&#39;s blog" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="header-navbar-right">
+      <div class="header-navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="header-navbar-list">
+        
+          <li class="header-navbar-item"><a href="/">Home</a></li>
+        
+          <li class="header-navbar-item"><a href="/about">About</a></li>
+        
+          <li class="header-navbar-item"><a href="/links">Link</a></li>
+        
+          <li class="header-navbar-item"><a href="/tags">Tags</a></li>
+        
+          <li class="header-navbar-item"><a href="/categories">Categories</a></li>
+        
+      </ul>
+    </div>
+  </div>
 </header>
-<div class="m-header ">
-	<section id="hero1" class="hero">
-		<div class="inner">
-		</div>
-	</section>
-	
-		<figure class="top-image" data-enable=true></figure>
-	
+
+    <section id="main"><!-- 文章详情页 -->
+
+
+<!-- banner container -->
+<div class="banner-container">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+      <div class="banner-content post-content no-post-image">
+        <div class="post-text">
+          <div class="type-wrap">
+            <a class="article-category-link" href="/categories/Writeup/">Writeup</a>
+          </div>
+          <h1 class="title-wrap">西湖论剑testre</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Whali3n51</strong>
+            <span>发布于</span>
+            
+  <a href="javascript:;" target="_blank" rel="noopener" class="article-date">
+    <time datetime="2019-05-28T14:15:00.000Z" itemprop="datePublished">2019-05-28</time>
+  </a>
+
+          </h2>
+        </div>
+      </div>
+    
+  
+
+  
+  
+
 </div>
 
-<!--文章列表-->
-<div class="wrapper">
-  
-    <!--文章-->
-<article>
-	
-  
-    <h1 class="post-title" itemprop="name">
-      西湖论剑testre
-    </h1>
-  
+<!-- 文章内容 -->
 
-	<div class='post-body mb'>
-		<p>写一波wp来证明自己的菜。<br>这一道这么简单的题还花了我半天的时间，菜的扣脚。<br>先总结一波吧。<br>这道题总体的思路就是base58.然后还加入无关的数据来增加分析的难度，让人误会base64.<br>可能是自己的正向基础不太好，导致我静态分析了半天，然后动调，最后复刻出函数才明白关键算法。<br>0x01:<br>通过correct字符串找到关键函数F5查看伪代码。<br><a href="https://i.loli.net/2019/05/29/5cee11c2b40c212694.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee11c2b40c212694.png" alt=""></a><br>找到了关键的对比信息，现在查找‘s’的来源：<br>向前回溯，找到输入点：<br><a href="https://i.loli.net/2019/05/29/5cee11ce3281e47374.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee11ce3281e47374.png" alt=""></a><br>进入上面的sub_400D00<br><a href="https://i.loli.net/2019/05/29/5cee120e36de935189.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee120e36de935189.png" alt=""></a><br>发现输入0x17个字符，存放在v4中，然后进入encode,给encode重命名进行分析<br>这个函数点恶心，加入了与结果无关来的算法来增加你的分析难度。<br><a href="https://i.loli.net/2019/05/29/5cee123deaeeb56606.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee123deaeeb56606.png" alt=""></a><br>上面第一个for循环，看似从数组里取了有用的值，还取到了输入的值。最后分析到关键判断，根本没有用到。这里就是浪费分析时间的。<br><a href="https://i.loli.net/2019/05/29/5cee128c2c75d39205.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee128c2c75d39205.png" alt=""></a><br>这里是我最困惑的，放在C语言的编译器里，n为1,但是我动调出来的结果是0x17。这里也卡了我好长时间。<br>这里的n是最为关键的。对比字符串的长度为22位，这里的len刚好就是0x17-1为22<br>接着就是最关键的算法了<br><a href="https://i.loli.net/2019/05/29/5cee1295c747044155.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee1295c747044155.png" alt=""></a><br>这里有很多没用的代码来增加我们分析的难度。可能是我自己菜的原因，这个代码我静态分析了好久都没看明白是怎么回事。最后把这个函数复刻了一遍，才明白这个函数真正的道理是什么。</p>
+<div class="body-container">
+  <article id="article-container" class="main-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <p>写一波wp来证明自己的菜。<br>这一道这么简单的题还花了我半天的时间，菜的扣脚。<br>先总结一波吧。<br>这道题总体的思路就是base58.然后还加入无关的数据来增加分析的难度，让人误会base64.<br>可能是自己的正向基础不太好，导致我静态分析了半天，然后动调，最后复刻出函数才明白关键算法。<br>0x01:<br>通过correct字符串找到关键函数F5查看伪代码。<br><a href="https://i.loli.net/2019/05/29/5cee11c2b40c212694.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee11c2b40c212694.png" alt=""></a><br>找到了关键的对比信息，现在查找‘s’的来源：<br>向前回溯，找到输入点：<br><a href="https://i.loli.net/2019/05/29/5cee11ce3281e47374.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee11ce3281e47374.png" alt=""></a><br>进入上面的sub_400D00<br><a href="https://i.loli.net/2019/05/29/5cee120e36de935189.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee120e36de935189.png" alt=""></a><br>发现输入0x17个字符，存放在v4中，然后进入encode,给encode重命名进行分析<br>这个函数点恶心，加入了与结果无关来的算法来增加你的分析难度。<br><a href="https://i.loli.net/2019/05/29/5cee123deaeeb56606.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee123deaeeb56606.png" alt=""></a><br>上面第一个for循环，看似从数组里取了有用的值，还取到了输入的值。最后分析到关键判断，根本没有用到。这里就是浪费分析时间的。<br><a href="https://i.loli.net/2019/05/29/5cee128c2c75d39205.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee128c2c75d39205.png" alt=""></a><br>这里是我最困惑的，放在C语言的编译器里，n为1,但是我动调出来的结果是0x17。这里也卡了我好长时间。<br>这里的n是最为关键的。对比字符串的长度为22位，这里的len刚好就是0x17-1为22<br>接着就是最关键的算法了<br><a href="https://i.loli.net/2019/05/29/5cee1295c747044155.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee1295c747044155.png" alt=""></a><br>这里有很多没用的代码来增加我们分析的难度。可能是我自己菜的原因，这个代码我静态分析了好久都没看明白是怎么回事。最后把这个函数复刻了一遍，才明白这个函数真正的道理是什么。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自己复刻了一遍base58的关键算法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">encode</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> D1[<span class="number">0x17</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">char</span> inputs[<span class="number">0x10</span>] = &#123; <span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>,<span class="string">'G'</span>,<span class="string">'H'</span>,<span class="string">'9'</span>,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> aa = <span class="number">0x17</span> - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0x17</span> - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		index = inputs[i];</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">0x17</span> - <span class="number">1</span>; ; j--)</span><br><span class="line">		&#123;</span><br><span class="line">			a = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (j &lt;= aa)</span><br><span class="line">			&#123;</span><br><span class="line">				a = index != <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (a)</span><br><span class="line">			&#123;</span><br><span class="line">				index += D1[j] &lt;&lt; <span class="number">8</span>;</span><br><span class="line">				D1[j] = index % <span class="number">58</span>;</span><br><span class="line">				index /= <span class="number">58</span>;</span><br><span class="line">				<span class="keyword">if</span> (j)</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		aa = j;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x17</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%x "</span>, D1[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里就是将我们输入的第一位对58进行取模，大于58则进1，以此类推。第二位加上前面左移八位之后的数，然后再对58取模直到0。然后依次类推。<br>为了能算出flag<br>最后我们能逆向思考，当我们正确的输入flag,这个函数算到最后不就是，将每一个字符都左移八位，然后加上后面直到结束。最后存放在数组里面的值用一个式子表示：<br>flag[0]&lt;&lt;8*22+flag[1]&lt;&lt;8*21+ flag[2]&lt;&lt;8*20+flag[3]&lt;&lt;8*19+<br>flag[4]&lt;&lt;8*18+flag[5]&lt;&lt;8*17+ flag[6]&lt;&lt;8*16+flag[7]&lt;&lt;8*15+…<br>然后再将这个值转成58进制存放在数组里，然后根据数组里的值做索引去：<br>123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz<br>取出值，然后和D9cS9N9iHjMLTdA8YSMRMp做比较。</p>
 <p>然后思考写出exp:<br>可以根据比较的字符串，得到最后数组里面存放的值。<br>然后将数值里面的值转为十进制，这个时候是十进制就是flag[0]&lt;&lt;8*22+flag[1]&lt;&lt;8*21+ flag[2]&lt;&lt;8*20+flag[3]&lt;&lt;8*19+<br>flag[4]&lt;&lt;8*18+flag[5]&lt;&lt;8*17+ flag[6]&lt;&lt;8*16+flag[7]&lt;&lt;8*15+…<br>的结果。<br>我们发现这个式子8位刚好为一个字符。也就是说这个式子将我们的输入的值每个字符向左移位。为了得到flag,我们也只需将最后的式子和0x100取模。<br>最后exp如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Exp:</span><br><span class="line">key=<span class="string">'D9cS9N9iHjMLTdA8YSMRMp'</span></span><br><span class="line">b=<span class="string">'123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'</span></span><br><span class="line">flag=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(key)):</span><br><span class="line">    flag=flag*<span class="number">58</span>+b.index(key[i])</span><br><span class="line"></span><br><span class="line">print(hex(flag))</span><br><span class="line">index=<span class="number">0</span></span><br><span class="line">lala=<span class="string">''</span></span><br><span class="line"><span class="keyword">while</span> flag!=<span class="number">0</span>:</span><br><span class="line">    index=flag % <span class="number">0x100</span></span><br><span class="line">    lala+=(chr(index))</span><br><span class="line">    flag//=<span class="number">0x100</span></span><br><span class="line">l=list(lala)</span><br><span class="line">result=<span class="string">''</span>.join(l[::<span class="number">-1</span>])</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
-	</div>
-	<div class="meta split">
-		
-			<span>本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
-		
-		<time class="post-date" datetime="2019-05-28T14:15:00.000Z" itemprop="datePublished">2019-05-28</time>
-	</div>
-</article>
+      </div>
 
-<!--评论-->
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crypto/" rel="tag">#crypto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/re%E5%A4%8D%E7%8E%B0/" rel="tag">#re复现</a></li></ul>
+      </div>
 
-	
-<div class="ds-thread" data-thread-key="西湖论剑testre" data-title="西湖论剑testre" data-url="http://Whali3n51.github.io/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"></div>
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/05/29/%E6%A1%82%E7%94%B5RE%E5%85%A8%E8%A7%A3WriteUp/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              桂电RE全解WriteUp
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/05/28/RC4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              RC4加密算法的原理讲解
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+
+
+    </div>
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">Whali3n51</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=f&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="/lib/APlayer.min.css">
+  <script src="/lib/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
 <script type="text/javascript">
 
-var duoshuoQuery = {short_name:"yumemor"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
 </script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
 
 
   
-</div>
 
-
-  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
-    <path d="M0 0 L50 100 L100 0 Z"></path>
-  </svg>
 
   
 
 
-  <div class="wrapper"></div>
+  
 
 
 
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
 
-
-<div class="fat-footer">
-	<div class="wrapper">
-		<div class="layout layout--center">
-			<div class="layout__item palm-mb">
-				<div class="media">
-					<img class="headimg" src='https://imgchr.github.la/steve.jpeg' alt='Whali3n51'>
-					<div class="media__body">
-						<h4>justpsvm</h4>
-						<p class='site-description'>Stay Hungry,Stay Foolish.</p>
-					</div>
-				</div>
-				<div class="author-contact">
-					<ul>
-						
-							
-							<li>
-				        		<a href="http://weibo.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-weibo"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://github.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-github"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://www.zhihu.com/" target="_blank">
-				        			
-										<i class="iconfont icon-zhihu"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<footer class="footer" role="contentinfo">
-	<div class="wrapper wrapper--wide split split--responsive">
-		
-			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
-		
-		<span>Theme by <a href="http://github.com/justpsvm" target="_blank" rel="noopener">justpsvm</a>. Powered by <a href="http://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
-	</div>
-</footer>
-
-	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
-	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
-	<script src="/js/lib.js"></script>
-	<script src="/js/google-code-prettify/prettify.js"></script>
-	<script src="/js/module.js"></script>
-	<script src="/js/script.js"></script>
-	
-		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-	<script type='text/javascript'>
-		//代码高亮
-		$(document).ready(function(){
-	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-   			prettyPrint();
-		});
-	</script>
-	</body>
+</body>
 </html>

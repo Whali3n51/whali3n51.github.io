@@ -1,86 +1,131 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    
-    <title>桂电RE全解WriteUp | Whali3n51&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <link rel="icon" href="/favicon.png">
-    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/css/style.css">
+  
 
-    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+  
 
-  <link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
+  
+    <meta name="author" content="Whali3n51">
+  
+
+  
+
+  
+
+  <title>桂电RE全解WriteUp | Whali3n51&#39;s blog</title>
+
+  
+
+  
+    <link rel="icon" href="/logo.jpg">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
 </head>
-
-  <body>
-
-<header>
-	<a id="logo" href="/" title="Whali3n51&#39;s blog">
-	<img src="/favicon.png" alt="Whali3n51&#39;s blog"></a>
-	
-	
-		<!--搜索栏-->
-		<i class="js-toggle-search iconfont icon-search"></i>
-
-
-<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
-	<div class="search-form__inner">
-		<div>
-			<i class="iconfont icon-search"></i>
-			<input class="text-input" placeholder="Enter Key..." type="search">
-		</div>
-	</div>
-</form>
-	
-
-	
-		<!--侧边导航栏-->
-		<a id="nav-toggle" href="#"><span></span></a>
-
-<nav>
-	<div class="menu-top-container">
-		<ul id="menu-top" class="menu">
-			
-				
-				<li class="current-menu-item">
-					<a href="http://weibo.com/" target="_blank">Weibo</a>
-				</li>
-			
-		</ul>
-	</div>
-</nav>
-	
-
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-navbar">
+    <div class="header-navbar-left">
+      <h1 class="header-navbar-logo">
+        <a href="/">
+          
+            <img src="/css/images/logo.png" alt="Whali3n51&#39;s blog" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="header-navbar-right">
+      <div class="header-navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="header-navbar-list">
+        
+          <li class="header-navbar-item"><a href="/">Home</a></li>
+        
+          <li class="header-navbar-item"><a href="/about">About</a></li>
+        
+          <li class="header-navbar-item"><a href="/links">Link</a></li>
+        
+          <li class="header-navbar-item"><a href="/tags">Tags</a></li>
+        
+          <li class="header-navbar-item"><a href="/categories">Categories</a></li>
+        
+      </ul>
+    </div>
+  </div>
 </header>
-<div class="m-header ">
-	<section id="hero1" class="hero">
-		<div class="inner">
-		</div>
-	</section>
-	
-		<figure class="top-image" data-enable=true></figure>
-	
+
+    <section id="main"><!-- 文章详情页 -->
+
+
+<!-- banner container -->
+<div class="banner-container">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+      <div class="banner-content post-content no-post-image">
+        <div class="post-text">
+          <div class="type-wrap">
+            <a class="article-category-link" href="/categories/Writeup/">Writeup</a>
+          </div>
+          <h1 class="title-wrap">桂电RE全解WriteUp</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Whali3n51</strong>
+            <span>发布于</span>
+            
+  <a href="javascript:;" target="_blank" rel="noopener" class="article-date">
+    <time datetime="2019-05-29T05:23:00.000Z" itemprop="datePublished">2019-05-29</time>
+  </a>
+
+          </h2>
+        </div>
+      </div>
+    
+  
+
+  
+  
+
 </div>
 
-<!--文章列表-->
-<div class="wrapper">
-  
-    <!--文章-->
-<article>
-	
-  
-    <h1 class="post-title" itemprop="name">
-      桂电RE全解WriteUp
-    </h1>
-  
+<!-- 文章内容 -->
 
-	<div class='post-body mb'>
-		<p>0x01<br>这个题我首先就没有思路，我一直认为是有函数对代码段进行破坏了，然后动调一直无果，所以这题没有做出来。最后还是看北联大佬说了一句加了UPX壳。对不起，我真的很菜，我真的看不出来这里加了壳，linux程序加upx壳我还是第一次听说。然后这我是我赛后做出来的。<br>知道了加了upx壳，这个简单了，脱掉就好了，使用工具upx -d，直接脱掉了<br>载入IDA，程序主流程如下<br><a href="https://i.loli.net/2019/05/29/5cee16e59d7b136206.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee16e59d7b136206.png" alt=""></a></p>
+<div class="body-container">
+  <article id="article-container" class="main-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <p>0x01<br>这个题我首先就没有思路，我一直认为是有函数对代码段进行破坏了，然后动调一直无果，所以这题没有做出来。最后还是看北联大佬说了一句加了UPX壳。对不起，我真的很菜，我真的看不出来这里加了壳，linux程序加upx壳我还是第一次听说。然后这我是我赛后做出来的。<br>知道了加了upx壳，这个简单了，脱掉就好了，使用工具upx -d，直接脱掉了<br>载入IDA，程序主流程如下<br><a href="https://i.loli.net/2019/05/29/5cee16e59d7b136206.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee16e59d7b136206.png" alt=""></a></p>
 <p>关键判断地方<br>Sub_4009ae如下<br><a href="https://i.loli.net/2019/05/29/5cee16ec8705053974.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee16ec8705053974.png" alt=""></a><br>看到一堆判断<br><a href="https://i.loli.net/2019/05/29/5cee16f49b77a20891.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/29/5cee16f49b77a20891.png" alt=""></a><br>到这了才不会返回零，然后计算出前几个判断，发现这些判断就是flag</p>
 <p>最后脚本解密</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">key=[<span class="number">0x9E77500</span>,<span class="number">0x2B9740C0</span>,<span class="number">0x154B2280</span>,<span class="number">0x4009EFA8</span>,<span class="number">489211344</span>,<span class="number">518971936</span>,<span class="number">406741500</span>,<span class="number">294236496</span>,<span class="number">177305856</span>,<span class="number">650683500</span>,<span class="number">298351053</span>,<span class="number">386348487</span>,<span class="number">438258597</span>,<span class="number">249527520</span>,<span class="number">445362764</span>,<span class="number">174988800</span>,<span class="number">981182160</span>,<span class="number">493042704</span>,<span class="number">257493600</span>,<span class="number">767478780</span>,<span class="number">312840624</span>,<span class="number">1404511500</span>,<span class="number">316139670</span>,<span class="number">619005024</span>,<span class="number">372641472</span>,<span class="number">373693320</span>,<span class="number">498266640</span>,<span class="number">452465676</span>,<span class="number">208422720</span>,<span class="number">515592000</span>,<span class="number">719890500</span>]</span><br><span class="line">key2=[<span class="number">1629056</span>,<span class="number">6771600</span>,<span class="number">3682944</span>,<span class="number">10431000</span>,<span class="number">3977328</span>,<span class="number">5138336</span>,<span class="number">7532250</span>,<span class="number">5551632</span>,<span class="number">3409728</span>,<span class="number">13013670</span>,<span class="number">6088797</span>,<span class="number">7884663</span>,<span class="number">8944053</span>,<span class="number">5198490</span>,<span class="number">4544518</span>,<span class="number">3645600</span>,<span class="number">10115280</span>,<span class="number">9667504</span>,<span class="number">5364450</span>,<span class="number">13464540</span>,<span class="number">5488432</span>,<span class="number">14479500</span>,<span class="number">6451830</span>,<span class="number">6252576</span>,<span class="number">7763364</span>,<span class="number">7327320</span>,<span class="number">8741520</span>,<span class="number">8871876</span>,<span class="number">4086720</span>,<span class="number">9374400</span>,<span class="number">5759124</span>]</span><br><span class="line">index=<span class="number">0</span></span><br><span class="line">flag=<span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(key)):</span><br><span class="line">        index=key[i]//key2[i]</span><br><span class="line">        flag+=chr(index)</span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line">flag：flag&#123;e65421110b0a3099a1c039337&#125;</span><br></pre></td></tr></table></figure>
@@ -99,122 +144,184 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Judge</span><span class="params">(i)</span>:</span></span><br><span class="line">    result = os.popen(<span class="string">'echo '</span> + str(i) + <span class="string">'|./number_game'</span>)</span><br><span class="line">    res = result.read()</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> res.splitlines():</span><br><span class="line">        print(line)</span><br><span class="line">        <span class="keyword">if</span> line.find(<span class="string">'flag'</span>) != <span class="number">-1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i1 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">    <span class="keyword">for</span> i2 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">        <span class="keyword">for</span> i3 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">            <span class="keyword">for</span> i4 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">                <span class="keyword">for</span> i5 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">                    <span class="keyword">for</span> i6 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">                        <span class="keyword">for</span> i7 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">                            <span class="keyword">for</span> i8 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">                                <span class="keyword">for</span> i9 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">                                    <span class="keyword">for</span> i10 <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">5</span>):</span><br><span class="line">                                        password = str(i1) + str(i2) + str(i3) + str(i4) + str(i5) + str(i6) + str(</span><br><span class="line">                                            i7) + str(i8) + str(i9) + str(i10)</span><br><span class="line">                                        print(<span class="string">'Password:'</span> + password)</span><br><span class="line">                                        <span class="keyword">if</span> Judge(password):</span><br><span class="line">                                            print(password)</span><br><span class="line">                                            exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 <p>大概花了40几分钟<br>Flag：flag{1134240024}<br>直接出来了。</p>
 
-	</div>
-	<div class="meta split">
-		
-			<span>本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
-		
-		<time class="post-date" datetime="2019-05-29T05:23:00.000Z" itemprop="datePublished">2019-05-29</time>
-	</div>
-</article>
+      </div>
 
-<!--评论-->
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RE/" rel="tag">#RE</a></li></ul>
+      </div>
 
-	
-<div class="ds-thread" data-thread-key="桂电RE全解WriteUp" data-title="桂电RE全解WriteUp" data-url="http://Whali3n51.github.io/2019/05/29/%E6%A1%82%E7%94%B5RE%E5%85%A8%E8%A7%A3WriteUp/"></div>
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/05/31/%E5%BC%BA%E7%BD%91%E6%9D%AF%EF%BC%9A%E5%BC%BA%E7%BD%91%E5%85%88%E9%94%8B_AP_Pwn%20%20writeup/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              强网杯：强网先锋_AP_Pwn  writeup
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2019/05/28/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91testre/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              西湖论剑testre
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+
+
+    </div>
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">Whali3n51</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=f&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="/lib/APlayer.min.css">
+  <script src="/lib/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
 <script type="text/javascript">
 
-var duoshuoQuery = {short_name:"yumemor"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
 </script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
 
 
   
-</div>
 
-
-  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
-    <path d="M0 0 L50 100 L100 0 Z"></path>
-  </svg>
 
   
 
 
-  <div class="wrapper"></div>
+  
 
 
 
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
 
-
-<div class="fat-footer">
-	<div class="wrapper">
-		<div class="layout layout--center">
-			<div class="layout__item palm-mb">
-				<div class="media">
-					<img class="headimg" src='https://imgchr.github.la/steve.jpeg' alt='Whali3n51'>
-					<div class="media__body">
-						<h4>justpsvm</h4>
-						<p class='site-description'>Stay Hungry,Stay Foolish.</p>
-					</div>
-				</div>
-				<div class="author-contact">
-					<ul>
-						
-							
-							<li>
-				        		<a href="http://weibo.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-weibo"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://github.com/" target="_blank">
-				        			
-				        				<i class="iconfont icon-github"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-							
-							<li>
-				        		<a href="https://www.zhihu.com/" target="_blank">
-				        			
-										<i class="iconfont icon-zhihu"></i>
-				        			
-				        		</a>
-				        	</li>
-						
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<footer class="footer" role="contentinfo">
-	<div class="wrapper wrapper--wide split split--responsive">
-		
-			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
-		
-		<span>Theme by <a href="http://github.com/justpsvm" target="_blank" rel="noopener">justpsvm</a>. Powered by <a href="http://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
-	</div>
-</footer>
-
-	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
-	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
-	<script src="/js/lib.js"></script>
-	<script src="/js/google-code-prettify/prettify.js"></script>
-	<script src="/js/module.js"></script>
-	<script src="/js/script.js"></script>
-	
-		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-	<script type='text/javascript'>
-		//代码高亮
-		$(document).ready(function(){
-	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-   			prettyPrint();
-		});
-	</script>
-	</body>
+</body>
 </html>
