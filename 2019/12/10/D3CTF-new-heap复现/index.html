@@ -93,7 +93,8 @@
   
   
     
-      <div class="banner-content post-content no-post-image">
+      <div class="banner-content full-content">
+        <div class="post-image" style="background-image: url(/css/images/universe.jpg)"></div>
         <div class="post-text">
           <div class="type-wrap">
             <a class="article-category-link" href="/categories/pwn%E5%AD%A6%E4%B9%A0/">pwn学习</a>
@@ -129,6 +130,7 @@
       <div class="article-entry">
         <p>D3CTF那天去打红帽杯了，但是D3CTF 结束后，和其他师傅交流了一下，这道题不错 。而且这道题考点很清奇。</p>
 <p>首先我们来看一下这一题开启的保护和使用的libc版本</p>
+<p>题目附件:<a href="./new_heap_update.zip">new_heap_update.zip</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">whalien51@ubuntu:~/new_heap-updated$ strings libc.so.6 |grep GLIBC</span><br><span class="line">GLIBC_2.29</span><br></pre></td></tr></table></figure>
 
 <p>这一题使用的libc2.29。</p>
@@ -166,8 +168,10 @@
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
     
-      <div id="article-nav-newer" class="card-item">
+      <div id="article-nav-newer" class="card-item img">
         <article>
+          
+            <div class="card-cover" style="background-image: url(/css/images/whale.jpg)"></div>
           
           <a class="card-link article-nav-link" href="/2019/12/11/%E6%B5%85%E5%B0%9D%E5%A4%9A%E7%BA%BF%E7%A8%8Bpwn/"></a>
           <strong class="article-nav-caption">Newer</strong>
@@ -180,8 +184,10 @@
       </div>
     
     
-      <div id="article-nav-older" class="card-item">
+      <div id="article-nav-older" class="card-item img">
         <article>
+          
+            <div class="card-cover" style="background-image: url(/css/images/street.jpg)"></div>
           
           <a class="card-link article-nav-link" href="/2019/12/10/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%93%E9%A2%98%E6%80%BB%E7%BB%93/"></a>
           <strong class="article-nav-caption">Older</strong>

@@ -93,7 +93,8 @@
   
   
     
-      <div class="banner-content post-content no-post-image">
+      <div class="banner-content full-content">
+        <div class="post-image" style="background-image: url(/css/images/street.jpg)"></div>
         <div class="post-text">
           <div class="type-wrap">
             <a class="article-category-link" href="/categories/pwn%E6%80%BB%E7%BB%93/">pwn总结</a>
@@ -163,13 +164,15 @@
 <p>pwntools整合了32位格式化字符串的利用。</p>
 <p>fmtstr_payload(offset,{target_addr:value},write_size=’short’)自动就生成了payload,但是我不建议新手直接使用这个函数。</p>
 <p>原理讲解到这里了，来个例子：</p>
+<p>题目链接：<a href=""></a></p>
 <h2 id="64位格式化字符串利用"><a href="#64位格式化字符串利用" class="headerlink" title="64位格式化字符串利用"></a>64位格式化字符串利用</h2><p>64位的和32位的利用方式其实是差不多的，唯一的差别就是64位的传参方式不一样，所以偏移量不一样。64位传参方式是rdi,rsi,rdx,rcx,r8,r9。第一个参数已经被我们格式化字符串占用了，所以第%1$p是rsi的值，然后往后顺延，直到%6$p是栈上第一个数据，然后后面和32位差不多了。</p>
 <p>但是64位和32位还有一点不同的是，32位的地址一般能沾满整个栈单元，没有’\x00’字符，所以就不会无论地址写在格式化字符串前或者后面，都不会会造成格式化字符串的截断，但是64位不同，64位的地址一般不会沾满整个栈单元，一般只使用六个字节。所以会有’\x00’截断，如果把地址写在格式化字符串的前面，那么就会产生’\x00’截断，导致后面格式化字符串被截断不执行。</p>
 <p>好了  这里也举个例子说一下吧。</p>
+<p>题目链接</p>
 <h2 id="Ebp-chain修改任意地址"><a href="#Ebp-chain修改任意地址" class="headerlink" title="Ebp chain修改任意地址"></a>Ebp chain修改任意地址</h2><p>Ebp chain是格式化字符串比较高级的利用方式，前两种利用方式是我们输入的值直接在栈上，但是如果我们输入的值全在bss段上，那么我们怎么做到修改格式化字符串呢？</p>
 <p>通过上面的知识我们得知，想要修改或者读一个地址的值，那么这个地址就得在栈上。所以我们要想办法把这个地址写到栈上。这个说起来有点抽象，还是举个例子吧。</p>
 <p>这是swupctf的一道题。</p>
-<p>题目链接：<a href="./login"></a></p>
+<p>题目链接：<a href="login">login</a></p>
 <p>首先我们进IDA看一下</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub_804854B</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"Please input your password: "</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    s1[<span class="built_in">read</span>(<span class="number">0</span>, s1, <span class="number">0x32</span>u)] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> ( !<span class="built_in">strncmp</span>(s1, <span class="string">"wllmmllw"</span>, <span class="number">8u</span>) )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"This is the wrong password: "</span>);</span><br><span class="line">    <span class="built_in">printf</span>(s1);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Try again!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">"Login successfully! Have fun!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -194,8 +197,10 @@
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
     
-      <div id="article-nav-newer" class="card-item">
+      <div id="article-nav-newer" class="card-item img">
         <article>
+          
+            <div class="card-cover" style="background-image: url(/css/images/universe.jpg)"></div>
           
           <a class="card-link article-nav-link" href="/2019/12/10/D3CTF-new-heap%E5%A4%8D%E7%8E%B0/"></a>
           <strong class="article-nav-caption">Newer</strong>
