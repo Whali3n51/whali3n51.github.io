@@ -128,25 +128,25 @@
       
 
       <div class="article-entry">
-        <h1 id="MYSQL数据库笔记"><a href="#MYSQL数据库笔记" class="headerlink" title="MYSQL数据库笔记"></a>MYSQL数据库笔记</h1><p>进入MySQL</p>
+        <h1><span id="mysql数据库笔记">MYSQL数据库笔记</span></h1><p>进入MySQL</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
 
-<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">DATABASE</span> 数据库名;</span><br></pre></td></tr></table></figure>
+<h2><span id="数据库操作">数据库操作</span></h2><h3><span id="创建数据库">创建数据库</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">DATABASE</span> 数据库名;</span><br></pre></td></tr></table></figure>
 
 <p>数据库名字必须唯一；</p>
-<h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
+<h3><span id="查看数据库">查看数据库</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="使用或者切换数据库"><a href="#使用或者切换数据库" class="headerlink" title="使用或者切换数据库"></a>使用或者切换数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> 数据库名;</span><br></pre></td></tr></table></figure>
+<h3><span id="使用或者切换数据库">使用或者切换数据库</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> 数据库名;</span><br></pre></td></tr></table></figure>
 
-<h3 id="修改数据库编码方式"><a href="#修改数据库编码方式" class="headerlink" title="修改数据库编码方式"></a>修改数据库编码方式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> 数据库名 <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">set</span> 目标编码方式;</span><br></pre></td></tr></table></figure>
+<h3><span id="修改数据库编码方式">修改数据库编码方式</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> 数据库名 <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">set</span> 目标编码方式;</span><br></pre></td></tr></table></figure>
 
-<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">DATABASE</span> 数据库名;</span><br></pre></td></tr></table></figure>
+<h3><span id="删除数据库">删除数据库</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">DATABASE</span> 数据库名;</span><br></pre></td></tr></table></figure>
 
-<h3 id="数据库存储引擎"><a href="#数据库存储引擎" class="headerlink" title="数据库存储引擎"></a>数据库存储引擎</h3><p><strong>InnoDB：</strong> 支持事务处理，支持外键，支持崩溃修复能力和并发控制。如果需要对事务的完整性要求比较高（比如银行），要求实现并发控制（比如售票），那选择InnoDB有很大的优势。如果需要频繁的更新、删除操作的数据库，也可以选择InnoDB，因为支持事务的提交（commit）和回滚（rollback）。</p>
+<h3><span id="数据库存储引擎">数据库存储引擎</span></h3><p><strong>InnoDB：</strong> 支持事务处理，支持外键，支持崩溃修复能力和并发控制。如果需要对事务的完整性要求比较高（比如银行），要求实现并发控制（比如售票），那选择InnoDB有很大的优势。如果需要频繁的更新、删除操作的数据库，也可以选择InnoDB，因为支持事务的提交（commit）和回滚（rollback）。</p>
 <p><strong>MyISAM：</strong> 插入数据快，空间和内存使用比较低。如果表主要是用于插入新记录和读出记录，那么选择MyISAM能实现处理高效率。如果应用的完整性、并发性要求比 较低，也可以使用。</p>
 <p><strong>MEMORY：</strong> 所有的数据都在内存中，数据的处理速度快，但是安全性不高。如果需要很快的读写速度，对数据的安全性要求较低，可以选择MEMOEY。它对表的大小有要求，不能建立太大的表。所以，这类数据库只使用在相对较小的数据库表。</p>
 <p><strong>注意：</strong>同一个数据库也可以使用多种存储引擎的表。如果一个表要求比较高的事务处理，可以选择InnoDB。这个数据库中可以将查询要求比较高的表选择MyISAM存储。如果该数据库需要一个用于查询的临时表，可以选择MEMORY存储引擎。mysql数据库默认使用InnoDB存储引擎。</p>
-<h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">TABLE</span> 表名(字段名<span class="number">1</span> 数据类型(完整性约束条件) PRIMARY <span class="keyword">KEY</span>, 字段名<span class="number">2</span> 数据类型,........);</span><br></pre></td></tr></table></figure>
+<h2><span id="表操作">表操作</span></h2><h3><span id="创建表">创建表</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">TABLE</span> 表名(字段名<span class="number">1</span> 数据类型(完整性约束条件) PRIMARY <span class="keyword">KEY</span>, 字段名<span class="number">2</span> 数据类型,........);</span><br></pre></td></tr></table></figure>
 
 <p>PRIMARY KEY 只在主键后面才有且仅有一个</p>
 <p>主键是指唯一标识数据的属性，主键只能是非空约束。</p>
@@ -170,7 +170,7 @@
 
 
 <p>mysql的数据类型</p>
-<h4 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h4><table>
+<h4><span id="数值类型">数值类型</span></h4><table>
 <thead>
 <tr>
 <th align="left">类型</th>
@@ -237,7 +237,7 @@
 <td align="left">小数值</td>
 </tr>
 </tbody></table>
-<h4 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h4><table>
+<h4><span id="日期和时间类型">日期和时间类型</span></h4><table>
 <thead>
 <tr>
 <th align="left">类型</th>
@@ -283,7 +283,7 @@
 <td align="left">混合日期和时间值，时间戳</td>
 </tr>
 </tbody></table>
-<h4 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h4><table>
+<h4><span id="字符串类型">字符串类型</span></h4><table>
 <thead>
 <tr>
 <th align="left">类型</th>
@@ -342,11 +342,11 @@
 <td align="left">极大文本数据</td>
 </tr>
 </tbody></table>
-<h3 id="修改数据表"><a href="#修改数据表" class="headerlink" title="修改数据表"></a>修改数据表</h3><h4 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 原表名 <span class="keyword">rename</span> 新表名;</span><br></pre></td></tr></table></figure>
+<h3><span id="修改数据表">修改数据表</span></h3><h4><span id="修改表名">修改表名</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 原表名 <span class="keyword">rename</span> 新表名;</span><br></pre></td></tr></table></figure>
 
-<h4 id="查看表字段和数据类型"><a href="#查看表字段和数据类型" class="headerlink" title="查看表字段和数据类型"></a>查看表字段和数据类型</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br></pre></td></tr></table></figure>
+<h4><span id="查看表字段和数据类型">查看表字段和数据类型</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br></pre></td></tr></table></figure>
 
-<h4 id="修改表字段名和数据类型"><a href="#修改表字段名和数据类型" class="headerlink" title="修改表字段名和数据类型"></a>修改表字段名和数据类型</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">CHANGE</span> 旧字段名 新字段名 新数据类型(完整性约束);</span><br></pre></td></tr></table></figure>
+<h4><span id="修改表字段名和数据类型">修改表字段名和数据类型</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">CHANGE</span> 旧字段名 新字段名 新数据类型(完整性约束);</span><br></pre></td></tr></table></figure>
 
 <p>添加单个主键约束</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段名 新数据类型(完整性约束) PRIMARY <span class="keyword">KEY</span>;</span><br></pre></td></tr></table></figure>
@@ -357,17 +357,17 @@
 <p>删除主键约束</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="修改字段位置"><a href="#修改字段位置" class="headerlink" title="修改字段位置"></a>修改字段位置</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 MODDIFY 原字段名 新数据类型(完整性约束) <span class="keyword">AFTER</span> 欲放置位置的前一个字段名;</span><br></pre></td></tr></table></figure>
+<h4><span id="修改字段位置">修改字段位置</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 MODDIFY 原字段名 新数据类型(完整性约束) <span class="keyword">AFTER</span> 欲放置位置的前一个字段名;</span><br></pre></td></tr></table></figure>
 
 <p>或者</p>
 <p>放到表字段首</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 MODDIFY 原字段名 新数据类型(完整性约束) <span class="keyword">FIRST</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> 新字段名 新数据类型(完整性约束);</span><br></pre></td></tr></table></figure>
+<h4><span id="添加字段">添加字段</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> 新字段名 新数据类型(完整性约束);</span><br></pre></td></tr></table></figure>
 
-<h4 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> 字段名;</span><br></pre></td></tr></table></figure>
+<h4><span id="删除字段">删除字段</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> 字段名;</span><br></pre></td></tr></table></figure>
 
-<h4 id="添加外键约束"><a href="#添加外键约束" class="headerlink" title="添加外键约束"></a>添加外键约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(该表字段名) <span class="keyword">REFERENCES</span> 引用表名(引用表的主键名) [<span class="keyword">ON</span> <span class="keyword">DELETE</span>|<span class="keyword">UPDATE</span>  RESTRICT | <span class="keyword">CASCADE</span> | <span class="keyword">SET</span> <span class="literal">NULL</span> | <span class="keyword">NO</span> <span class="keyword">ACTION</span> | <span class="keyword">SET</span> <span class="keyword">DEFAULT</span>];</span><br></pre></td></tr></table></figure>
+<h4><span id="添加外键约束">添加外键约束</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(该表字段名) <span class="keyword">REFERENCES</span> 引用表名(引用表的主键名) [<span class="keyword">ON</span> <span class="keyword">DELETE</span>|<span class="keyword">UPDATE</span>  RESTRICT | <span class="keyword">CASCADE</span> | <span class="keyword">SET</span> <span class="literal">NULL</span> | <span class="keyword">NO</span> <span class="keyword">ACTION</span> | <span class="keyword">SET</span> <span class="keyword">DEFAULT</span>];</span><br></pre></td></tr></table></figure>
 
 <p>外键名用来唯一标识外键，不同表的外键名不能一样。当一个字段添加了外键名,插入数据时,该字段的值在引用的父表中一定要存在,否则插入数据会失败.</p>
 <p>CONSTRAINT symbol 为外键约束名称，如果没有定义，InnoDB表会自动生成一个名称，这个名称在数据库里面必须唯一。</p>
@@ -380,37 +380,37 @@
 <li>NO ACTION，无动作，实际功能与RESTRICT相同。</li>
 <li>SET DEFAULT，仅仅解析器能识别，实际功能未实现</li>
 </ul>
-<h4 id="删除外键约束"><a href="#删除外键约束" class="headerlink" title="删除外键约束"></a>删除外键约束</h4><p>只有一个表的主键被引用的所有外键约束全部删除了，该表的主键才能删除，否则会报错。</p>
+<h4><span id="删除外键约束">删除外键约束</span></h4><p>只有一个表的主键被引用的所有外键约束全部删除了，该表的主键才能删除，否则会报错。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> 外键名;</span><br></pre></td></tr></table></figure>
 
-<h4 id="添加唯一约束"><a href="#添加唯一约束" class="headerlink" title="添加唯一约束"></a>添加唯一约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段名 字段类型 <span class="keyword">UNIQUE</span>;</span><br></pre></td></tr></table></figure>
+<h4><span id="添加唯一约束">添加唯一约束</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段名 字段类型 <span class="keyword">UNIQUE</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="删除唯一约束"><a href="#删除唯一约束" class="headerlink" title="删除唯一约束"></a>删除唯一约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> 字段名;</span><br></pre></td></tr></table></figure>
+<h4><span id="删除唯一约束">删除唯一约束</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> 字段名;</span><br></pre></td></tr></table></figure>
 
-<h4 id="添加默认约束"><a href="#添加默认约束" class="headerlink" title="添加默认约束"></a>添加默认约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段名 字段类型 <span class="keyword">DEFAULT</span> <span class="string">'默认值'</span>;</span><br></pre></td></tr></table></figure>
+<h4><span id="添加默认约束">添加默认约束</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段名 字段类型 <span class="keyword">DEFAULT</span> <span class="string">'默认值'</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="删除默认约束"><a href="#删除默认约束" class="headerlink" title="删除默认约束"></a>删除默认约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段名 字段类型;</span><br></pre></td></tr></table></figure>
+<h4><span id="删除默认约束">删除默认约束</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段名 字段类型;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><p>本文使用的数据库操作是基于employees数据库。</p>
+<h2><span id="sql语句">SQL语句</span></h2><p>本文使用的数据库操作是基于employees数据库。</p>
 <p><a href="https://github.com/datacharmer/test_db/" target="_blank" rel="noopener">https://github.com/datacharmer/test_db/</a></p>
-<h3 id="SQL语句分类"><a href="#SQL语句分类" class="headerlink" title="SQL语句分类"></a>SQL语句分类</h3><p><strong>DDL（Data Definition Languages）语句</strong>：数据定义语言，这些语句定义了不同的数据段、数据库、表、列、索引等数据库对象的定义。常用的语句关键字主要包括 create、drop、alter等。<br><strong>DML（Data Manipulation Language）语句</strong>：数据操纵语句，用于添加、删除、更新和查询数据库记录，并检查数据完整性，常用的语句关键字主要包括 insert、delete、udpate 和select 等。(增添改查）<br><strong>DCL（Data Control Language）语句</strong>：数据控制语句，用于控制不同数据段直接的许可和访问级别的语句。这些语句定义了数据库、表、字段、用户的访问权限和安全级别。主要的语句关键字包括 grant、revoke 等</p>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> 表名(字段名称<span class="number">1</span>,字段名称<span class="number">2</span>,....) <span class="keyword">values</span>(字段<span class="number">1</span>的值,字段<span class="number">2</span>的值,.....),(第二行字段<span class="number">1</span>的值,.....),(第三行字段<span class="number">1</span>的值,.....)，...;</span><br></pre></td></tr></table></figure>
+<h3><span id="sql语句分类">SQL语句分类</span></h3><p><strong>DDL（Data Definition Languages）语句</strong>：数据定义语言，这些语句定义了不同的数据段、数据库、表、列、索引等数据库对象的定义。常用的语句关键字主要包括 create、drop、alter等。<br><strong>DML（Data Manipulation Language）语句</strong>：数据操纵语句，用于添加、删除、更新和查询数据库记录，并检查数据完整性，常用的语句关键字主要包括 insert、delete、udpate 和select 等。(增添改查）<br><strong>DCL（Data Control Language）语句</strong>：数据控制语句，用于控制不同数据段直接的许可和访问级别的语句。这些语句定义了数据库、表、字段、用户的访问权限和安全级别。主要的语句关键字包括 grant、revoke 等</p>
+<h3><span id="插入">插入</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> 表名(字段名称<span class="number">1</span>,字段名称<span class="number">2</span>,....) <span class="keyword">values</span>(字段<span class="number">1</span>的值,字段<span class="number">2</span>的值,.....),(第二行字段<span class="number">1</span>的值,.....),(第三行字段<span class="number">1</span>的值,.....)，...;</span><br></pre></td></tr></table></figure>
 
 <p>若字段是外键，则不可赋值</p>
 <p>或者</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> 表名 <span class="keyword">values</span>(按照表的字段名称依次赋值，用逗号隔开);</span><br></pre></td></tr></table></figure>
 
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 字段名<span class="number">1</span>,字段名<span class="number">2</span>,...=指定字段值<span class="number">1</span>,指定字段值<span class="number">2</span>,.... [<span class="keyword">where</span> 条件表达式];</span><br></pre></td></tr></table></figure>
+<h3><span id="更新">更新</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 字段名<span class="number">1</span>,字段名<span class="number">2</span>,...=指定字段值<span class="number">1</span>,指定字段值<span class="number">2</span>,.... [<span class="keyword">where</span> 条件表达式];</span><br></pre></td></tr></table></figure>
 
 <p>[]内容为可选内容</p>
 <p>修改时要注意唯一约束和外键约束。</p>
 <p>不加where条件限制，则会导致指定字段的所有行的值变为我们设置的值</p>
-<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><h4 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 查询字段名称<span class="number">1</span>，查询字段名称<span class="number">2</span>,....<span class="comment">/*可用*代替所有字段*/</span> <span class="keyword">from</span> 表名 [<span class="keyword">where</span> 限制条件] [<span class="keyword">GROUP</span> <span class="keyword">BY</span> 字段名 [<span class="keyword">HAVING</span> 逻辑表达式]] [<span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段名 [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]]</span><br></pre></td></tr></table></figure>
+<h3><span id="查询">查询</span></h3><h4><span id="简单查询">简单查询</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 查询字段名称<span class="number">1</span>，查询字段名称<span class="number">2</span>,....<span class="comment">/*可用*代替所有字段*/</span> <span class="keyword">from</span> 表名 [<span class="keyword">where</span> 限制条件] [<span class="keyword">GROUP</span> <span class="keyword">BY</span> 字段名 [<span class="keyword">HAVING</span> 逻辑表达式]] [<span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段名 [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]]</span><br></pre></td></tr></table></figure>
 
 <p>[]内的内容可以省略</p>
-<h5 id="where-限制条件：其中限制条件如下表"><a href="#where-限制条件：其中限制条件如下表" class="headerlink" title="where 限制条件：其中限制条件如下表"></a>where 限制条件：其中限制条件如下表</h5><table>
+<h5><span id="where-限制条件其中限制条件如下表">where 限制条件：其中限制条件如下表</span></h5><table>
 <thead>
 <tr>
 <th>运算符分类</th>
@@ -456,12 +456,12 @@
 <td>gender =’男’ and name like ‘wd’、NOT(gender=’男’)</td>
 </tr>
 </tbody></table>
-<h5 id="ORDER-BY使用"><a href="#ORDER-BY使用" class="headerlink" title="ORDER BY使用"></a>ORDER BY使用</h5><p>根据字段名进行排序。</p>
+<h5><span id="order-by使用">ORDER BY使用</span></h5><p>根据字段名进行排序。</p>
 <p>用法：ORDER BY 字段名 DESC；</p>
 <p>其中DESC为降序，ASC为升序。</p>
-<h5 id="limit-offset-n"><a href="#limit-offset-n" class="headerlink" title="limit [offset,]n;"></a>limit [offset,]n;</h5><p>可以指定查询结果从哪一条记录开始，一共查询多少条记录。</p>
+<h5><span id="limit-offsetn">limit [offset,]n;</span></h5><p>可以指定查询结果从哪一条记录开始，一共查询多少条记录。</p>
 <p>offset 用来设置起始行数，n 用来指定检索多少行</p>
-<h4 id="统计查询"><a href="#统计查询" class="headerlink" title="统计查询"></a>统计查询</h4><h5 id="集合函数"><a href="#集合函数" class="headerlink" title="集合函数"></a>集合函数</h5><table>
+<h4><span id="统计查询">统计查询</span></h4><h5><span id="集合函数">集合函数</span></h5><table>
 <thead>
 <tr>
 <th>集合函数</th>
@@ -500,7 +500,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(emp_no) <span class="keyword">as</span> employees_num , <span class="keyword">avg</span>(salary) <span class="keyword">as</span> average_salary,<span class="keyword">sum</span>(salary) <span class="keyword">as</span> sum_salary, <span class="keyword">max</span>(salary) <span class="keyword">as</span> max_salary,<span class="keyword">min</span>(salary) <span class="keyword">as</span> min_salary  <span class="keyword">from</span> salaries;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220227205757021.png" alt="image-20220227205757021"></p>
-<h5 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a>GROUP BY</h5><p>指定字段中，字段值相同的放同一组。</p>
+<h5><span id="group-by">GROUP BY</span></h5><p>指定字段中，字段值相同的放同一组。</p>
 <p>select指定的字段要么就要包含在group by语句的后面，作为分组的依据；要么就要被包含在聚合函数中</p>
 <p>例如统计employees表中的男女分别多少人</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> gender,<span class="keyword">count</span>(gender) <span class="keyword">as</span> <span class="keyword">num</span> <span class="keyword">from</span> employees <span class="keyword">group</span> <span class="keyword">by</span> gender;</span><br></pre></td></tr></table></figure>
@@ -510,7 +510,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> salary,from_date, <span class="keyword">count</span>(*) <span class="keyword">as</span> <span class="keyword">num</span> <span class="keyword">from</span> salaries <span class="keyword">where</span> from_date <span class="keyword">between</span> <span class="string">'1986-01-01'</span> <span class="keyword">and</span> <span class="string">'1987-01-01'</span> <span class="keyword">group</span> <span class="keyword">by</span> salary,from_date <span class="keyword">having</span> <span class="keyword">num</span>&gt;<span class="number">25</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220227220607313.png" alt="image-20220227220607313"></p>
-<h5 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h5><p>having通常与group by  联合使用。</p>
+<h5><span id="having">HAVING</span></h5><p>having通常与group by  联合使用。</p>
 <p>having 用于对分组后的结果进行条件筛选，因此having 只能出现在group by 后面。</p>
 <p>where的筛选条件时发生在group by 之前，并且条件中不能使用集合函数。having 子句虽然发生在group by 之后，但是可以使用集合函数。</p>
 <p>当一个语句中同时出现where、group by、having</p>
@@ -519,10 +519,10 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> gender,<span class="keyword">count</span>(gender) <span class="keyword">as</span> <span class="keyword">num</span> <span class="keyword">from</span> employees <span class="keyword">where</span> first_name <span class="keyword">like</span> <span class="string">"F%"</span> <span class="keyword">group</span> <span class="keyword">by</span> gender <span class="keyword">having</span> gender=<span class="string">'F'</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220227213931429.png" alt="image-20220227213931429"></p>
-<h4 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h4><p>多表查询是通过各个表之间的共同列的相关性来查询数据。多表查询首先要在这些表中建立连接，再在连接生成的结果集基础上进行查询。</p>
+<h4><span id="多表查询">多表查询</span></h4><p>多表查询是通过各个表之间的共同列的相关性来查询数据。多表查询首先要在这些表中建立连接，再在连接生成的结果集基础上进行查询。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> [表名.]目标字段表达式 <span class="keyword">as</span> 别名,...... <span class="keyword">from</span> 左表名 <span class="keyword">as</span> 别名 连接类型 右表名 <span class="keyword">as</span> 别名 <span class="keyword">on</span> 连接条件 <span class="keyword">where</span> 条件表达式;</span><br></pre></td></tr></table></figure>
 
-<h5 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h5><p>(1) cross join: 交叉连接。相当于将一个表每一行和另一个表每一行连接在一起形成一个新的行。‘</p>
+<h5><span id="内连接">内连接</span></h5><p>(1) cross join: 交叉连接。相当于将一个表每一行和另一个表每一行连接在一起形成一个新的行。‘</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 字段名 <span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">cross</span> <span class="keyword">join</span> 表名<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
 <p>例如将deparments与dept_manager表交叉连接在一块</p>
@@ -554,25 +554,25 @@
 
 <p><img src="./image-20220228161443815.png" alt="image-20220228161443815"></p>
 <p>自连接：一个表的两个副本之间的内连接。同一个表名在from子句中出现两次，故为了区别，必须对表指定不同的别名，字段名前也要加上表的别名进行限定，想不到什么实际应用场景。</p>
-<h5 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h5><p>外连接有主从表之分同时只适用于两个表。</p>
+<h5><span id="外连接">外连接</span></h5><p>外连接有主从表之分同时只适用于两个表。</p>
 <p>(3) left 或 left outer join : 左外连接，即左表为主表，将左表所有数据行与右表中的每一行按连接条件进行匹配，结果包含左标的所有数据行。左表与右表没有相匹配的行，则在结果集中右表字段都以NULL或0来填充。</p>
 <p>(4) right join 或 right outer join: 右外连接，即右表为主表，将右表所有数据行与左表中的每一行按连接条件进行匹配，结果包含右标的所有数据行。左表与右表没有相匹配的行，则在结果集中左表字段都以NULL或0来填充。</p>
 <p>(5) full join 或 full outer join: 完全连接，结果集包含两个连接表的所有数据行，两个表没有数据则用NULL或0来填充。</p>
-<h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><p>子查询是将一个select语句嵌套在另一个select语句的where子句中的查询。子查询也可以嵌套在insert、update、delete语句中。</p>
+<h4><span id="子查询">子查询</span></h4><p>子查询是将一个select语句嵌套在另一个select语句的where子句中的查询。子查询也可以嵌套在insert、update、delete语句中。</p>
 <p>应注意如下两点</p>
 <p>(1) 使用圆括号将子查询的select语句括起来</p>
 <p>(2) 当子查询返回值为单个值时，子查询可以应用到任何表达式中。</p>
 <p>子查询分别是比较子查询，IN子查询，批量比较子查询和EXISTS子查询。</p>
-<h5 id="比较子查询"><a href="#比较子查询" class="headerlink" title="比较子查询"></a>比较子查询</h5><p>使用比较子查询,得出emp_no=’10001’所住公寓的公寓名.</p>
+<h5><span id="比较子查询">比较子查询</span></h5><p>使用比较子查询,得出emp_no=’10001’所住公寓的公寓名.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept_name <span class="keyword">from</span> departments <span class="keyword">where</span> dept_no=(<span class="keyword">select</span> dept_no <span class="keyword">from</span> dept_emp <span class="keyword">where</span> emp_no=<span class="string">'10001'</span>);</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220228201547872.png" alt="image-20220228201547872"></p>
-<h5 id="IN子查询"><a href="#IN子查询" class="headerlink" title="IN子查询"></a>IN子查询</h5><p>父查询与子查询之间用IN或NOT IN进行连接并判断某个字段的值是否在子查询查找到的集合中.    </p>
+<h5><span id="in子查询">IN子查询</span></h5><p>父查询与子查询之间用IN或NOT IN进行连接并判断某个字段的值是否在子查询查找到的集合中.    </p>
 <p>例如姓氏为Fei名字为B开头的人在就职期间的最高薪水,显示emp_no,first_name,last_name和max(salary)</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> emp_no,first_name,last_name,<span class="keyword">max</span>(salary) <span class="keyword">from</span> salaries <span class="keyword">natural</span> <span class="keyword">join</span> employees <span class="keyword">where</span> emp_no <span class="keyword">in</span> (<span class="keyword">select</span> emp_no <span class="keyword">from</span>  employees <span class="keyword">where</span> first_name =<span class="string">"Fei"</span> <span class="keyword">and</span> last_name <span class="keyword">like</span> <span class="string">"B%"</span>) <span class="keyword">group</span> <span class="keyword">by</span> emp_no,first_name,last_name;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220228203114714.png" alt="image-20220228203114714"></p>
-<h5 id="批量比较子查询"><a href="#批量比较子查询" class="headerlink" title="批量比较子查询"></a>批量比较子查询</h5><p>在子查询结果不止一个时候，父查询和子查询之间需要比较运算符进行连接。这个时候就需要子查询前面加上ANY或者ALL.</p>
+<h5><span id="批量比较子查询">批量比较子查询</span></h5><p>在子查询结果不止一个时候，父查询和子查询之间需要比较运算符进行连接。这个时候就需要子查询前面加上ANY或者ALL.</p>
 <p>ANY:在子查询前面使用ANY时，会使用指定的比较运算符将一个表达式的值或字段的值与每一个子查询返回值进行比较，只要有一次比较的结果为TRUE，则整个表达式的值为TRUE，否则为FALSE；</p>
 <p>例如显示薪水大于155513的员工信息。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> employees <span class="keyword">where</span> emp_no = <span class="keyword">ANY</span>(<span class="keyword">select</span> emp_no <span class="keyword">from</span> salaries <span class="keyword">where</span> salary&gt;=<span class="number">155513</span>);</span><br></pre></td></tr></table></figure>
@@ -580,14 +580,14 @@
 <p><img src="./image-20220301153526594.png" alt="image-20220301153526594"></p>
 <p>怎么理解呢，使用ANY字段就类似于IN字段，只要emp_no的条件在子查询的结果里面，成立一条或多条该结果就满足where比较条件。</p>
 <p>ALL：指定比较运算符将一个表达式的值或者字段的值与每一个子查询返回值进行比较，只有当所有比较的结果都为TRUE时，整个表达式的值才为TRUE，否则为FALSE；</p>
-<h5 id="EXISTS子查询-NOT-EXISTS"><a href="#EXISTS子查询-NOT-EXISTS" class="headerlink" title="EXISTS子查询/NOT EXISTS"></a>EXISTS子查询/NOT EXISTS</h5><p>对于子查询结果判断是否为空，如果子查询结果为空，则返回FALSE，否则返回TRUE。</p>
+<h5><span id="exists子查询not-exists">EXISTS子查询/NOT EXISTS</span></h5><p>对于子查询结果判断是否为空，如果子查询结果为空，则返回FALSE，否则返回TRUE。</p>
 <p>NOT EXISTS则相反。</p>
 <p>例如薪水大于158220的信息存在则输出公寓信息表。</p>
 <p><img src="./image-20220301161418910.png" alt="image-20220301161418910"></p>
-<h4 id="子查询与多表查询的选择"><a href="#子查询与多表查询的选择" class="headerlink" title="子查询与多表查询的选择"></a>子查询与多表查询的选择</h4><p>（1）当输出信息来自多个表时候，选择连接查询。</p>
+<h4><span id="子查询与多表查询的选择">子查询与多表查询的选择</span></h4><p>（1）当输出信息来自多个表时候，选择连接查询。</p>
 <p>（2）当查询语句输出信息来自一张表时，但是限制条件来自另一张表，使用子查询。</p>
 <p>（3）查询输出信息和where子句都只涉及一张表，到那时查询条件涉及集合函数数值比较，一般使用子查询。例如输出分数表分数低于平均成绩的分数信息。</p>
-<h4 id="UNION合并结果集"><a href="#UNION合并结果集" class="headerlink" title="UNION合并结果集"></a>UNION合并结果集</h4><p>指对多个select语句查询的结果集进行合并操作，组成一个结果集。</p>
+<h4><span id="union合并结果集">UNION合并结果集</span></h4><p>指对多个select语句查询的结果集进行合并操作，组成一个结果集。</p>
 <p>（1）所有select语句中字段个数必须相同</p>
 <p>（2）所有select语句中数据类型必须相同或者兼容</p>
 <p>（3）合并后的结果集字段名是第一个select语句中的字段名，如果要指定别名也只能在第一个select语句中指定。</p>
@@ -596,14 +596,14 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> first_name <span class="keyword">as</span> 姓氏,last_name <span class="keyword">as</span> 名字  <span class="keyword">from</span> customer <span class="keyword">where</span> first_name <span class="keyword">like</span> <span class="string">'F%'</span> <span class="keyword">union</span> <span class="keyword">select</span> first_name, last_name <span class="keyword">from</span> actor <span class="keyword">where</span> first_name <span class="keyword">like</span> <span class="string">'F%'</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220301164753093.png" alt="image-20220301164753093"></p>
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> [<span class="keyword">from</span>] 表名 [<span class="keyword">where</span> 条件表达式]</span><br></pre></td></tr></table></figure>
+<h3><span id="删除">删除</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> [<span class="keyword">from</span>] 表名 [<span class="keyword">where</span> 条件表达式]</span><br></pre></td></tr></table></figure>
 
 <p>使用删除语句时，不写where条件限制，则表示要清空指定数据表。</p>
 <p>清空数据表第二种办法</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">truncate</span> 表名;</span><br></pre></td></tr></table></figure>
 
 <p>delete为dml语句  truncate为DDL语句</p>
-<h2 id="存储过程和函数"><a href="#存储过程和函数" class="headerlink" title="存储过程和函数"></a>存储过程和函数</h2><h3 id="Mysql-程序设计"><a href="#Mysql-程序设计" class="headerlink" title="Mysql 程序设计"></a>Mysql 程序设计</h3><h4 id="1-局部变量"><a href="#1-局部变量" class="headerlink" title="(1) 局部变量"></a>(1) 局部变量</h4><p>常用于存储过程和存储函数的BEGIN和END语句块之间。</p>
+<h2><span id="存储过程和函数">存储过程和函数</span></h2><h3><span id="mysql-程序设计">Mysql 程序设计</span></h3><h4><span id="1-局部变量">(1) 局部变量</span></h4><p>常用于存储过程和存储函数的BEGIN和END语句块之间。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> 变量名 变量类型 [<span class="keyword">DEFAULT</span> 默认值];</span><br></pre></td></tr></table></figure>
 
 <p>默认值不指定则局部变量初始为NULL,若指定则局部变量初始值为默认值.</p>
@@ -618,42 +618,42 @@
 <p>查看自定义变量值</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> @变量名<span class="number">1</span>，@变量名<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-流程控制语句"><a href="#2-流程控制语句" class="headerlink" title="(2) 流程控制语句"></a>(2) 流程控制语句</h4><p>IF、CASE、LOOP、WHILE、ITERATE、REPEAT。</p>
-<h5 id="IF用法："><a href="#IF用法：" class="headerlink" title="IF用法："></a>IF用法：</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IF 条件表达式 THEN 执行语句</span><br><span class="line">[ELSEIF 条件表达式 THEN 执行语句]</span><br><span class="line">[ELSE　执行语句]</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">IF</span>;</span><br></pre></td></tr></table></figure>
+<h4><span id="2-流程控制语句">(2) 流程控制语句</span></h4><p>IF、CASE、LOOP、WHILE、ITERATE、REPEAT。</p>
+<h5><span id="if用法">IF用法：</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IF 条件表达式 THEN 执行语句</span><br><span class="line">[ELSEIF 条件表达式 THEN 执行语句]</span><br><span class="line">[ELSE　执行语句]</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">IF</span>;</span><br></pre></td></tr></table></figure>
 
-<h5 id="CASE用法："><a href="#CASE用法：" class="headerlink" title="CASE用法："></a>CASE用法：</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CASE 判断变量</span><br><span class="line">WHEN 判断变量值1 THEN 执行语句</span><br><span class="line">[WHEN 判断变量值2 THEN 执行语句]</span><br><span class="line">[ELSE 执行语句]</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">CASE</span>;</span><br></pre></td></tr></table></figure>
+<h5><span id="case用法">CASE用法：</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CASE 判断变量</span><br><span class="line">WHEN 判断变量值1 THEN 执行语句</span><br><span class="line">[WHEN 判断变量值2 THEN 执行语句]</span><br><span class="line">[ELSE 执行语句]</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">CASE</span>;</span><br></pre></td></tr></table></figure>
 
-<h5 id="LOOP用法："><a href="#LOOP用法：" class="headerlink" title="LOOP用法："></a>LOOP用法：</h5><p>死循环</p>
+<h5><span id="loop用法">LOOP用法：</span></h5><p>死循环</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[循环标签:] LOOP </span><br><span class="line">执行语句</span><br><span class="line">[LEAVE 循环标签]//离开循环</span><br><span class="line">[ITERATE 循环标签]//结束本次循环，开始下次循环</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">LOOP</span> [循环标签];</span><br></pre></td></tr></table></figure>
 
-<h5 id="REPEAT用法："><a href="#REPEAT用法：" class="headerlink" title="REPEAT用法："></a>REPEAT用法：</h5><p>相当于C语言里面do while</p>
+<h5><span id="repeat用法">REPEAT用法：</span></h5><p>相当于C语言里面do while</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[循环标签:] REPEAT</span><br><span class="line">执行语句</span><br><span class="line">[LEAVE 循环标签]//离开循环</span><br><span class="line">[ITERATE 循环标签]//结束本次循环，开始下次循环</span><br><span class="line">UNTIL 循环条件表达式</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">REPEAT</span> [循环标签];</span><br></pre></td></tr></table></figure>
 
-<h5 id="WHILE用法："><a href="#WHILE用法：" class="headerlink" title="WHILE用法："></a>WHILE用法：</h5><p>相当于C语言里面的WHILE</p>
+<h5><span id="while用法">WHILE用法：</span></h5><p>相当于C语言里面的WHILE</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[循环标签:] WHILE 循环条件表达式 <span class="keyword">DO</span></span><br><span class="line">执行语句</span><br><span class="line">[LEAVE 循环标签]//离开循环</span><br><span class="line">[<span class="keyword">ITERATE</span> 循环标签]//结束本次循环，开始下次循环</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">WHILE</span> [循环标签];</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-光标"><a href="#3-光标" class="headerlink" title="(3) 光标"></a>(3) 光标</h4><p>用在BEGIN和END之间，用于mysql程序设计</p>
+<h4><span id="3-光标">(3) 光标</span></h4><p>用在BEGIN和END之间，用于mysql程序设计</p>
 <p>使用sql语句对数据表查询时，可能返回多条结果，如果对查询结果集中的多条进行逐条读取，则需使用光标。</p>
-<h5 id="光标声明"><a href="#光标声明" class="headerlink" title="光标声明"></a>光标声明</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> 光标名 <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> 查询<span class="keyword">sql</span>语句;</span><br></pre></td></tr></table></figure>
+<h5><span id="光标声明">光标声明</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> 光标名 <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> 查询<span class="keyword">sql</span>语句;</span><br></pre></td></tr></table></figure>
 
-<h5 id="光标使用"><a href="#光标使用" class="headerlink" title="光标使用"></a>光标使用</h5><p>光标使用之前必须先打开，从光标查询结果中取出一条记录可用FETCH语句</p>
+<h5><span id="光标使用">光标使用</span></h5><p>光标使用之前必须先打开，从光标查询结果中取出一条记录可用FETCH语句</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OPEN 光标名</span><br><span class="line">FETCH 光标名 INTO 声明的变量名1,声明的变量名2,声明的变量名3,......;</span><br></pre></td></tr></table></figure>
 
-<h5 id="关闭光标"><a href="#关闭光标" class="headerlink" title="关闭光标"></a>关闭光标</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close 光标名;</span><br></pre></td></tr></table></figure>
+<h5><span id="关闭光标">关闭光标</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close 光标名;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="存储程序"><a href="#存储程序" class="headerlink" title="存储程序"></a>存储程序</h3><p>存储过程: 数据库服务器上一组<strong>预先编译好的</strong>sql语句的集合，作为一个对象存储在数据库中，可以作为一个整体来被调用,并不返回结果.</p>
+<h3><span id="存储程序">存储程序</span></h3><p>存储过程: 数据库服务器上一组<strong>预先编译好的</strong>sql语句的集合，作为一个对象存储在数据库中，可以作为一个整体来被调用,并不返回结果.</p>
 <p>存储函数: 调用过程中可以从调用者哪里获得参数，执行完毕之后返回给调用者一个返回值，类似于C语言中的函数。</p>
 <p>触发器: 更新,删除,插入表数据时,引发与之关联的触发器自动执行.</p>
 <p>事件: 事件时根据时间调度器在预定时间自动执行的存储程序.</p>
-<h4 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h4><p>存储过程的优势:</p>
+<h4><span id="存储过程">存储过程</span></h4><p>存储过程的优势:</p>
 <p>① 提高设计灵活性</p>
 <p>② 模块化</p>
 <p>③ 因为提前编译,提高程序执行速度</p>
 <p>④ 减少网络访问负荷</p>
 <p>⑤ 可以对数据进行访问权限限制</p>
-<h5 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> 存储过程名([<span class="keyword">IN</span>/<span class="keyword">OUT</span>/INOUT 参数名<span class="number">1</span> 数据类型,<span class="keyword">IN</span>/<span class="keyword">OUT</span>/INOUT 参数名<span class="number">1</span> 数据类型]) [characteristic]</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	MYSQL语句;</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+<h5><span id="创建存储过程">创建存储过程</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> 存储过程名([<span class="keyword">IN</span>/<span class="keyword">OUT</span>/INOUT 参数名<span class="number">1</span> 数据类型,<span class="keyword">IN</span>/<span class="keyword">OUT</span>/INOUT 参数名<span class="number">1</span> 数据类型]) [characteristic]</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	MYSQL语句;</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER //</span><br></pre></td></tr></table></figure>
 
@@ -666,17 +666,17 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> FirstSalary()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	<span class="comment">#Routine body goes here...</span></span><br><span class="line">	<span class="keyword">DECLARE</span> done <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>; </span><br><span class="line">	<span class="keyword">DECLARE</span> var_emp_no <span class="built_in">int</span>;</span><br><span class="line">	<span class="keyword">DECLARE</span> cursor_emp_no <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> </span><br><span class="line">	<span class="keyword">SELECT</span> emp_no <span class="keyword">from</span> employees <span class="keyword">where</span> first_name <span class="keyword">like</span> <span class="string">'Aamod'</span> <span class="keyword">and</span> last_name <span class="keyword">like</span> <span class="string">'Mandell'</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">DECLARE</span> CONTINUE <span class="keyword">HANDLER</span> <span class="keyword">FOR</span> <span class="keyword">NOT</span> <span class="keyword">FOUND</span> <span class="keyword">SET</span> done=<span class="number">1</span>; </span><br><span class="line">	OPEN cursor_emp_no;</span><br><span class="line">	</span><br><span class="line">	WHILE done!=1 <span class="keyword">DO</span></span><br><span class="line">		<span class="keyword">fetch</span> cursor_emp_no <span class="keyword">into</span> var_emp_no;</span><br><span class="line">		<span class="keyword">select</span> * <span class="keyword">from</span> salaries <span class="keyword">where</span> emp_no=var_emp_no;</span><br><span class="line">	<span class="keyword">END</span> <span class="keyword">while</span>;</span><br><span class="line">	</span><br><span class="line">	close cursor_emp_no;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220305201205048.png" alt="image-20220305201205048"></p>
-<h6 id="创建调用带参数的存储过程的存储过程"><a href="#创建调用带参数的存储过程的存储过程" class="headerlink" title="创建调用带参数的存储过程的存储过程"></a>创建调用带参数的存储过程的存储过程</h6><p>在存储过程中，调用带参数的存储过程</p>
+<h6><span id="创建调用带参数的存储过程的存储过程">创建调用带参数的存储过程的存储过程</span></h6><p>在存储过程中，调用带参数的存储过程</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CALL</span> 存储过程名(参数<span class="number">1</span>, 参数<span class="number">2</span>);<span class="comment">#参数为变量或者常量</span></span><br></pre></td></tr></table></figure>
 
 <p>例如调用存储过程ShowName</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> CallProcedure()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">SET</span> @emp_no=<span class="number">10001</span>;</span><br><span class="line"><span class="keyword">call</span> ShowName(@emp_no);</span><br><span class="line"><span class="keyword">call</span> ShowName(<span class="number">10009</span>);</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220305201417197.png" alt="image-20220305201417197"></p>
-<h6 id="创建带输出参数的存储过程"><a href="#创建带输出参数的存储过程" class="headerlink" title="创建带输出参数的存储过程"></a>创建带输出参数的存储过程</h6><p>例如创建存储过程，用参数传入工号，用参数返回最新工资。</p>
+<h6><span id="创建带输出参数的存储过程">创建带输出参数的存储过程</span></h6><p>例如创建存储过程，用参数传入工号，用参数返回最新工资。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> ShowSalary(<span class="keyword">IN</span> para_emp_no <span class="built_in">int</span>,<span class="keyword">OUT</span> para_salary <span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> salary <span class="keyword">into</span> para_salary <span class="keyword">from</span> salaries <span class="keyword">where</span> emp_no=para_emp_no <span class="keyword">and</span> from_date=(<span class="keyword">select</span> <span class="keyword">Max</span>(from_date) <span class="keyword">from</span> salaries <span class="keyword">where</span> emp_no=para_emp_no);</span><br><span class="line"></span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
 
-<h5 id="管理存储过程"><a href="#管理存储过程" class="headerlink" title="管理存储过程"></a>管理存储过程</h5><h6 id="查看存储过程"><a href="#查看存储过程" class="headerlink" title="查看存储过程"></a>查看存储过程</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> mysql.proc <span class="keyword">where</span> db=<span class="string">'数据库名'</span>;</span><br><span class="line">或者</span><br><span class="line"><span class="keyword">select</span> routine_name <span class="keyword">from</span> information_schema.ROUTINES <span class="keyword">where</span> routine_schema=<span class="string">'数据库名'</span>;</span><br></pre></td></tr></table></figure>
+<h5><span id="管理存储过程">管理存储过程</span></h5><h6><span id="查看存储过程">查看存储过程</span></h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> mysql.proc <span class="keyword">where</span> db=<span class="string">'数据库名'</span>;</span><br><span class="line">或者</span><br><span class="line"><span class="keyword">select</span> routine_name <span class="keyword">from</span> information_schema.ROUTINES <span class="keyword">where</span> routine_schema=<span class="string">'数据库名'</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220305204418312.png" alt="image-20220305204418312"></p>
 <p><img src="./image-20220305204440880.png" alt="image-20220305204440880"></p>
@@ -689,7 +689,7 @@
 
 
 
-<h6 id="修改存储过程"><a href="#修改存储过程" class="headerlink" title="修改存储过程"></a>修改存储过程</h6><p>如下语法只能修改存储过程特性，如要修改内容，则需删除后重新创建。</p>
+<h6><span id="修改存储过程">修改存储过程</span></h6><p>如下语法只能修改存储过程特性，如要修改内容，则需删除后重新创建。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">PROCEDURE</span> 存储过程名 [characteristic....];</span><br></pre></td></tr></table></figure>
 
 <p><strong>characteristic</strong>如下</p>
@@ -709,15 +709,15 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">PROCEDURE</span> ShowName MODIFIES <span class="keyword">SQL</span> <span class="keyword">DATA</span> <span class="keyword">SQL</span> <span class="keyword">SECURITY</span> INVOKER;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220305211455653.png" alt="image-20220305211455653"></p>
-<h6 id="删除存储过程"><a href="#删除存储过程" class="headerlink" title="删除存储过程"></a>删除存储过程</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="string">'存储过程名'</span></span><br></pre></td></tr></table></figure>
+<h6><span id="删除存储过程">删除存储过程</span></h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="string">'存储过程名'</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="存储函数"><a href="#存储函数" class="headerlink" title="存储函数"></a>存储函数</h4><h5 id="创建存储函数"><a href="#创建存储函数" class="headerlink" title="创建存储函数"></a>创建存储函数</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Create</span> <span class="keyword">FUNCTION</span> 函数名([参数<span class="number">1</span>,参数<span class="number">2</span>,....]) <span class="keyword">return</span> 返回类型 [characteristic]</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">函数体</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h4><span id="存储函数">存储函数</span></h4><h5><span id="创建存储函数">创建存储函数</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Create</span> <span class="keyword">FUNCTION</span> 函数名([参数<span class="number">1</span>,参数<span class="number">2</span>,....]) <span class="keyword">return</span> 返回类型 [characteristic]</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">函数体</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
 
 <p>例如比较两个工号最近工资多少</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> CompareSalary(emp_no1 <span class="built_in">int</span>,emp_no2 <span class="built_in">int</span>) <span class="keyword">RETURNS</span> <span class="built_in">int</span>(<span class="number">11</span>)</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	<span class="keyword">DECLARE</span> salary1 <span class="built_in">int</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">DECLARE</span> salary2 <span class="built_in">int</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">select</span> salary <span class="keyword">into</span> salary1 <span class="keyword">from</span> salaries <span class="keyword">where</span> emp_no=emp_no1 <span class="keyword">and</span> from_date=(<span class="keyword">select</span> <span class="keyword">Max</span>(from_date) <span class="keyword">from</span> salaries <span class="keyword">where</span> emp_no=emp_no1);</span><br><span class="line">	<span class="keyword">select</span> salary <span class="keyword">into</span> salary2 <span class="keyword">from</span> salaries <span class="keyword">where</span> emp_no=emp_no2 <span class="keyword">and</span> from_date=(<span class="keyword">select</span> <span class="keyword">Max</span>(from_date) <span class="keyword">from</span> salaries <span class="keyword">where</span> emp_no=emp_no2);</span><br><span class="line">	if salary1&gt;=salary2 then</span><br><span class="line">	RETURN salary1;</span><br><span class="line">	else</span><br><span class="line">	RETURN salary2;</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220305214918006.png" alt="image-20220305214918006"></p>
-<h5 id="查看存储函数"><a href="#查看存储函数" class="headerlink" title="查看存储函数"></a>查看存储函数</h5><p>和存储过程一样。</p>
+<h5><span id="查看存储函数">查看存储函数</span></h5><p>和存储过程一样。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> mysql.proc <span class="keyword">where</span> db=<span class="string">'数据库名'</span>;</span><br><span class="line">或者</span><br><span class="line"><span class="keyword">select</span> routine_name <span class="keyword">from</span> information_schema.ROUTINES <span class="keyword">where</span> routine_schema=<span class="string">'数据库名'</span>;</span><br></pre></td></tr></table></figure>
 
 <p>查看存储函数详细信息</p>
@@ -726,10 +726,10 @@
 <p>查看数据库中所有存储函数信息</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">function</span> <span class="keyword">status</span> <span class="keyword">where</span> db=<span class="string">'数据库名'</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="修改存储函数"><a href="#修改存储函数" class="headerlink" title="修改存储函数"></a>修改存储函数</h5><p>和存储过程一样 就需要把procedure改为function.</p>
-<h5 id="删除存储函数"><a href="#删除存储函数" class="headerlink" title="删除存储函数"></a>删除存储函数</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">function</span> 存储函数名;</span><br></pre></td></tr></table></figure>
+<h5><span id="修改存储函数">修改存储函数</span></h5><p>和存储过程一样 就需要把procedure改为function.</p>
+<h5><span id="删除存储函数">删除存储函数</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">function</span> 存储函数名;</span><br></pre></td></tr></table></figure>
 
-<h5 id="可以直接使用的数学存储函数"><a href="#可以直接使用的数学存储函数" class="headerlink" title="可以直接使用的数学存储函数"></a>可以直接使用的数学存储函数</h5><ul>
+<h5><span id="可以直接使用的数学存储函数">可以直接使用的数学存储函数</span></h5><ul>
 <li><p><code>-</code>元减：改变参数的符号</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT - <span class="number">2</span>; -&gt; <span class="number">-2</span></span><br></pre></td></tr></table></figure>
 
@@ -868,13 +868,13 @@
 <p>从 MySQL 3.23.51 开始，所有数字被四舍五入到零。 如果 <code>D</code> 是负数，那么数字的整个部分被对准零位输出：<code>mysql&gt; SELECT TRUNCATE(122,-2); -&gt; 100</code>注意，十进值小数在计算机中通常不以精确数字存储，而是双精度型的值，你可能会被下列结果所愚弄：<code>mysql&gt; SELECT TRUNCATE(10.28*100,0); -&gt; 1027</code>上面结果的发生是因为 10.28 实际上是以某些像 10.2799999999999999 的形式被存储的。</p>
 </li>
 </ul>
-<h4 id="存储过程和函数区别"><a href="#存储过程和函数区别" class="headerlink" title="存储过程和函数区别"></a>存储过程和函数区别</h4><p>一般来说，存储过程实现的功能要复杂一点，而函数的实现的功能针对性比较强。 存储过程，功能强大，可以执行包括修改表等一系列数据库操作；用户定义函数不能用于执行一组修改全局数据库状态的操作。</p>
+<h4><span id="存储过程和函数区别">存储过程和函数区别</span></h4><p>一般来说，存储过程实现的功能要复杂一点，而函数的实现的功能针对性比较强。 存储过程，功能强大，可以执行包括修改表等一系列数据库操作；用户定义函数不能用于执行一组修改全局数据库状态的操作。</p>
 <p>① 存储过程<strong>必须使用CALL调用，而存储函数不用。</strong></p>
 <p>② 对于存储过程来说<strong>可以返回参数，如记录集，而函数只能返回值或者表对象</strong>。函数只能<strong>返回一个变量</strong>；而存储过程<strong>可以返回多个</strong>。</p>
 <p>③ 存储过程的参数可以有<strong>IN,OUT,INOUT三种类型</strong>，而函数只能有<strong>IN类型</strong>。存储过程<strong>声明时不需要返回类型</strong>，而函数声明时<strong>需要描述返回类型</strong>，且函数体中<strong>必须包含一个有效的RETURN语句</strong>。</p>
 <p>④ 存储过程一般是作为一个<strong>独立的部分来执行</strong>（ EXECUTE 语句执行），而函数可以作为<strong>查询语句的一个部分</strong>来调用（SELECT调用），<br>由于函数可以返回一个表对象，因此它可以在查询语句中位于FROM关键字的后面。 <strong>SQL语句中不可用存储过程，而可以使用函数</strong></p>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>由用户自定义的一系列数据库更新操作，这些操作要么都不执行，要么都执行，是一个不可分割的逻辑工作单元，若执行到事务一半而出现意外，则会将数据回滚到事务发生之前。</p>
-<h4 id="事务处理语句"><a href="#事务处理语句" class="headerlink" title="事务处理语句"></a>事务处理语句</h4><p>启动事务</p>
+<h3><span id="事务">事务</span></h3><p>由用户自定义的一系列数据库更新操作，这些操作要么都不执行，要么都执行，是一个不可分割的逻辑工作单元，若执行到事务一半而出现意外，则会将数据回滚到事务发生之前。</p>
+<h4><span id="事务处理语句">事务处理语句</span></h4><p>启动事务</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span><br></pre></td></tr></table></figure>
 
 <p>启动事务之后，开始执行事务内的sql语句，sql语句执行完毕后，必须提交事务，才能使事务中的操作永久生效。</p>
@@ -890,7 +890,7 @@
 <p>持久性：事务对数据库的数据修改将永久生效。</p>
 <p>另外，事务并不能在存储函数和触发器中使用。</p>
 <p>例如在存储过程中添加两条公寓信息，使用事务插入一条数据和不使用事务插入一条数据。</p>
-<h4 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h4><p>数据库访问采用的是并发的访问，多线程访问数据库时，可能出现脏读、幻读和不可重复读等多线程问题。</p>
+<h4><span id="事务隔离">事务隔离</span></h4><p>数据库访问采用的是并发的访问，多线程访问数据库时，可能出现脏读、幻读和不可重复读等多线程问题。</p>
 <p>①脏读就是一个事务读取了另一个事务没有提交的数据。如果另一个事务回滚，则读到的就是脏数据。</p>
 <p>②不可重复读就是一个事务内，对同一数据进行两次相同查询，得到的结果不一致。</p>
 <p>③幻读就是在同一事务中，两次相同条件查询到的记录不一样。</p>
@@ -936,7 +936,7 @@
 <p>在事务中，如下可以改变该事务的隔离级别</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> [<span class="keyword">SESSION</span>|<span class="keyword">GLOBAL</span>] <span class="keyword">TRANSACTION</span> <span class="keyword">ISOLATION</span> <span class="keyword">LEVEL</span> &#123;<span class="keyword">READ</span> UNCOMMITTED|<span class="keyword">READ</span> COMMITTED|REPEATABLE <span class="keyword">READ</span>|<span class="keyword">SERIALIZABLE</span>&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>为搜索条件的字段上创建了索引，mysql在查找时，无需扫描任何记录即可迅速得到目标记录所在位置，能够大大提高查找效率。</p>
+<h3><span id="索引">索引</span></h3><p>为搜索条件的字段上创建了索引，mysql在查找时，无需扫描任何记录即可迅速得到目标记录所在位置，能够大大提高查找效率。</p>
 <p>如果数据表是一本书，索引就是目录。</p>
 <p>索引特性：</p>
 <p>① 唯一索引可以保证数据记录的唯一性</p>
@@ -957,7 +957,7 @@
 <p>③数据量小的表最好不要使用索引</p>
 <p>④不同值较少的字段不要建立索引字段 </p>
 <p>⑤为经常需要进行排序、分组和连接查询的字段建立索引</p>
-<h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><h5 id="在创建表时"><a href="#在创建表时" class="headerlink" title="在创建表时"></a>在创建表时</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(字段名 数据类型 [完整性条件约束],.......,[<span class="keyword">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="keyword">INDEX</span>|<span class="keyword">KEY</span> [索引名](字段名 [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]))</span><br></pre></td></tr></table></figure>
+<h4><span id="创建索引">创建索引</span></h4><h5><span id="在创建表时">在创建表时</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(字段名 数据类型 [完整性条件约束],.......,[<span class="keyword">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="keyword">INDEX</span>|<span class="keyword">KEY</span> [索引名](字段名 [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]))</span><br></pre></td></tr></table></figure>
 
 <p>[]中的字段为可选</p>
 <p>例如 创建一个学生表有学号、姓名、性别、电话字段。学号为int类型、姓名为varchar(10)、性别为enum(‘男’、’女’)、电话为int(11)。其中为电话添加唯一索引且别名为telephone，学号为主键约束。</p>
@@ -972,19 +972,19 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">test</span>(id1 <span class="built_in">int</span>,id2 <span class="built_in">int</span>,id3 <span class="built_in">int</span>,id4 <span class="built_in">int</span>,id5 <span class="built_in">int</span>,</span><br><span class="line">                  <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> d1(id1),</span><br><span class="line">                  <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> d2(id2),</span><br><span class="line">                  <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> d3(id3),</span><br><span class="line">                  <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> d4(id4),</span><br><span class="line">                  <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> d5(id5));</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220307171856826.png" alt="image-20220307171856826"></p>
-<h5 id="在已经存在的表"><a href="#在已经存在的表" class="headerlink" title="在已经存在的表"></a>在已经存在的表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> [<span class="keyword">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="keyword">INDEX</span> 索引名 <span class="keyword">ON</span> 表名(表中字段名[(长度)]);</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> [<span class="keyword">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="keyword">INDEX</span> 索引名(表中字段名[(长度)] [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]);</span><br></pre></td></tr></table></figure>
+<h5><span id="在已经存在的表">在已经存在的表</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> [<span class="keyword">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="keyword">INDEX</span> 索引名 <span class="keyword">ON</span> 表名(表中字段名[(长度)]);</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> [<span class="keyword">UNIQUE</span>|FULLTEXT|SPATIAL] <span class="keyword">INDEX</span> 索引名(表中字段名[(长度)] [<span class="keyword">ASC</span>|<span class="keyword">DESC</span>]);</span><br></pre></td></tr></table></figure>
 
 <p>例如先创建一个teacher表。然后再创建教师号的唯一索引名为teacher_num。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> teacher(教师号 <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>, 教师姓名 <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">NOT</span> <span class="literal">NULL</span>, 性别 enum(<span class="string">'男'</span>,<span class="string">'女'</span>) <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">NOT</span> <span class="literal">NULL</span>,电话 <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>);<span class="comment">#首先创建teacher表</span></span><br><span class="line"><span class="comment">#然后再teacher表中创建教师号的唯一索引。</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> teacher_num <span class="keyword">on</span> teacher(教师号);</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> teacher <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> teacher_num(教师号);</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220307164617971.png" alt="image-20220307164617971"></p>
-<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> 表中索引名 <span class="keyword">ON</span> 表名;</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">INDEX</span> 索引名;</span><br></pre></td></tr></table></figure>
+<h4><span id="删除索引">删除索引</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> 表中索引名 <span class="keyword">ON</span> 表名;</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">INDEX</span> 索引名;</span><br></pre></td></tr></table></figure>
 
 <p>例如删除刚刚创建的student中的telephone索引。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> telephone <span class="keyword">on</span> student;</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> teacher <span class="keyword">DROP</span> <span class="keyword">INDEX</span> telephone;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220307170905246.png" alt="image-20220307170905246"></p>
-<h4 id="查看表中索引"><a href="#查看表中索引" class="headerlink" title="查看表中索引"></a>查看表中索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> 表名;</span><br></pre></td></tr></table></figure>
+<h4><span id="查看表中索引">查看表中索引</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> 表名;</span><br></pre></td></tr></table></figure>
 
 <p>例如查看test中的索引</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> <span class="keyword">test</span>;</span><br></pre></td></tr></table></figure>
@@ -994,7 +994,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">index</span> <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220307172708135.png" alt="image-20220307172708135"></p>
-<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>视图是一个数据库对象，是一个或多个基表中导出的基表。通过视图访问的数据不作为对路的对象存储在数据库内。视图被定义后便存储在数据库中，通过视图看到的数据只是存放在基表中的数据。通过视图进行数据修改时，相应的基表也会发生变化。若基表的数据发生变化，这种变化也会自动反映在视图中。视图可以时一个基表数据，也可以是多个基表数据的联合，也可以有其他一个或多个视图产生。</p>
+<h3><span id="视图">视图</span></h3><p>视图是一个数据库对象，是一个或多个基表中导出的基表。通过视图访问的数据不作为对路的对象存储在数据库内。视图被定义后便存储在数据库中，通过视图看到的数据只是存放在基表中的数据。通过视图进行数据修改时，相应的基表也会发生变化。若基表的数据发生变化，这种变化也会自动反映在视图中。视图可以时一个基表数据，也可以是多个基表数据的联合，也可以有其他一个或多个视图产生。</p>
 <ul>
 <li>筛选表中记录</li>
 <li>防止未经许可的用户访问敏感数据</li>
@@ -1009,7 +1009,7 @@
 <li>视图使数据库具备逻辑独立性</li>
 <li>视图能够对机密数据提供安全保护。</li>
 </ul>
-<h4 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span>|<span class="keyword">REPLACE</span> [ALGORITHM=&#123;UNDEFINED|<span class="keyword">MERGE</span>|TEMPTABLE&#125;] <span class="keyword">VIEW</span> 视图名[(查询字段别名)]  <span class="keyword">as</span> <span class="keyword">sql</span>查询语句 [<span class="keyword">WITH</span> [<span class="keyword">CASCADED</span>|<span class="keyword">LOCAL</span>] <span class="keyword">CHECK</span> <span class="keyword">OPTION</span>]</span><br></pre></td></tr></table></figure>
+<h4><span id="创建视图">创建视图</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span>|<span class="keyword">REPLACE</span> [ALGORITHM=&#123;UNDEFINED|<span class="keyword">MERGE</span>|TEMPTABLE&#125;] <span class="keyword">VIEW</span> 视图名[(查询字段别名)]  <span class="keyword">as</span> <span class="keyword">sql</span>查询语句 [<span class="keyword">WITH</span> [<span class="keyword">CASCADED</span>|<span class="keyword">LOCAL</span>] <span class="keyword">CHECK</span> <span class="keyword">OPTION</span>]</span><br></pre></td></tr></table></figure>
 
 <p>在该视图是根据另一个视图定义时，加入with check option语句后，local和cascaded关键字将决定检查测试范围。</p>
 <p>local关键字仅作用在定义的视图上，cascaded关键字会对与该视图相关的所有视图和基表进行检查，默认是cascaded。</p>
@@ -1031,7 +1031,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> highsalary_info(员工编号,姓氏,姓名,性别,年龄,最高薪水) <span class="keyword">as</span> <span class="keyword">select</span> emp_no,first_name,last_name,gender,<span class="keyword">TIMESTAMPDIFF</span>(<span class="keyword">year</span>,birth_date,<span class="keyword">curdate</span>()),<span class="keyword">max</span>(salary) <span class="keyword">from</span> employees <span class="keyword">natural</span> <span class="keyword">join</span> salaries <span class="keyword">where</span> salary&gt;<span class="number">150000</span> <span class="keyword">group</span> <span class="keyword">by</span> emp_no,first_name,last_name,gender;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220309164703793.png" alt="image-20220309164703793"></p>
-<h4 id="查看视图"><a href="#查看视图" class="headerlink" title="查看视图"></a>查看视图</h4><p>查看数据库中已经存在的视图定义，查看视图必须有showview权限。</p>
+<h4><span id="查看视图">查看视图</span></h4><p>查看数据库中已经存在的视图定义，查看视图必须有showview权限。</p>
 <ol>
 <li><pre><code class="sql">desc 视图名
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   ![<span class="string">image-20220309165349155</span>](<span class="link">./image-20220309165349155.png</span>)</span><br><span class="line"></span><br><span class="line"><span class="bullet">2. </span><span class="code">```</span>sql</span><br><span class="line">   show table status like '视图名'\G</span><br></pre></td></tr></table></figure>
@@ -1046,13 +1046,13 @@
 <p>例如更改high_salary视图</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">VIEW</span> high_salary <span class="keyword">as</span> <span class="keyword">select</span> emp_no <span class="keyword">from</span> salaries <span class="keyword">where</span> salary&gt;<span class="number">150000</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> 视图名;</span><br></pre></td></tr></table></figure>
+<h4><span id="删除视图">删除视图</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> 视图名;</span><br></pre></td></tr></table></figure>
 
 <p>例如删除high_salary视图</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> high_salary;</span><br></pre></td></tr></table></figure>
 
-<h4 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h4><p>这里指的是通过视图去更新基表中的数据。</p>
-<h5 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h5><ul>
+<h4><span id="更新视图">更新视图</span></h4><p>这里指的是通过视图去更新基表中的数据。</p>
+<h5><span id="插入数据">插入数据</span></h5><ul>
 <li><p>使用insert语句需要进行插入的用户必须有在基表中插入数据的权限，否则插入会失败。</p>
 </li>
 <li><p>如果视图插入字段没有包含基表中所有字段为NOT NULL的字段，则会插入失败。</p>
@@ -1076,19 +1076,19 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> stu <span class="keyword">values</span>(<span class="number">6666</span>,<span class="string">'yyds'</span>,<span class="string">'男'</span>,<span class="string">'111111111'</span>),(<span class="number">7777</span>,<span class="string">'wuhu'</span>,<span class="string">'男'</span>,<span class="string">'22222222'</span>);</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220309194500975.png" alt="image-20220309194500975"></p>
-<h5 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 视图名 <span class="keyword">set</span> 字段名=<span class="string">'字段值'</span> <span class="keyword">where</span> 限制条件;</span><br></pre></td></tr></table></figure>
+<h5><span id="更新数据">更新数据</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 视图名 <span class="keyword">set</span> 字段名=<span class="string">'字段值'</span> <span class="keyword">where</span> 限制条件;</span><br></pre></td></tr></table></figure>
 
 <p>例如将上述插入数据yyds的性别改为女</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> stu <span class="keyword">set</span> 性别=<span class="string">'女'</span>  <span class="keyword">where</span> 姓名=<span class="string">'yyds'</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220309194842958.png" alt="image-20220309194842958"></p>
-<h5 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> [<span class="keyword">from</span>] 视图名 <span class="keyword">where</span> 限制条件;</span><br></pre></td></tr></table></figure>
+<h5><span id="删除数据">删除数据</span></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> [<span class="keyword">from</span>] 视图名 <span class="keyword">where</span> 限制条件;</span><br></pre></td></tr></table></figure>
 
 <p>例如删除学生姓名为wuhu那一条记录。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> stu <span class="keyword">where</span> 姓名=<span class="string">'wuhu'</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220309195114376.png" alt="image-20220309195114376"></p>
-<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>触发器定义了一系列操作，这一系列称为触发程序。当触发器所在表上出现了insert、update、delete操作时，将激活触发器。触发器基于一个表创建，但是可以针对多个表进行操作，因此触发器可以用来对表实施复杂的完整性约束。</p>
+<h3><span id="触发器">触发器</span></h3><p>触发器定义了一系列操作，这一系列称为触发程序。当触发器所在表上出现了insert、update、delete操作时，将激活触发器。触发器基于一个表创建，但是可以针对多个表进行操作，因此触发器可以用来对表实施复杂的完整性约束。</p>
 <p>触发器优点：</p>
 <ul>
 <li>触发器可以自动执行，当对表进行insert、update、delete操作，试图修改表中数据时，相应触发器立即自动执行。</li>
@@ -1096,7 +1096,7 @@
 <li>触发器可以实现表的约束但实现不了复杂的约束。触发器可以引用其他表中字段，从而实现多表之间的复杂约束。</li>
 <li>触发器可以维护冗余数据，实现外键级联。</li>
 </ul>
-<h4 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">TRIGGER</span> 触发器名 <span class="keyword">AFTER</span>/<span class="keyword">BEFORE</span> <span class="keyword">INSERT</span>/<span class="keyword">UPDATE</span>/<span class="keyword">DELETE</span> <span class="keyword">ON</span> 表名 <span class="keyword">for</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="comment">#触发操作</span></span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h4><span id="创建触发器">创建触发器</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">TRIGGER</span> 触发器名 <span class="keyword">AFTER</span>/<span class="keyword">BEFORE</span> <span class="keyword">INSERT</span>/<span class="keyword">UPDATE</span>/<span class="keyword">DELETE</span> <span class="keyword">ON</span> 表名 <span class="keyword">for</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="comment">#触发操作</span></span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li><p>触发器时数据库对象，因此创建触发器时，需要指定该触发器属于哪一个数据库。</p>
@@ -1137,11 +1137,11 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> tr_promotion <span class="keyword">after</span> <span class="keyword">update</span> <span class="keyword">on</span> dept_manager <span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">update</span> salaries <span class="keyword">set</span> <span class="keyword">to_date</span>=new.from_date <span class="keyword">where</span> emp_no=new.emp_no <span class="keyword">and</span> <span class="keyword">to_date</span>=<span class="string">'9999-01-01'</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> salaries <span class="keyword">values</span>(new.emp_no,<span class="number">150000</span>,new.from_date,new.to_date);</span><br><span class="line"><span class="keyword">update</span> titles <span class="keyword">set</span> <span class="keyword">to_date</span>=new.from_date <span class="keyword">where</span> emp_no=new.emp_no <span class="keyword">and</span> <span class="keyword">to_date</span>=<span class="string">'9999-01-01'</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> titles <span class="keyword">values</span>(new.emp_no,<span class="string">'Manager'</span>,new.from_date,new.to_date);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
 
 <p><img src="./image-20220310195157100.png" alt="image-20220310195157100"></p>
-<h4 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h4><p>与视图类似.</p>
+<h4><span id="删除触发器">删除触发器</span></h4><p>与视图类似.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">trigger</span> 触发器名</span><br></pre></td></tr></table></figure>
 
-<h4 id="查看触发器"><a href="#查看触发器" class="headerlink" title="查看触发器"></a>查看触发器</h4><p>与视图一样,只需将view改为trigger即可.</p>
-<h2 id="数据库管理"><a href="#数据库管理" class="headerlink" title="数据库管理"></a>数据库管理</h2><h3 id="数据备份（数据导出）"><a href="#数据备份（数据导出）" class="headerlink" title="数据备份（数据导出）"></a>数据备份（数据导出）</h3><h4 id="数据备份的分类"><a href="#数据备份的分类" class="headerlink" title="数据备份的分类"></a>数据备份的分类</h4><p>数据库是否在线划分</p>
+<h4><span id="查看触发器">查看触发器</span></h4><p>与视图一样,只需将view改为trigger即可.</p>
+<h2><span id="数据库管理">数据库管理</span></h2><h3><span id="数据备份数据导出">数据备份（数据导出）</span></h3><h4><span id="数据备份的分类">数据备份的分类</span></h4><p>数据库是否在线划分</p>
 <ul>
 <li>热备份。数据库正处于运行状态，此时依赖数据库的日志文件进行备份</li>
 <li>温备份。进行数据备份时数据库服务正常运行，但是数据只能读不能写</li>
@@ -1176,7 +1176,7 @@
 <p>​    <em>–routines</em>:将存储过程和存储函数备份</p>
 <p>​    <em>–single-transaction</em>:实现热备份</p>
 <p>​    <em>–triggers</em>:备份触发器</p>
-<h3 id="数据恢复（数据导入）"><a href="#数据恢复（数据导入）" class="headerlink" title="数据恢复（数据导入）"></a>数据恢复（数据导入）</h3><p>将备份的数据恢复到当前数据库中，也叫导入数据库文件。mysql保证数据安全的方法。</p>
+<h3><span id="数据恢复数据导入">数据恢复（数据导入）</span></h3><p>将备份的数据恢复到当前数据库中，也叫导入数据库文件。mysql保证数据安全的方法。</p>
 <p>（1）数据库备份。通过多出数据或者表文件的副本来保护数据。</p>
 <p>（2）二进制日志文件保存更新数据的所有语句。</p>
 <p>（3）数据库复制。mysql的内部复制功能建立在两个或多个服务器之间，是通过设定他们之间的主从关系来实现的。</p>
@@ -1199,6 +1199,21 @@
         
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(/css/images/mountain.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2022/05/18/AngrNote/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              Angr笔记
+            
+          </p>
+        </article>
+      </div>
     
     
       <div id="article-nav-older" class="card-item img">

